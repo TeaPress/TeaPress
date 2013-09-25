@@ -1,0 +1,16 @@
+<?php
+/**
+ * @var Blog\Model\Post $this->post
+ */
+?>
+
+<div class="single">
+    <h2><?php echo $this->post->getTitle(); ?></h2>
+    <div class="date"><?php echo $this->post->getCreatedAt(); ?></div>
+    <div class="description">
+        <?php if($this->post->getThumb() != null): ?>
+            <img src="<?php echo $this->post->getThumb(); ?>" />
+        <?php endif; ?>
+        <?php echo $this->post->getDescription(); ?>
+    </div>
+</div>

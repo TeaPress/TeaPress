@@ -1,0 +1,14 @@
+<div class="block block-category">
+    <h3><?php echo $this->translate('Category'); ?></h3>
+    <div class="content">
+        <ul>
+        <?php foreach($this->list as $category): ?>
+            <li>
+                <a href="<?php echo $this->url('blog/category', array('name' => $category->getUrlKey())); ?>">
+                    <?php echo $category->getTitle(); ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<?php if (count($this->posts) == 0): ?>
+    <div class="no-data"><?php echo $this->translate('No data'); ?></div>
+<?php else: ?>
+    <?php foreach ($this->posts as $post): ?>
+        <div class="item">
+            <h3><?php echo $post->getTitle(); ?></h3>
+            <div class="description">
+                <img src="<?php echo $post->getThumb(); ?>" />
+                <?php echo $post->getShortDescription(); ?>
+            </div>
+            <a href="<?php echo $this->url('blog/post', array('name' => $post->getUrlKey())); ?>" title="<?php echo $post->getTitle(); ?>">
+                <?php echo $this->translate('see more'); ?>
+            </a>
+        </div>
+    <?php endforeach; ?>
+    <?php echo $this->paginationControl($this->posts, 'sliding', array('partial/paginator.phtml', 'blog/category')); ?>
+<?php endif; ?>

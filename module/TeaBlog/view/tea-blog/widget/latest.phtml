@@ -1,0 +1,14 @@
+<div class="block block-latest">
+    <h3><?php echo $this->translate('Latest posts'); ?></h3>
+    <div class="content">
+        <?php foreach($this->latest as $post): ?>
+        <div class="item">
+            <h4><?php echo $post->getTitle(); ?></h4>
+            <p><?php echo $post->getShortDescription(); ?></p>
+            <a href="<?php echo $this->url('blog/post', array('name' => $post->getUrlKey())); ?>">
+                <?php echo $this->translate('see more'); ?>
+            </a>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
