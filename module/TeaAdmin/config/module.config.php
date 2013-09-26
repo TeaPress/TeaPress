@@ -1,8 +1,12 @@
 <?php
 return array(
     'service_manager' => array(
+        'factories' => array(
+            'TeaAdmin\Authentication\Service' => 'TeaAdmin\Authentication\AuthenticationFactory',
+            'TeaAdmin\Authentication\Adapter' => 'TeaAdmin\Authentication\Adapter\AdapterFactory',
+            'TeaAdmin\Authentication\Storage' => 'TeaAdmin\Authentication\Storage\StorageFactory',
+        ),
         'invokables' => array(
-            // services
             'TeaAdmin\Service\User' => 'TeaAdmin\Service\User',
             'TeaAdmin\Service\Role' => 'TeaAdmin\Service\Role',
             'TeaAdmin\Service\Rule' => 'TeaAdmin\Service\Rule',

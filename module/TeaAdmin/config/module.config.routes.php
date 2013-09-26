@@ -12,6 +12,19 @@ return array(
                         'action' => 'index',
                     ),
                 ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'login' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/login',
+                            'defaults' => array(
+                                'controller' => 'TeaAdmin\Controller\Index',
+                                'action' => 'login',
+                            ),
+                        ),
+                    ),
+                ),
             ),
         ),
     ),

@@ -16,4 +16,18 @@ class IndexController extends AbstractAdminActionController
         $viewModel = new ViewModel();
         return $viewModel;
     }
+    
+    /**
+     * Login page for authentication on administration
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function loginAction()
+    {
+        $form = new \TeaAdmin\Form\Login();
+        
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        return $viewModel;
+    }
 }

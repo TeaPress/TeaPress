@@ -55,6 +55,7 @@ class Module
                     $table = new Mapper\Log($tableGateway);
                     return $table;
                 },
+                
             ),
         );
     }
