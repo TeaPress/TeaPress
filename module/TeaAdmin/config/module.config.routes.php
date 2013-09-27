@@ -24,6 +24,36 @@ return array(
                             ),
                         ),
                     ),
+                    'logout' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/logout',
+                            'defaults' => array(
+                                'controller' => 'TeaAdmin\Controller\Index',
+                                'action' => 'logout',
+                            ),
+                        ),
+                    ),
+                    'user' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/user',
+                            'defaults' => array(
+                                'controller' => 'TeaAdmin\Controller\User',
+                                'action' => 'index',
+                            ),
+                        ),
+                    ),
+                    'role' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/role',
+                            'defaults' => array(
+                                'controller' => 'TeaAdmin\Controller\Role',
+                                'action' => 'index',
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),

@@ -38,8 +38,8 @@ class AbstractAdminActionController extends BaseAbstractActionController {
             return $this->plugin('redirect')->toRoute('admin/login');
         }
 
-        $this->getServiceLocator()->get('ViewHelperManager')->get('TeaAdminMenu')->setRole($auth->getIdentity()->role->getName());
-        $this->getServiceLocator()->get('ViewHelperManager')->get('TeaAdminPermission')->setRole($auth->getIdentity()->role->getName());
+//        $this->getServiceLocator()->get('ViewHelperManager')->get('TeaAdminMenu')->setRole($auth->getIdentity()->role->getName());
+//        $this->getServiceLocator()->get('ViewHelperManager')->get('TeaAdminPermission')->setRole($auth->getIdentity()->role->getName());
     }
 
     /**
@@ -53,17 +53,17 @@ class AbstractAdminActionController extends BaseAbstractActionController {
             return;
         }
 
-        $auth = $this->getServiceLocator()->get('TeaAdmin\Authentication\Service');
-        $identity = $auth->getIdentity();
-        
-        $roleService = $this->getServiceLocator()->get('TeaAdmin\Service\Role');
-        $role = $roleService->getRole($identity->role_id)->getName();
-        
-        $ressource = $e->getRouteMatch()->getMatchedRouteName();
-        $permissions = $this->getServiceLocator()->get('TeaPermissions');
-
-        if (!$permissions->isAllowed($role, $ressource)) {
-            return $this->redirect()->toRoute('admin/error', array('code' => 403));
-        }
+//        $auth = $this->getServiceLocator()->get('TeaAdmin\Authentication\Service');
+//        $identity = $auth->getIdentity();
+//        
+//        $roleService = $this->getServiceLocator()->get('TeaAdmin\Service\Role');
+//        $role = $roleService->getRole($identity->role_id)->getName();
+//        
+//        $ressource = $e->getRouteMatch()->getMatchedRouteName();
+//        $permissions = $this->getServiceLocator()->get('TeaPermissions');
+//
+//        if (!$permissions->isAllowed($role, $ressource)) {
+//            return $this->redirect()->toRoute('admin/error', array('code' => 403));
+//        }
     }
 }

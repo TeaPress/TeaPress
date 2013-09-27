@@ -1,0 +1,36 @@
+<ul class="nav navbar-nav">
+    <?php foreach ($this->container as $page):
+        $liClasses = array();
+        if($page->isActive(true)) {
+            $liClasses[] = 'active';
+        }
+        $liClasses[] = $page->getClass();
+        if($page->hasPages()) {
+            $liClasses[] = 'dropdown';
+            $page->setClass('dropdown-toggle');
+        }
+        $liClasses = empty($liClasses) ? '' : ' class="' . implode(' ', $liClasses) . '"';
+        echo '<li' . $liClasses . '>';
+        echo $this->navigation()->menu()->htmlify($page) . PHP_EOL;
+        if($page->hasPages()):
+            echo '<ul class="dropdown-menu">';
+            foreach($page->getPages() as $children):
+                $liClasses = array();
+                if($children->isActive(true)) {
+                    $liClasses[] = 'active';
+                }
+                $liClasses[] = $children->getClass();
+                $liClasses = empty($liClasses) ? '' : ' class="' . implode(' ', $liClasses) . '"';
+                echo '<li' . $liClasses . '>';
+                echo $this->navigation()->menu()->htmlify($children) . PHP_EOL;
+                echo '</li>';
+            endforeach;
+            echo '</ul>';
+        endif;
+        echo '</li>';
+    endforeach; ?>
+</ul>
+
+<script type="text/javascript">
+    $('.dropdown-toggle').dropdown();
+</script>
