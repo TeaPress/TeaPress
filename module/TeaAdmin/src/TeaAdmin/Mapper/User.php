@@ -1,17 +1,21 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+namespace TeaAdmin\Mapper;
 
-/**
- * Description of User
- *
- * @author SVVW8300
- */
-class User {
-    //put your code here
+use TakeATea\Mapper\AbstractMapper;
+
+class User extends AbstractMapper
+{
+    /**
+     * Get all users
+     * @param boolean $usePaginator
+     * @return Paginator
+     */
+    public function getAllUsers()
+    {
+        $select = $this->tableGateway->getSql()->select();
+        $select->order('created_at DESC');
+        
+        return $this->selectWith($select);
+    }
 }
-
-?>

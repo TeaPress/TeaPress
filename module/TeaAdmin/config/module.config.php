@@ -17,6 +17,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'TeaAdmin\Controller\Index' => 'TeaAdmin\Controller\IndexController',
+            'TeaAdmin\Controller\User' => 'TeaAdmin\Controller\UserController',
+            'TeaAdmin\Controller\Role' => 'TeaAdmin\Controller\RoleController',
         ),
     ),
     'view_manager' => array(

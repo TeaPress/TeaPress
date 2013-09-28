@@ -16,6 +16,9 @@ return array(
                     'namespace' => 'tea_admin'
                 )
             )
+        ),
+        'list' => array(
+            'itemCountPerPage' => 20
         )
     )
 );
