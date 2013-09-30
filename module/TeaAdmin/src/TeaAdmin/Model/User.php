@@ -7,7 +7,12 @@ use TakeATea\Model\AbstractModel;
 class User extends AbstractModel
 {
     protected $user_id;
+    protected $role_id;
     protected $username;
+    protected $firstname;
+    protected $lastname;
+    protected $email;
+    protected $status;
     protected $password;
     protected $created_at;
     protected $updated_at;
@@ -19,6 +24,14 @@ class User extends AbstractModel
     public function setUserId($user_id) {
         $this->user_id = $user_id;
     }
+    
+    public function getRoleId() {
+        return $this->role_id;
+    }
+
+    public function setRoleId($role_id) {
+        $this->role_id = $role_id;
+    }
 
     public function getUsername() {
         return $this->username;
@@ -26,6 +39,38 @@ class User extends AbstractModel
 
     public function setUsername($username) {
         $this->username = $username;
+    }
+    
+    public function getFirstname() {
+        return $this->firstname;
+    }
+
+    public function setFirstname($firstname) {
+        $this->firstname = $firstname;
+    }
+    
+    public function getLastname() {
+        return $this->lastname;
+    }
+
+    public function setLastname($lastname) {
+        $this->lastname = $lastname;
+    }
+    
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+    
+    public function getStatus() {
+        return $this->status;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
     }
 
     public function getPassword() {

@@ -20,4 +20,14 @@ class User extends AbstractService
         }
         return $this->getMapper()->getAllUsers();
     }
+    
+    /**
+     * Create or update user
+     * @param \TeaAdmin\Model\User $user
+     * @return type
+     */
+    public function save(\TeaAdmin\Model\User $user)
+    {
+        return $this->getMapper()->save($user);
+    }
 }

@@ -1,17 +1,16 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+namespace TeaAdmin\Mapper;
 
-/**
- * Description of Role
- *
- * @author SVVW8300
- */
-class Role {
-    //put your code here
+use TakeATea\Mapper\AbstractMapper;
+
+class Role extends AbstractMapper
+{
+    public function getAllRoles()
+    {
+        $select = $this->tableGateway->getSql()->select();
+        $select->order('name ASC');
+        
+        return $this->selectWith($select);
+    }
 }
-
-?>

@@ -8,11 +8,17 @@ return array(
             'TeaAdminNavigation' => 'TeaAdmin\Navigation\Service\TeaAdminNavigationFactory',
         ),
         'invokables' => array(
+            // service
             'TeaAdmin\Service\User' => 'TeaAdmin\Service\User',
             'TeaAdmin\Service\Role' => 'TeaAdmin\Service\Role',
             'TeaAdmin\Service\Rule' => 'TeaAdmin\Service\Rule',
             'TeaAdmin\Service\Log'  => 'TeaAdmin\Service\Log',
         ),
+    ),
+    'form_elements' => array(
+        'invokables' => array(
+            'TeaAdmin\Form\User' => 'TeaAdmin\Form\User',
+        )
     ),
     'controllers' => array(
         'invokables' => array(

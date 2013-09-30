@@ -1,15 +1,22 @@
 <?php
 
-namespace TakeATea\InputFilter;
+namespace TakeATea\Form;
 
-use Zend\InputFilter\InputFilter;
+use Zend\Form\Form;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class AbstractInputFilter extends InputFilter implements ServiceLocatorAwareInterface
+class AbstractForm extends Form implements ServiceLocatorAwareInterface
 {
     protected $serviceLocator;
-
+    
+    public function __construct($name = null, $options = array()) {
+        parent::__construct($name, $options);
+        
+        $token = new \Zend\Form\Element\Csrf('token');
+        $this->add($token);
+    }
+    
     /**
      * Set service locator
      *
