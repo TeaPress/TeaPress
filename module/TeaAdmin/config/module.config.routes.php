@@ -75,6 +75,28 @@ return array(
                                 'action' => 'index',
                             ),
                         ),
+                        'may_terminate' => true,
+                        'child_routes' => array(
+                            'new' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/new',
+                                    'defaults' => array(
+                                        'action' => 'new',
+                                    ),
+                                ),
+                            ),
+                            'edit' => array(
+                                'type' => 'Regex',
+                                'options' => array(
+                                    'regex' => '/edit/(?P<id>\d+)',
+                                    'spec' => '/edit/%id%',
+                                    'defaults' => array(
+                                        'action' => 'edit',
+                                    ),
+                                ),
+                            ),
+                        ),
                     ),
                 ),
             ),

@@ -9,6 +9,16 @@ class User extends AbstractService
     protected $mapper = 'TeaAdmin\Mapper\User';
     
     /**
+     * fetch row of User with id
+     * @param int $user_id
+     * @return TeaAdmin\Model\User
+     */
+    public function getUserById($user_id)
+    {
+        return $this->getMapper()->getUserById($user_id);
+    }
+    
+    /**
      * Get all users
      * @param boolean $usePaginator
      * @return Paginator

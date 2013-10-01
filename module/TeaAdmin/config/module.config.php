@@ -18,6 +18,7 @@ return array(
     'form_elements' => array(
         'invokables' => array(
             'TeaAdmin\Form\User' => 'TeaAdmin\Form\User',
+            'TeaAdmin\Form\Role' => 'TeaAdmin\Form\Role',
         )
     ),
     'controllers' => array(

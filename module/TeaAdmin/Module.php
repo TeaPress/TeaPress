@@ -22,7 +22,6 @@ class Module
     {
         return array(
             'factories' => array(
-                // mappers
                 'TeaAdmin\Mapper\User' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();
@@ -55,7 +54,6 @@ class Module
                     $table = new Mapper\Log($tableGateway);
                     return $table;
                 },
-                
             ),
         );
     }

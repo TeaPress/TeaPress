@@ -14,9 +14,13 @@ class User extends AbstractForm
         $this->setHydrator(new ClassMethodsHydrator(false))
              ->setObject(new \TeaAdmin\Model\User());
         
+        $userId = new \Zend\Form\Element\Hidden('userId');
+        $this->add($userId);
+        
         $username = new \Zend\Form\Element\Text('username');
         $username->setLabel('Username');
         $username->setAttribute('autofocus', 'autofocus');
+        $username->setAttribute('autocomplete', 'off');
         $this->add($username);
         
         $firstname = new \Zend\Form\Element\Text('firstname');
@@ -31,7 +35,7 @@ class User extends AbstractForm
         $email->setLabel('Email');
         $this->add($email);
         
-        $status = new \Zend\Form\Element\Select('status');
+        $status = new \Zend\Form\Element\Select('isActive');
         $status->setLabel('Status');
         $status->setValueOptions(array(
             '1' => 'Active',
@@ -52,6 +56,7 @@ class User extends AbstractForm
         
         $password = new \Zend\Form\Element\Password('password');
         $password->setLabel('Password');
+        $password->setAttribute('autocomplete', 'off');
         $this->add($password);
         
         $confirm = new \Zend\Form\Element\Password('confirm');

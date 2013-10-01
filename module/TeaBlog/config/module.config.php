@@ -6,9 +6,6 @@ return array(
             'TeaBlog\Service\Post' => 'TeaBlog\Service\Post',
             'TeaBlog\Service\Category' => 'TeaBlog\Service\Category',
         ),
-        'factories' => array(
-            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
-        ),
     ),
     'translator' => array(
         'locale' => 'en_US',

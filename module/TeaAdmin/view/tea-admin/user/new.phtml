@@ -26,10 +26,10 @@
         <?php echo $this->formElement($this->form->get('roleId')); ?>
         <?php echo $this->formElementErrors($this->form->get('roleId')); ?>
     </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('status')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('status')); ?>
-        <?php echo $this->formElement($this->form->get('status')); ?>
-        <?php echo $this->formElementErrors($this->form->get('status')); ?>
+    <div class="form-group <?php echo (count($this->form->getMessages('isActive')) > 0) ? ' has-error' : ''; ?>">
+        <?php echo $this->formLabel($this->form->get('isActive')); ?>
+        <?php echo $this->formElement($this->form->get('isActive')); ?>
+        <?php echo $this->formElementErrors($this->form->get('isActive')); ?>
     </div>
     <div class="form-group <?php echo (count($this->form->getMessages('password')) > 0) ? ' has-error' : ''; ?>">
         <?php echo $this->formLabel($this->form->get('password')); ?>

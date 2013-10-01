@@ -12,7 +12,7 @@ class User extends AbstractModel
     protected $firstname;
     protected $lastname;
     protected $email;
-    protected $status;
+    protected $is_active;
     protected $password;
     protected $created_at;
     protected $updated_at;
@@ -65,12 +65,12 @@ class User extends AbstractModel
         $this->email = $email;
     }
     
-    public function getStatus() {
-        return $this->status;
+    public function getIsActive() {
+        return $this->is_active;
     }
 
-    public function setStatus($status) {
-        $this->status = $status;
+    public function setIsActive($is_active) {
+        $this->is_active = $is_active;
     }
 
     public function getPassword() {
