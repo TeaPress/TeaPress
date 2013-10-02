@@ -4,6 +4,7 @@ namespace TeaAdmin;
 
 use Zend\ModuleManager\ModuleManager;
 use Zend\Mvc\MvcEvent;
+use Zend\View\HelperPluginManager;
 use TeaAdmin\Model;
 use TeaAdmin\Mapper;
 
@@ -17,7 +18,37 @@ class Module
             $controller->layout('layout/admin_layout');
         }, 100);
     }
+    
+    /**
+     * @return array
+     */
+    public function getViewHelperConfig()
+    {
+        return array(
+            'factories' => array(
+                // This will overwrite the native navigation helper
+                'navigation' => function(HelperPluginManager $pm) {
+                    $acl = $pm->getServiceLocator()->get('TeaAdmin\Permissions\Service\Acl');
+                    $role = $pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->getIdentity()->role->getName();
+                    
+                    // Get an instance of the proxy helper
+                    $navigation = $pm->get('Zend\View\Helper\Navigation');
 
+                    // Store ACL and role in the proxy helper:
+                    $navigation->setAcl($acl)
+                               ->setRole($role);
+
+                    // Return the new navigation helper instance
+                    return $navigation;
+                }
+            )
+        );
+    }
+    
+    /**
+     * 
+     * @return array
+     */
     public function getServiceConfig()
     {
         return array(
@@ -33,7 +64,7 @@ class Module
                 'TeaAdmin\Mapper\Role' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Role());
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Role\Relationnal());
                     $tableGateway = new \Zend\Db\TableGateway\TableGateway('admin_role', $dbAdapter, null, $resultSetPrototype);
                     $table = new Mapper\Role($tableGateway);
                     return $table;

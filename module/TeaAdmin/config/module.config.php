@@ -5,7 +5,8 @@ return array(
             'TeaAdmin\Authentication\Service' => 'TeaAdmin\Authentication\AuthenticationFactory',
             'TeaAdmin\Authentication\Adapter' => 'TeaAdmin\Authentication\Adapter\AdapterFactory',
             'TeaAdmin\Authentication\Storage' => 'TeaAdmin\Authentication\Storage\StorageFactory',
-            'TeaAdminNavigation' => 'TeaAdmin\Navigation\Service\TeaAdminNavigationFactory',
+            'TeaAdmin\Navigation\Service\Navigation' => 'TeaAdmin\Navigation\Service\NavigationFactory',
+            'TeaAdmin\Permissions\Service\Acl' => 'TeaAdmin\Permissions\Service\AclFactory'
         ),
         'invokables' => array(
             // service
@@ -13,7 +14,7 @@ return array(
             'TeaAdmin\Service\Role' => 'TeaAdmin\Service\Role',
             'TeaAdmin\Service\Rule' => 'TeaAdmin\Service\Rule',
             'TeaAdmin\Service\Log'  => 'TeaAdmin\Service\Log',
-        ),
+        )
     ),
     'form_elements' => array(
         'invokables' => array(

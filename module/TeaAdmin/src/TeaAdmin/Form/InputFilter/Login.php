@@ -2,13 +2,12 @@
 
 namespace TeaAdmin\Form\InputFilter;
 
-use Zend\InputFilter\InputFilter;
+use TakeATea\InputFilter\AbstractInputFilter;
 
-class Login extends InputFilter
+class Login extends AbstractInputFilter
 {
     public function __construct()
     {
-        parent::__construct();
         
         $this->add(array(
             'name' => 'username',

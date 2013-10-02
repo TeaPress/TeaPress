@@ -19,6 +19,15 @@ class Role extends AbstractService
     }
     
     /**
+     * Get all role with attach rules
+     * @return Zend\Db\ResultSet\ResultSer
+     */
+    public function getAllRoleWithRules()
+    {
+        return $this->getMapper()->getAllRoleWithRules();
+    }
+    
+    /**
      * Get all roles
      * @param boolean $usePaginator
      * @return Paginator

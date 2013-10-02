@@ -4,7 +4,7 @@ namespace TeaAdmin\Navigation\Service;
 
 use Zend\Navigation\Service\AbstractNavigationFactory;
 
-class TeaAdminNavigationFactory extends AbstractNavigationFactory
+class NavigationFactory extends AbstractNavigationFactory
 {
     /**
      * @return string
