@@ -21,22 +21,21 @@ class AclFactory implements FactoryInterface
         $this->addResourceFromArray($acl, $resources, null);
         
         // Add roles and rules
-        $roles = $serviceLocator->get('TeaAdmin\Service\Role')->getAllRoleWithRules();
-        foreach($roles as $role) {
-            if($acl->hasRole($role->getName())) {
-                $acl->addRole($role->getName());
+        $rules = $serviceLocator->get('TeaAdmin\Service\Rule')->getAllRuleWithRole();
+        foreach($rules as $rule) {
+            if(!$acl->hasRole($rule->getRole()->getName())) {
+                $acl->addRole($rule->getRole()->getName());
             }
-            
-            foreach ($role->getRules() as $rule) {
-                if($this->getResource() == Acl::RESOURCE_ALL && $rule->getPermission()) {
-                    foreach ($acl->getResources() as $aclResource) {
-                        $acl->setRule(Acl::OP_ADD, Acl::TYPE_ALLOW, $role->getName(), $aclResource);
-                    }
+
+            if($rule->getResource() == Acl::RESOURCE_ALL && $rule->getPermission()) {
+                foreach ($acl->getResources() as $aclResource) {
+                    $acl->setRule(Acl::OP_ADD, Acl::TYPE_ALLOW, $rule->getRole()->getName(), $aclResource);
                 }
-                
-                $permission = ($rule->getPermission()) ? Acl::TYPE_ALLOW : Acl::TYPE_DENY;
-                
-                $acl->setRule(Acl::OP_ADD, $permission, $role->getName(), $rule->getResource());
+            } else {
+                if($acl->hasResource($rule->getResource())) {
+                    $permission = ($rule->getPermission()) ? Acl::TYPE_ALLOW : Acl::TYPE_DENY;
+                    $acl->setRule(Acl::OP_ADD, $permission, $rule->getRole()->getName(), $rule->getResource());
+                }
             }
         }
         

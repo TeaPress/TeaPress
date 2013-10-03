@@ -6,7 +6,8 @@ return array(
             'TeaAdmin\Authentication\Adapter' => 'TeaAdmin\Authentication\Adapter\AdapterFactory',
             'TeaAdmin\Authentication\Storage' => 'TeaAdmin\Authentication\Storage\StorageFactory',
             'TeaAdmin\Navigation\Service\Navigation' => 'TeaAdmin\Navigation\Service\NavigationFactory',
-            'TeaAdmin\Permissions\Service\Acl' => 'TeaAdmin\Permissions\Service\AclFactory'
+            'TeaAdmin\Permissions\Service\Acl' => 'TeaAdmin\Permissions\Service\AclFactory',
+            'TeaAdmin\System\Config' => 'TeaAdmin\System\ConfigFactory',
         ),
         'invokables' => array(
             // service
@@ -14,7 +15,10 @@ return array(
             'TeaAdmin\Service\Role' => 'TeaAdmin\Service\Role',
             'TeaAdmin\Service\Rule' => 'TeaAdmin\Service\Rule',
             'TeaAdmin\Service\Log'  => 'TeaAdmin\Service\Log',
-        )
+        ),
+        'aliases' => array(
+            'TeaAdminNavigation' => 'TeaAdmin\Navigation\Service\Navigation',
+        ),
     ),
     'form_elements' => array(
         'invokables' => array(
@@ -27,6 +31,7 @@ return array(
             'TeaAdmin\Controller\Index' => 'TeaAdmin\Controller\IndexController',
             'TeaAdmin\Controller\User' => 'TeaAdmin\Controller\UserController',
             'TeaAdmin\Controller\Role' => 'TeaAdmin\Controller\RoleController',
+            'TeaAdmin\Controller\Config' => 'TeaAdmin\Controller\ConfigController',
         ),
     ),
     'view_manager' => array(

@@ -44,7 +44,9 @@ class IndexController extends AbstractAdminActionController
                 } else {
                     $object = $adapter->getResultRowObject(null, array('password'));
                     
-                    // TODO Get role information ?
+                    // TODO : Can we do better ?
+                    $role = $this->getServiceLocator()->get('TeaAdmin\Service\Role')->getRoleById($object->role_id);
+                    $object->role = $role;
                     
                     $storage = $authService->getStorage();
                     $storage->write($object);
@@ -67,6 +69,6 @@ class IndexController extends AbstractAdminActionController
     public function logoutAction()
     {
         $this->getServiceLocator()->get('TeaAdmin\Authentication\Service')->clearIdentity();
-        $this->redirect()->toRoute('admin/login');
+        return $this->redirect()->toRoute('admin');
     }
 }

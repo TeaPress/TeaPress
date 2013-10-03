@@ -5,6 +5,7 @@ return array(
             'dashboard' => array(
                 'label' => 'Dashboard',
                 'route' => 'admin',
+                'resource' => 'admin',
                 'order' => 100,
                 'pages' => array(
                     
@@ -18,12 +19,20 @@ return array(
                     'user' => array(
                         'label' => 'Users',
                         'route' => 'admin/user',
+                        'resource' => 'admin/user',
                         'order' => 100
                     ),
                     'role' => array(
                         'label' => 'Roles',
                         'route' => 'admin/role',
+                        'resource' => 'admin/role',
                         'order' => 200
+                    ),
+                    'config' => array(
+                        'label' => 'Configuration',
+                        'route' => 'admin/config',
+                        'resource' => 'admin/config',
+                        'order' => 900
                     )
                 )
             )

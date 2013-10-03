@@ -26,19 +26,14 @@ class Module
     {
         return array(
             'factories' => array(
-                // This will overwrite the native navigation helper
                 'navigation' => function(HelperPluginManager $pm) {
                     $acl = $pm->getServiceLocator()->get('TeaAdmin\Permissions\Service\Acl');
                     $role = $pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->getIdentity()->role->getName();
                     
-                    // Get an instance of the proxy helper
                     $navigation = $pm->get('Zend\View\Helper\Navigation');
-
-                    // Store ACL and role in the proxy helper:
                     $navigation->setAcl($acl)
                                ->setRole($role);
-
-                    // Return the new navigation helper instance
+                    
                     return $navigation;
                 }
             )
@@ -64,7 +59,7 @@ class Module
                 'TeaAdmin\Mapper\Role' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Role\Relationnal());
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Role());
                     $tableGateway = new \Zend\Db\TableGateway\TableGateway('admin_role', $dbAdapter, null, $resultSetPrototype);
                     $table = new Mapper\Role($tableGateway);
                     return $table;
@@ -72,7 +67,7 @@ class Module
                 'TeaAdmin\Mapper\Rule' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Role());
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Rule\Relationnal());
                     $tableGateway = new \Zend\Db\TableGateway\TableGateway('admin_rule', $dbAdapter, null, $resultSetPrototype);
                     $table = new Mapper\Rule($tableGateway);
                     return $table;
@@ -136,7 +131,8 @@ class Module
             include __DIR__ . '/config/module.config.php',
             include __DIR__ . '/config/module.config.routes.php',
             include __DIR__ . '/config/module.config.acl.php',
-            include __DIR__ . '/config/module.config.navigation.php'
+            include __DIR__ . '/config/module.config.navigation.php',
+            include __DIR__ . '/config/module.config.system.php'
         );
     }
     

@@ -13,6 +13,10 @@ return array(
                     'title' => 'Role',
                     'resource' => 'admin/role',
                 ),
+                'config' => array(
+                    'title' => 'Configuration',
+                    'resource' => 'admin/config',
+                )
             )
         )
     )

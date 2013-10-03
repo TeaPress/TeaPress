@@ -33,18 +33,6 @@ class Role extends AbstractMapper
     }
     
     /**
-     * Get all role with attach rules
-     * @return Zend\Db\ResultSet\ResultSer
-     */
-    public function getAllRoleWithRules()
-    {
-        $select = $this->tableGateway->getSql()->select();
-        $select->join('admin_rule', 'admin_rule.role_id = ' . $this->tableGateway->table . '.role_id', \Zend\Db\Sql\Select::SQL_STAR, \Zend\Db\Sql\Select::JOIN_LEFT);
-        
-        return $this->selectWith($select);
-    }
-    
-    /**
      * Create or update role
      * @param \TeaAdmin\Model\Role $role
      * @return type

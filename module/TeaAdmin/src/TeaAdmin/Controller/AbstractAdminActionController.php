@@ -37,9 +37,6 @@ class AbstractAdminActionController extends BaseAbstractActionController {
         if (!$auth->hasIdentity()) {
             return $this->plugin('redirect')->toRoute('admin/login');
         }
-
-//        $this->getServiceLocator()->get('ViewHelperManager')->get('TeaAdminMenu')->setRole($auth->getIdentity()->role->getName());
-//        $this->getServiceLocator()->get('ViewHelperManager')->get('TeaAdminPermission')->setRole($auth->getIdentity()->role->getName());
     }
 
     /**
