@@ -15,6 +15,8 @@ abstract class AbstractModel
         foreach($attributes as $attribute => $value) {
             if(isset($data[$attribute])) {
                 $this->{$attribute} = $data[$attribute];
+            } else {
+                $this->{$attribute} = null;
             }
         }
         return $this;
