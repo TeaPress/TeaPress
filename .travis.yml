@@ -10,8 +10,7 @@ before_script:
   - composer update --prefer-source --dev
   
 script:
-  - phpunit --coverage-clover ./build/logs/clover.xml
-  - phpunit -c ./module/TeaBlog/test/phpunit.xml
+  - phpunit --coverage-clover ./build/logs/clover.xml -c ./module/TeaBlog/test/phpunit.xml
 
 after_script:
   - php coveralls -v
