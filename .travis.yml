@@ -1,11 +1,18 @@
 language: php
 
 php:
+  - 5.3.3
   - 5.4
   - 5.5
 
 before_script:
   - php composer.phar install
+  - composer self-update
+  - composer update --prefer-source --dev
   
 script:
+  - phpunit --coverage-clover ./build/logs/clover.xml
   - phpunit -c ./module/TeaBlog/test/phpunit.xml
+
+  after_script:
+  - php vendor/bin/coveralls -v

@@ -74,60 +74,70 @@ class CategoryTest extends PHPUnit_Framework_TestCase
 
     public function testExchangeArraySetsPropertiesToNullIfKeysAreNotPresent()
     {
-        $album = new Album();
+        $category = new Category();
 
-        $album->exchangeArray(array('artist' => 'some artist',
-                                    'id'     => 123,
-                                    'title'  => 'some title'));
-        $album->exchangeArray(array());
+        $category->exchangeArray(array(
+            'category_id' => 1,
+            'title'       => 'test',
+            'url_key'     => 'test-category',
+            'created_at'  => '2013-09-25 00:00:00',
+            'updated_at'  => '2013-09-25 00:00:00'));
+        $category->exchangeArray(array());
 
         $this->assertNull(
-            $album->artist, '"artist" should have defaulted to null'
+            $category->getCategoryId(), '"category_id" should have defaulted to null'
         );
         $this->assertNull(
-            $album->id, '"id" should have defaulted to null'
+            $category->getTitle(), '"title" should have defaulted to null'
         );
         $this->assertNull(
-            $album->title, '"title" should have defaulted to null'
+            $category->getUrlKey(), '"url_key" should have defaulted to null'
+        );
+        $this->assertNull(
+            $category->getCreatedAt(), '"created_at" should have defaulted to null'
+        );
+        $this->assertNull(
+            $category->getUpdatedAt(), '"updated_at" should have defaulted to null'
         );
     }
 
     public function testGetArrayCopyReturnsAnArrayWithPropertyValues()
     {
-        $album = new Album();
-        $data  = array('artist' => 'some artist',
-                       'id'     => 123,
-                       'title'  => 'some title');
+        $category = new Category();
+        $data  = array(
+            'category_id' => 1,
+            'title'       => 'test',
+            'url_key'     => 'test-category',
+            'created_at'  => '2013-09-25 00:00:00',
+            'updated_at'  => '2013-09-25 00:00:00');
 
-        $album->exchangeArray($data);
-        $copyArray = $album->getArrayCopy();
+        $category->exchangeArray($data);
+        $copyArray = $category->getArrayCopy();
 
         $this->assertSame(
-            $data['artist'],
-            $copyArray['artist'],
-            '"artist" was not set correctly'
-        );
-        $this->assertSame(
-            $data['id'],
-            $copyArray['id'],
-            '"id" was not set correctly'
+            $data['category_id'],
+            $copyArray['category_id'],
+            '"category_id" was not set correctly'
         );
         $this->assertSame(
             $data['title'],
             $copyArray['title'],
             '"title" was not set correctly'
         );
-    }
-
-    public function testInputFiltersAreSetCorrectly()
-    {
-        $album = new Album();
-
-        $inputFilter = $album->getInputFilter();
-
-        $this->assertSame(3, $inputFilter->count());
-        $this->assertTrue($inputFilter->has('artist'));
-        $this->assertTrue($inputFilter->has('id'));
-        $this->assertTrue($inputFilter->has('title'));
+        $this->assertSame(
+            $data['url_key'],
+            $copyArray['url_key'],
+            '"url_key" was not set correctly'
+        );
+        $this->assertSame(
+            $data['created_at'],
+            $copyArray['created_at'],
+            '"created_at" was not set correctly'
+        );
+        $this->assertSame(
+            $data['updated_at'],
+            $copyArray['updated_at'],
+            '"updated_at" was not set correctly'
+        );
     }
 }

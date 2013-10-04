@@ -4,7 +4,7 @@ namespace TeaAdmin\System\Config;
 
 use Zend\Stdlib\AbstractOptions;
 
-class Tab extends AbstractOptions
+class Tab extends AbstractOptions  
 {
     /**
      * @var string
@@ -33,15 +33,9 @@ class Tab extends AbstractOptions
      */
     public function __construct($name, array $options)
     {
+        parent::__construct($options);
+        
         $this->name = $name;
-        
-        if(isset($options['label'])) {
-            $this->label = $options['label'];
-        }
-        
-        if(isset($options['order'])) {
-            $this->order = $options['order'];
-        }
         
         if(isset($options['sections']) && is_array($options['sections'])) {
             foreach ($options['sections'] as $sectionName => $sectionOptions) {
