@@ -41,6 +41,12 @@ class Tab
             $this->order = $options['order'];
         }
         
+        if(isset($options['sections']) && is_array($options['sections'])) {
+            foreach ($options['sections'] as $sectionName => $sectionOptions) {
+                $this->addSection(new \TeaAdmin\System\Config\Section($sectionName, $sectionOptions));
+            }
+        }
+        
         return $this;
     }
     

@@ -20,12 +20,6 @@ class ConfigFactory implements FactoryInterface
             $config->addTab($tab);
         }
         
-        $sections = $configGlobal['system']['sections'];
-        foreach ($sections as $sectionName => $options) {
-            $section = new \TeaAdmin\System\Config\Section($sectionName, $options);
-            $config->addSection($section);
-        }
-        
         return $config;
     }    
 }

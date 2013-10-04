@@ -112,11 +112,11 @@ return array(
                             'edit' => array(
                                 'type' => 'Regex',
                                 'options' => array(
-                                    'regex' => 'edit/section/(?<name>[a-zA-Z0-9-_\.]+)',
+                                    'regex' => 'edit/section/(?<section>[a-zA-Z0-9-_\.]+)',
                                     'defaults' => array(
                                         'action' => 'edit',
                                     ),
-                                    'spec' => '/edit/section/%name%',
+                                    'spec' => '/edit/section/%section%',
                                 ),
                             )
                         )

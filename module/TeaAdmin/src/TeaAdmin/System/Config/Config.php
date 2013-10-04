@@ -9,11 +9,8 @@ class Config
      */
     protected $tabs;
     
-    /*
-     * @var array
-     */
-    protected $sections;
-    
+    protected $adatper;
+
     public function getTabs() {
         return $this->tabs;
     }
@@ -24,17 +21,5 @@ class Config
     
     public function addTab($tab) {
         $this->tabs[$tab->getName()] = $tab;
-    }
-
-    public function getSections() {
-        return $this->sections;
-    }
-
-    public function setSections($sections) {
-        $this->sections = $sections;
-    }
-    
-    public function addSection($section) {
-        $this->sections[$section->getName()] = $section;
     }
 }

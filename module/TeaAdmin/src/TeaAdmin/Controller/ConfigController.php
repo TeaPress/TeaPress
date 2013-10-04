@@ -10,9 +10,10 @@ class ConfigController extends AbstractAdminActionController
     
     public function indexAction()
     {
-        $system = $this->getServiceLocator()->get('TeaAdmin\System\Config');
+        $config = $this->getServiceLocator()->get('TeaAdmin\System\Config');
         
         $viewModel = new ViewModel();
+        $viewModel->setVariable('config', $config);
         return $viewModel;
     }
     
