@@ -9,8 +9,12 @@ class Config
      */
     protected $tabs;
     
-    protected $adatper;
+    /*
+     * @var TeaAdmin\System\Adapter\AdapterInterface
+     */
+    protected $adapter;
 
+    
     public function getTabs() {
         return $this->tabs;
     }
@@ -21,5 +25,20 @@ class Config
     
     public function addTab($tab) {
         $this->tabs[$tab->getName()] = $tab;
+    }
+    
+    /**
+     * Search Section
+     * @param string $name
+     * @return boolean | Section
+     */
+    public function getSection($name)
+    {
+        foreach ($this->tabs as $tab) {
+            if($tab->hasSection($name)) {
+                return $tab->getSection($name);
+            }
+        }
+        return false;
     }
 }

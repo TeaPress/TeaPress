@@ -14,10 +14,12 @@ return array(
                                 'label' => 'Url Web Unsecure',
                                 'order' => 10,
                                 'fields' => array(
-                                    'label' => 'base_url',
-                                    'type' => 'text',
-                                    'comment' => '',
-                                    'order' => 10,
+                                    'base_url' => array(
+                                        'label' => 'Base url',
+                                        'type' => 'text',
+                                        'comment' => '',
+                                        'order' => 10,
+                                    )
                                 )
                             )
                         )

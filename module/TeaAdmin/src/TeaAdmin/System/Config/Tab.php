@@ -2,7 +2,9 @@
 
 namespace TeaAdmin\System\Config;
 
-class Tab 
+use Zend\Stdlib\AbstractOptions;
+
+class Tab extends AbstractOptions
 {
     /**
      * @var string
@@ -84,5 +86,13 @@ class Tab
     
     public function addSection($section) {
         $this->sections[$section->getName()] = $section;
+    }
+    
+    public function hasSection($name) {
+        return isset($this->sections[$name]);
+    }
+    
+    public function getSection($name) {
+        return $this->sections[$name];
     }
 }
