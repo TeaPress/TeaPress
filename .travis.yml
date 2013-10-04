@@ -14,5 +14,5 @@ script:
   - phpunit --coverage-clover ./build/logs/clover.xml
   - phpunit -c ./module/TeaBlog/test/phpunit.xml
 
-  after_script:
+after_script:
   - php vendor/bin/coveralls -v
