@@ -68,8 +68,8 @@ class PostTest extends PHPUnit_Framework_TestCase {
         $post->setShortDescription($data['short_description']);
         $post->setDescription($data['description']);
         $post->setThumb($data['thumb']);
-        $post->setCreatedAt($data['2013-09-25 00:00:00']);
-        $post->setUpdatedAt($data['2013-09-25 00:00:00']);
+        $post->setCreatedAt($data['created_at']);
+        $post->setUpdatedAt($data['updated_at']);
 
         $this->assertSame(
                 $data['post_id'], $post->getPostId(), '"post_id" was not set correctly'
