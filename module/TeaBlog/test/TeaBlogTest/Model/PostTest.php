@@ -65,6 +65,7 @@ class PostTest extends PHPUnit_Framework_TestCase {
 
         $post->setPostId($data['post_id']);
         $post->setTitle($data['title']);
+        $post->setUrlKey($data['url_key']);
         $post->setShortDescription($data['short_description']);
         $post->setDescription($data['description']);
         $post->setThumb($data['thumb']);
