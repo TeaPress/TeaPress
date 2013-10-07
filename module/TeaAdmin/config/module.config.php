@@ -14,6 +14,7 @@ return array(
             'TeaAdmin\Service\User' => 'TeaAdmin\Service\User',
             'TeaAdmin\Service\Role' => 'TeaAdmin\Service\Role',
             'TeaAdmin\Service\Rule' => 'TeaAdmin\Service\Rule',
+            'TeaAdmin\Service\Config'  => 'TeaAdmin\Service\Config',
             'TeaAdmin\Service\Log'  => 'TeaAdmin\Service\Log',
         ),
         'aliases' => array(

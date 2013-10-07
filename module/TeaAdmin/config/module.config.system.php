@@ -26,7 +26,6 @@ return array(
                     )
                 )
             )
-        ),
-        'adapter' => 'DbTable'
+        )
     )
 );

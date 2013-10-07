@@ -15,6 +15,11 @@ class Field
     protected $label;
     
     /**
+     * @var string 
+     */
+    protected $value;
+    
+    /**
      * @var string
      */
     protected $comment;
@@ -52,6 +57,27 @@ class Field
         return $this;
     }
     
+    public function getElement()
+    {
+        switch (strtolower($this->type)) {
+            case 'Text':
+            default:
+                $element = new \Zend\Form\Element\Text($this->name);
+                break;
+            case 'Textarea':
+                $element = new \Zend\Form\Element\Textarea($this->name);
+                break;
+        }
+        
+        $element->setLabel($this->label);
+        
+        if($this->value != null) {
+            $element->setValue($this->value);
+        }
+        
+        return $element;
+    }
+    
     public function getName() {
         return $this->name;
     }
@@ -66,6 +92,14 @@ class Field
 
     public function setLabel($label) {
         $this->label = $label;
+    }
+    
+    public function getValue() {
+        return $this->value;
+    }
+
+    public function setValue($value) {
+        $this->value = $value;
     }
 
     public function getComment() {

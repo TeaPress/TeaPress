@@ -9,20 +9,26 @@ class Config
      */
     protected $tabs;
     
-    /*
-     * @var TeaAdmin\System\Adapter\AdapterInterface
+    /**
+     * Get tabs
+     * @return array
      */
-    protected $adapter;
-
-    
     public function getTabs() {
         return $this->tabs;
     }
-
+    
+    /**
+     * Set tabs
+     * @param type $tabs
+     */
     public function setTabs($tabs) {
         $this->tabs = $tabs;
     }
     
+    /**
+     * Add tab
+     * @param TeaAdmin\System\Config\Tab $tab
+     */
     public function addTab($tab) {
         $this->tabs[$tab->getName()] = $tab;
     }

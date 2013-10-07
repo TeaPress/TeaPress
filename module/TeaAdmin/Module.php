@@ -80,6 +80,14 @@ class Module
                     $table = new Mapper\Log($tableGateway);
                     return $table;
                 },
+                'TeaAdmin\Mapper\Config' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Config());
+                    $tableGateway = new \Zend\Db\TableGateway\TableGateway('admin_config', $dbAdapter, null, $resultSetPrototype);
+                    $table = new Mapper\Config($tableGateway);
+                    return $table;
+                },
             ),
         );
     }

@@ -20,6 +20,9 @@ class ConfigFactory implements FactoryInterface
             $config->addTab($tab);
         }
         
+//        $adapter = new $configGlobal['system']['adapter']();
+//        $config->setAdapter($adapter);
+        
         return $config;
     }    
 }

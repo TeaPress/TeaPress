@@ -33,6 +33,48 @@ class CategoryTest extends PHPUnit_Framework_TestCase
             '"updated_at" should initially be null'
         );
     }
+    
+    public function testCanSetAllProperties() 
+    {
+        $category = new Category();
+        $data  = array('category_id' => 1,
+                       'title'       => 'test',
+                       'url_key'     => 'test-category',
+                       'created_at'  => '2013-09-25 00:00:00',
+                       'updated_at'  => '2013-09-25 00:00:00');
+        
+        $category->setCategoryId($data['category_id']);
+        $category->setTitle($data['title']);
+        $category->setUrlKey($data['url_key']);
+        $category->setCreatedAt($data['created_at']);
+        $category->setUpdatedAt($data['updated_at']);
+        
+        $this->assertSame(
+            $data['category_id'],
+            $category->getCategoryId(),
+            '"category_id" was not set correctly'
+        );
+        $this->assertSame(
+            $data['title'],
+            $category->getTitle(),
+            '"title" was not set correctly'
+        );
+        $this->assertSame(
+            $data['url_key'],
+            $category->getUrlKey(),
+            '"url_key" was not set correctly'
+        );
+        $this->assertSame(
+            $data['created_at'],
+            $category->getCreatedAt(),
+            '"created_at" was not set correctly'
+        );
+        $this->assertSame(
+            $data['updated_at'],
+            $category->getUpdatedAt(),
+            '"updated_at" was not set correctly'
+        );
+    }
 
     public function testExchangeArraySetsPropertiesCorrectly()
     {
