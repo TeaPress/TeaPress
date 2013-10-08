@@ -19,6 +19,11 @@ return array(
                                         'type' => 'text',
                                         'comment' => '',
                                         'order' => 10,
+                                    ),
+                                    'base_url_js' => array(
+                                        'label' => 'Base url for Javascript',
+                                        'type' => 'textarea',
+                                        'order' => 20,
                                     )
                                 )
                             )

@@ -41,11 +41,6 @@ class Module
                     $helper->setServiceLocator($serviceManager->getServiceLocator());
                     return $helper;
                 },
-                'archive' => function ($serviceManager) {
-                    $helper = new \TeaBlog\View\Helper\Latest();
-                    $helper->setServiceLocator($serviceManager->getServiceLocator());
-                    return $helper;
-                },
                 'category' => function ($serviceManager) {
                     $helper = new \TeaBlog\View\Helper\Category();
                     $helper->setServiceLocator($serviceManager->getServiceLocator());

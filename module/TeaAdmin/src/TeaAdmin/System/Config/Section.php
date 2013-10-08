@@ -24,6 +24,11 @@ class Section
      */
     protected $groups;
     
+    /*
+     * @var \Zend\Form\FormInterface
+     */
+    protected $form;
+    
     /**
      * 
      * @param string $name
@@ -48,6 +53,21 @@ class Section
         }
         
         return $this;
+    }
+    
+    public function getForm()
+    {
+        if($this->form == null) {
+            $this->form = new \Zend\Form\Form();
+
+            foreach ($this->getGroups() as $group) {
+                foreach ($group->getFields() as $field) {
+                    $this->add($field->getElement());
+                }
+            }
+        }
+        
+        return $this->form;
     }
     
     public function getName() {

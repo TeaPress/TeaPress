@@ -34,6 +34,12 @@ class Field
      */
     protected $order;
     
+    /*
+     * @var \Zend\Form\ElementInterface
+     */
+    protected $element;
+    
+    
     public function __construct($name, $options)
     {
         $this->name = $name;
@@ -59,23 +65,25 @@ class Field
     
     public function getElement()
     {
-        switch (strtolower($this->type)) {
-            case 'Text':
-            default:
-                $element = new \Zend\Form\Element\Text($this->name);
-                break;
-            case 'Textarea':
-                $element = new \Zend\Form\Element\Textarea($this->name);
-                break;
+        if($this->element == null) {
+            switch (strtolower($this->type)) {
+                case 'text':
+                default:
+                    $this->element = new \Zend\Form\Element\Text($this->name);
+                    break;
+                case 'textarea':
+                    $this->element = new \Zend\Form\Element\Textarea($this->name);
+                    break;
+            }
+
+            $this->element->setLabel($this->label);
+
+            if($this->value != null) {
+                $this->element->setValue($this->value);
+            }
         }
         
-        $element->setLabel($this->label);
-        
-        if($this->value != null) {
-            $element->setValue($this->value);
-        }
-        
-        return $element;
+        return $this->element;
     }
     
     public function getName() {

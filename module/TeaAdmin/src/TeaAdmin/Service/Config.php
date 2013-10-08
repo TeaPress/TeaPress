@@ -8,9 +8,14 @@ class Config extends AbstractService
 {
     protected $mapper = 'TeaAdmin\Mapper\Config';
     
-    public function getAllConfig()
+    public function getConfigWithDefaultValue($paths)
     {
-        return $this->getMapper()->getAllConfig();
+        $configDb = $this->getMapper()->getConfigFromPaths($paths);
+        
+        $values = array();
+        foreach ($paths as $path) {
+            
+        }
     }
     
     public function save($data)
