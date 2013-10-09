@@ -31,7 +31,12 @@ class ConfigController extends AbstractAdminActionController
         $form->setData($this->getServiceLocator()->get('TeaAdmin\Service\Config')->getAllConfigWithDefaultValue());
         
         if($this->getRequest()->isPost()) {
-            $this->redirect()->toRoute('admin/config/edit', array('section' => $sectionName));
+            
+            if($form->isValid()) {
+                
+                
+                $this->redirect()->toRoute('admin/config/edit', array('section' => $sectionName));
+            }
         }
         
         $viewModel = new ViewModel();
