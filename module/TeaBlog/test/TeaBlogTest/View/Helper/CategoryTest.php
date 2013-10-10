@@ -27,6 +27,16 @@ class CategoryTest extends \PHPUnit_Framework_TestCase {
     
     public function testCategoryFullReturnsObjectInstance()
     {
+        $categoryServiceMock = $this->getMockBuilder('TeaBlog\Service\Category')
+                            ->disableOriginalConstructor()
+                            ->getMock();
+
+        $categoryServiceMock ->expects($this->once())
+                        ->method('getFullCategory')
+                        ->will($this->returnValue(array()));
+        
+        
+        
         $placeholder = $this->helper->__invoke(array('display' => 'full'));
         $this->assertTrue($placeholder instanceof \TeaBlog\View\Helper\Category);
     }

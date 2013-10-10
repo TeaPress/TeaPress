@@ -43,7 +43,7 @@ class Module
                 },
                 'category' => function ($serviceManager) {
                     $helper = new \TeaBlog\View\Helper\Category();
-                    $helper->setServiceLocator($serviceManager->getServiceLocator());
+                    $helper->setCategoryService($serviceManager->getServiceLocator()->get('TeaBlog\Service\Category'));
                     return $helper;
                 },
             )

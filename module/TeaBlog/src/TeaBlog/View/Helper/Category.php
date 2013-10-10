@@ -6,7 +6,7 @@ use Zend\View\Helper\AbstractHelper;
 
 class Category extends AbstractHelper
 {
-    protected $serviceLocator;
+    protected $categoryService;
     
     public function __invoke($options = array())
     {
@@ -16,23 +16,23 @@ class Category extends AbstractHelper
         
         switch($options['display']) {
             case 'full':
-                $list = $this->getServiceLocator()->get('TeaBlog\Service\Category')->getFullCategory();
+                $list = $this->getCategoryService()->getFullCategory();
                 break;
             case 'root':
-                $list = $this->getServiceLocator()->get('TeaBlog\Service\Category')->getAllRootCategory();
+                $list = $this->getCategoryService()->getAllRootCategory();
                 break;
         }
         
         return $this->getView()->render('tea-blog/widget/category', array('list' => $list));
     }
     
-    public function getServiceLocator() 
+    public function getCategoryService() 
     {
-        return $this->serviceLocator;
+        return $this->categoryService;
     }
 
-    public function setServiceLocator($serviceLocator) 
+    public function setCategoryService($categoryService) 
     {
-        $this->serviceLocator = $serviceLocator;
+        $this->categoryService = $categoryService;
     }
 }
