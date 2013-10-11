@@ -38,7 +38,7 @@ class Module
             'factories' => array(
                 'latest' => function ($serviceManager) {
                     $helper = new \TeaBlog\View\Helper\Latest();
-                    $helper->setServiceLocator($serviceManager->getServiceLocator());
+                    $helper->setPostService($serviceManager->getServiceLocator()->get('TeaBlog\Service\Post'));
                     return $helper;
                 },
                 'category' => function ($serviceManager) {
