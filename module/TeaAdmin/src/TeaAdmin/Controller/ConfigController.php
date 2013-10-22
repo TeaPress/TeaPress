@@ -10,14 +10,16 @@ class ConfigController extends AbstractAdminActionController
     
     public function indexAction()
     {
-        $config = $this->getServiceLocator()->get('TeaAdmin\System\Config');
-        
-        $section = $config->getSection('web');
-        
-        $viewModel = new ViewModel();
-        $viewModel->setVariable('config', $config);
-        $viewModel->setVariable('section', $section);
-        return $viewModel;
+//        $config = $this->getServiceLocator()->get('TeaAdmin\System\Config');
+//        
+//        $section = $config->getSection('web');
+//        
+//        $viewModel = new ViewModel();
+//        $viewModel->setTemplate('tea-admin/config/edit');
+//        $viewModel->setVariable('config', $config);
+//        $viewModel->setVariable('section', $section);
+//        return $viewModel;
+        $this->redirect()->toRoute('admin/config/edit', array('section' => 'web'));
     }
     
     public function editAction()
@@ -28,13 +30,17 @@ class ConfigController extends AbstractAdminActionController
         $section = $config->getSection($sectionName);
         
         $form = $section->getForm();
-        $form->setData($this->getServiceLocator()->get('TeaAdmin\Service\Config')->getAllConfigWithDefaultValue());
+        
+        $values = $this->getServiceLocator()->get('TeaAdmin\Service\Config')->getConfigFromSection($section);
+        $form->setData($values);
         
         if($this->getRequest()->isPost()) {
+            $form->setData($this->getRequest()->getPost());
             
             if($form->isValid()) {
+                $section->populate($this->getRequest()->getPost()->toArray());
                 
-                
+                $this->getServiceLocator()->get('TeaAdmin\Service\Config')->saveSection($section);
                 $this->redirect()->toRoute('admin/config/edit', array('section' => $sectionName));
             }
         }
@@ -42,6 +48,7 @@ class ConfigController extends AbstractAdminActionController
         $viewModel = new ViewModel();
         $viewModel->setVariable('config', $config);
         $viewModel->setVariable('section', $section);
+        $viewModel->setVariable('form', $form);
         return $viewModel;
     }
 }

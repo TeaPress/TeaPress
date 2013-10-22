@@ -31,6 +31,13 @@ return array(
                     )
                 )
             )
+        ),
+        'values' => array(
+            'web' => array(
+                'web_unsecure' => array(
+                    'base_url' => 'http://'
+                )
+            )
         )
     )
 );

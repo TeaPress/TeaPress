@@ -28,12 +28,18 @@ return array(
                         'resource' => 'admin/role',
                         'order' => 200
                     ),
+                     'cache' => array(
+                        'label' => 'Cache management',
+                        'route' => 'admin/cache',
+                        'resource' => 'admin/cache',
+                        'order' => 700
+                    ),
                     'config' => array(
                         'label' => 'Configuration',
                         'route' => 'admin/config',
                         'resource' => 'admin/config',
                         'order' => 900
-                    )
+                    ),
                 )
             )
         )

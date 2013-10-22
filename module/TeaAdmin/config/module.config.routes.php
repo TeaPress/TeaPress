@@ -112,15 +112,48 @@ return array(
                             'edit' => array(
                                 'type' => 'Regex',
                                 'options' => array(
-                                    'regex' => 'edit/section/(?<section>[a-zA-Z0-9-_\.]+)',
+                                    'regex' => '/edit/section/(?<section>[a-zA-Z0-9-_\.]+)',
                                     'defaults' => array(
+                                        'controller' => 'TeaAdmin\Controller\Config',
                                         'action' => 'edit',
                                     ),
                                     'spec' => '/edit/section/%section%',
                                 ),
                             )
                         )
-                    )
+                    ),
+                    'cache' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/cache',
+                            'defaults' => array(
+                                'controller' => 'TeaAdmin\Controller\Cache',
+                                'action' => 'index',
+                            ),
+                        ),
+                        'may_terminate' => true,
+                        'child_routes' => array(
+                            'flush' => array(
+                                'type' => 'Regex',
+                                'options' => array(
+                                    'regex' => '/flush/(?<key>[a-zA-Z0-9-_\.]+)',
+                                    'defaults' => array(
+                                        'action' => 'flush',
+                                    ),
+                                    'spec' => '/flush/%key%',
+                                ),
+                            ),
+                            'flushAll' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/flushAll',
+                                    'defaults' => array(
+                                        'action' => 'flushAll',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),

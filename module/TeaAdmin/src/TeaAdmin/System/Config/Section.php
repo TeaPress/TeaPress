@@ -55,19 +55,43 @@ class Section
         return $this;
     }
     
+    /**
+     * get form
+     * @return \Zend\Form\Form
+     */
     public function getForm()
     {
         if($this->form == null) {
-            $this->form = new \Zend\Form\Form();
+            $form = new \Zend\Form\Form();
 
             foreach ($this->getGroups() as $group) {
                 foreach ($group->getFields() as $field) {
-                    $this->add($field->getElement());
+                    $form->add($field->getElement());
                 }
             }
+            $this->form = $form;
         }
         
         return $this->form;
+    }
+    
+    /**
+     * Populate section values.
+     * @param array $data
+     */
+    public function populate($data)
+    {
+        $dataValues = array_values($data);
+        $dataKeys = array_keys($data);
+        
+        foreach($this->getGroups() as $group) {
+            foreach($group->getFields() as $field) {
+                $key = array_search($field->getName(), $dataKeys);
+                if($key !== false) {
+                    $field->setValue($dataValues[$key]);
+                }
+            }
+        }
     }
     
     public function getName() {

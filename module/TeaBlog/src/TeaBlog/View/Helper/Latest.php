@@ -6,25 +6,25 @@ use Zend\View\Helper\AbstractHelper;
 
 class Latest extends AbstractHelper
 {
-    protected $serviceLocator;
+    protected $postService;
     
     public function __invoke(array $options)
     {
-        //TODO traiter les options
+        // TODO traiter les options
         // exemple : la possibilité d'afficher les latest d'une catégorie.
         
-        $latest = $this->getServiceLocator()->get('TeaBlog\Service\Post')->getLatestPosts();
+        $latest = $this->getPostService()->getLatestPosts();
         
         return $this->getView()->render('tea-blog/widget/latest', array('latest' => $latest));
     }
     
-    public function getServiceLocator() 
+    public function getPostService() 
     {
-        return $this->serviceLocator;
+        return $this->postService;
     }
 
-    public function setServiceLocator($serviceLocator) 
+    public function setPostService($postService) 
     {
-        $this->serviceLocator = $serviceLocator;
+        $this->postService = $postService;
     }
 }

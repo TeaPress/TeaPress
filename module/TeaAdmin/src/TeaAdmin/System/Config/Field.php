@@ -5,6 +5,11 @@ namespace TeaAdmin\System\Config;
 class Field
 {
     /**
+     * @var int 
+     */
+    protected $id;
+    
+    /**
      * @var string
      */
     protected $name;
@@ -84,6 +89,14 @@ class Field
         }
         
         return $this->element;
+    }
+    
+    public function getId() {
+        return $this->id;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
     }
     
     public function getName() {

@@ -17,6 +17,9 @@ return array(
             'TeaAdmin\Service\Config'  => 'TeaAdmin\Service\Config',
             'TeaAdmin\Service\Log'  => 'TeaAdmin\Service\Log',
         ),
+        'abstract_factories' => array(
+            'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
+        ),
         'aliases' => array(
             'TeaAdminNavigation' => 'TeaAdmin\Navigation\Service\Navigation',
         ),
@@ -32,6 +35,7 @@ return array(
             'TeaAdmin\Controller\Index' => 'TeaAdmin\Controller\IndexController',
             'TeaAdmin\Controller\User' => 'TeaAdmin\Controller\UserController',
             'TeaAdmin\Controller\Role' => 'TeaAdmin\Controller\RoleController',
+            'TeaAdmin\Controller\Cache' => 'TeaAdmin\Controller\CacheController',
             'TeaAdmin\Controller\Config' => 'TeaAdmin\Controller\ConfigController',
         ),
     ),
@@ -43,5 +47,16 @@ return array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
+    ),
+    'caches' => array(
+        'TeaCacheConfig' => array(
+            'adapter' => array(
+                'name' => 'filesystem'
+            ),
+            'options' => array(
+                'cache_dir' => 'data/cache/',
+                'namespace' => 'tea_config'
+            ),
+        )
     ),
 );

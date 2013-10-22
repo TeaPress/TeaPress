@@ -1,0 +1,36 @@
+<h2>
+    <?php echo $this->translate('Cache management'); ?>
+    <div class="pull-right">
+        <a class="btn btn-warning" href="<?php echo $this->url('admin/cache/flushAll'); ?>"><?php echo $this->translate('Flush all cache'); ?></a>
+    </div>
+</h2>
+<p>Page de gestion du cache avec flush entier, et clean de certain namespace que l'on pourra définir dans une liste.</p>
+
+<table class="table table-hover">
+    <thead>
+        <th><?php echo $this->translate('Key'); ?></th>
+        <th><?php echo $this->translate('Namespace'); ?></th>
+        <th><?php echo $this->translate('Action'); ?></th>
+    </thead>
+    <tbody>
+        <?php if(count($this->caches) > 0): ?>
+            <?php foreach($this->caches as $key => $cache): ?>
+        <tr>
+            <td>
+                <?php echo $key; ?>
+            </td>
+            <td>
+                <?php if($cache['options']['namespace']): ?>
+                    <?php echo $cache['options']['namespace']; ?>
+                <?php endif; ?>
+            </td>
+            <td>
+                <a href="<?php echo $this->url('admin/cache/flush', array('key' => $key)); ?>"><?php echo $this->translate('Flush'); ?></a>
+            </td>
+        </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <?php echo $this->translate('No Data'); ?>
+        <?php endif; ?>
+    </tbody>
+</table>
