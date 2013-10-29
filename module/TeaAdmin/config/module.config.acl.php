@@ -16,10 +16,6 @@ return array(
                 'cache' => array(
                     'title' => 'Cache',
                     'resource' => 'admin/cache',
-                ),
-                'config' => array(
-                    'title' => 'Configuration',
-                    'resource' => 'admin/config',
                 )
             )
         )

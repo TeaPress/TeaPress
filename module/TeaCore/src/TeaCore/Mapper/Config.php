@@ -1,6 +1,6 @@
 <?php
 
-namespace TeaAdmin\Mapper;
+namespace TeaCore\Mapper;
 
 use TakeATea\Mapper\AbstractMapper;
 

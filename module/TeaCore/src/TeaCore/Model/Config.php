@@ -1,6 +1,6 @@
 <?php
 
-namespace TeaAdmin\Model;
+namespace TeaCore\Model;
 
 use TakeATea\Model\AbstractModel;
 

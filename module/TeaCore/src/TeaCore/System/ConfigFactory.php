@@ -1,10 +1,10 @@
 <?php
 
-namespace TeaAdmin\System;
+namespace TeaCore\System;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use TeaAdmin\System\Config\Config;
+use TeaCore\System\Config\Config;
 
 class ConfigFactory implements FactoryInterface
 {
@@ -16,7 +16,7 @@ class ConfigFactory implements FactoryInterface
 
         $tabs = $configGlobal['system']['tabs'];
         foreach ($tabs as $tabName => $options) {
-            $tab = new \TeaAdmin\System\Config\Tab($tabName, $options);
+            $tab = new \TeaCore\System\Config\Tab($tabName, $options);
             $config->addTab($tab);
         }
 

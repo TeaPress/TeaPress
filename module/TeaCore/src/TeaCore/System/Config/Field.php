@@ -1,6 +1,6 @@
 <?php
 
-namespace TeaAdmin\System\Config;
+namespace TeaCore\System\Config;
 
 class Field
 {

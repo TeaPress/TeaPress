@@ -1,6 +1,6 @@
 <?php
 
-namespace TeaAdmin\Controller;
+namespace TeaCore\Controller;
 
 use TeaAdmin\Controller\AbstractAdminActionController;
 use Zend\View\Model\ViewModel;
@@ -10,15 +10,6 @@ class ConfigController extends AbstractAdminActionController
     
     public function indexAction()
     {
-//        $config = $this->getServiceLocator()->get('TeaAdmin\System\Config');
-//        
-//        $section = $config->getSection('web');
-//        
-//        $viewModel = new ViewModel();
-//        $viewModel->setTemplate('tea-admin/config/edit');
-//        $viewModel->setVariable('config', $config);
-//        $viewModel->setVariable('section', $section);
-//        return $viewModel;
         $this->redirect()->toRoute('admin/config/edit', array('section' => 'web'));
     }
     
@@ -26,12 +17,12 @@ class ConfigController extends AbstractAdminActionController
     {
         $sectionName = $this->getEvent()->getRouteMatch()->getParam('section');
         
-        $config = $this->getServiceLocator()->get('TeaAdmin\System\Config');
+        $config = $this->getServiceLocator()->get('TeaCore\System\Config');
         $section = $config->getSection($sectionName);
         
         $form = $section->getForm();
         
-        $values = $this->getServiceLocator()->get('TeaAdmin\Service\Config')->getConfigFromSection($section);
+        $values = $this->getServiceLocator()->get('TeaCore\Service\Config')->getConfigFromSection($section);
         $form->setData($values);
         
         if($this->getRequest()->isPost()) {
@@ -40,7 +31,7 @@ class ConfigController extends AbstractAdminActionController
             if($form->isValid()) {
                 $section->populate($this->getRequest()->getPost()->toArray());
                 
-                $this->getServiceLocator()->get('TeaAdmin\Service\Config')->saveSection($section);
+                $this->getServiceLocator()->get('TeaCore\Service\Config')->saveSection($section);
                 $this->redirect()->toRoute('admin/config/edit', array('section' => $sectionName));
             }
         }

@@ -1,20 +1,22 @@
 <?php
 
-namespace TeaAdmin\Service;
+namespace TeaCore\Service;
 
 use TakeATea\Service\AbstractService;
 
 class Config extends AbstractService
 {
-    protected $mapper = 'TeaAdmin\Mapper\Config';
+    protected $mapper = 'TeaCore\Mapper\Config';
     
     /**
      * Get config from section
-     * @param \TeaAdmin\System\Config\Section $section
+     * @param \TeaCore\System\Config\Section $section
      * @return array
      */
     public function getConfigFromSection($section)
     {
+//        $cache = $this->getServiceLocator()->get('TeaCacheConfig');
+//        if($cache->hasItem('config_section_' . $section->getName()))
         $dbConfig = $this->getMapper()->getConfigFromPaths($section->getName())->toArray();
         
         $config = $this->getServiceLocator()->get('Config');
@@ -48,7 +50,7 @@ class Config extends AbstractService
     
     /**
      * Save section (create or update)
-     * @param \TeaAdmin\System\Config\Section $section
+     * @param \TeaCore\System\Config\Section $section
      * @return 
      */
     public function saveSection($section)
@@ -60,5 +62,8 @@ class Config extends AbstractService
                 $this->getMapper()->save($data);
             }
         }
+        
+//        $cache = $this->getServiceLocator()->get('TeaCacheConfig');
+//        $cache->addItem('config_section_' . $section->getName(), $result);
     }
 }

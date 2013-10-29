@@ -16,6 +16,9 @@ return array(
             'TeaAdmin\Service\Rule' => 'TeaAdmin\Service\Rule',
             'TeaAdmin\Service\Config'  => 'TeaAdmin\Service\Config',
             'TeaAdmin\Service\Log'  => 'TeaAdmin\Service\Log',
+            
+            // AdapterPluginManager
+            'filesystem' => 'TeaAdmin\Cache\Storage\Adapter\Filesystem',
         ),
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',

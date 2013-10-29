@@ -1,10 +1,8 @@
 <?php
 
-namespace TeaAdmin\System\Config;
+namespace TeaCore\System\Config;
 
-use Zend\Stdlib\AbstractOptions;
-
-class Tab extends AbstractOptions  
+class Group 
 {
     /**
      * @var string
@@ -17,14 +15,14 @@ class Tab extends AbstractOptions
     protected $label;
     
     /**
-     * @var int
+     * @var string
      */
     protected $order;
     
     /**
      * @var array
      */
-    protected $sections;
+    protected $fields;
     
     /**
      * 
@@ -33,13 +31,19 @@ class Tab extends AbstractOptions
      */
     public function __construct($name, array $options)
     {
-        parent::__construct($options);
-        
         $this->name = $name;
         
-        if(isset($options['sections']) && is_array($options['sections'])) {
-            foreach ($options['sections'] as $sectionName => $sectionOptions) {
-                $this->addSection(new \TeaAdmin\System\Config\Section($sectionName, $sectionOptions));
+        if(isset($options['label'])) {
+            $this->label = $options['label'];
+        }
+        
+        if(isset($options['order'])) {
+            $this->order = $options['order'];
+        }
+        
+        if(isset($options['fields']) && is_array($options['fields'])) {
+            foreach ($options['fields'] as $fieldName => $fieldOptions) {
+                $this->addField(new \TeaCore\System\Config\Field($fieldName, $fieldOptions));
             }
         }
         
@@ -53,7 +57,7 @@ class Tab extends AbstractOptions
     public function setName($name) {
         $this->name = $name;
     }
-
+    
     public function getLabel() {
         return $this->label;
     }
@@ -70,23 +74,15 @@ class Tab extends AbstractOptions
         $this->order = $order;
     }
 
-    public function getSections() {
-        return $this->sections;
+    public function getFields() {
+        return $this->fields;
     }
 
-    public function setSections($sections) {
-        $this->sections = $sections;
+    public function setFields($fields) {
+        $this->fields = $fields;
     }
-    
-    public function addSection($section) {
-        $this->sections[$section->getName()] = $section;
-    }
-    
-    public function hasSection($name) {
-        return isset($this->sections[$name]);
-    }
-    
-    public function getSection($name) {
-        return $this->sections[$name];
+
+    public function addField($field) {
+        $this->fields[$field->getName()] = $field;
     }
 }

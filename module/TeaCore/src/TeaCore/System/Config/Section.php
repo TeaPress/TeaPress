@@ -1,6 +1,6 @@
 <?php
 
-namespace TeaAdmin\System\Config;
+namespace TeaCore\System\Config;
 
 class Section 
 {
@@ -48,7 +48,7 @@ class Section
         
         if(isset($options['groups']) && is_array($options['groups'])) {
             foreach ($options['groups'] as $groupName => $groupOptions) {
-                $this->addGroup(new \TeaAdmin\System\Config\Group($groupName, $groupOptions));
+                $this->addGroup(new \TeaCore\System\Config\Group($groupName, $groupOptions));
             }
         }
         
