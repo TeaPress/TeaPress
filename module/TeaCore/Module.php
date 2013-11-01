@@ -2,9 +2,6 @@
 
 namespace TeaCore;
 
-use Zend\ModuleManager\ModuleManager;
-use Zend\Mvc\MvcEvent;
-use Zend\View\HelperPluginManager;
 use TeaCore\Model;
 use TeaCore\Mapper;
 
@@ -34,11 +31,7 @@ class Module
     public function getConfig()
     {
         return array_replace_recursive(
-            include __DIR__ . '/config/module.config.php',
-            include __DIR__ . '/config/module.config.routes.php',
-            include __DIR__ . '/config/module.config.acl.php',
-            include __DIR__ . '/config/module.config.navigation.php',
-            include __DIR__ . '/config/module.config.system.php'
+            include __DIR__ . '/config/module.config.php'
         );
     }
     

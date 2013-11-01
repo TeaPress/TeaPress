@@ -51,15 +51,4 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-    'caches' => array(
-        'TeaCacheConfig' => array(
-            'adapter' => array(
-                'name' => 'filesystem'
-            ),
-            'options' => array(
-                'cache_dir' => 'data/cache/',
-                'namespace' => 'tea_config'
-            ),
-        )
-    ),
 );

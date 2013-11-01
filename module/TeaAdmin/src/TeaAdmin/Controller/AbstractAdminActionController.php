@@ -37,6 +37,10 @@ class AbstractAdminActionController extends BaseAbstractActionController {
         if (!$auth->hasIdentity()) {
             return $this->plugin('redirect')->toRoute('admin/login');
         }
+        
+        // Display admin layout
+        $controller = $e->getTarget();
+        $controller->layout('layout/admin_layout');
     }
 
     /**

@@ -2,23 +2,12 @@
 
 namespace TeaAdmin;
 
-use Zend\ModuleManager\ModuleManager;
-use Zend\Mvc\MvcEvent;
 use Zend\View\HelperPluginManager;
 use TeaAdmin\Model;
 use TeaAdmin\Mapper;
 
 class Module
-{
-    public function init(ModuleManager $moduleManager)
-    {
-        $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
-        $sharedEvents->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, function($e) {
-            $controller = $e->getTarget();
-            $controller->layout('layout/admin_layout');
-        }, 100);
-    }
-    
+{   
     /**
      * @return array
      */

@@ -1,6 +1,6 @@
 <?php
 
-namespace TeaCore\Controller;
+namespace TeaAdmin\Controller;
 
 use TeaAdmin\Controller\AbstractAdminActionController;
 use Zend\View\Model\ViewModel;

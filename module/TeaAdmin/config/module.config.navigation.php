@@ -33,6 +33,12 @@ return array(
                         'route' => 'admin/cache',
                         'resource' => 'admin/cache',
                         'order' => 700
+                    ),
+                    'config' => array(
+                        'label' => 'Configuration',
+                        'route' => 'admin/config',
+                        'resource' => 'admin/config',
+                        'order' => 900
                     )
                 )
             )

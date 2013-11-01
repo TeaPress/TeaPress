@@ -15,8 +15,11 @@ class Config extends AbstractService
      */
     public function getConfigFromSection($section)
     {
-//        $cache = $this->getServiceLocator()->get('TeaCacheConfig');
-//        if($cache->hasItem('config_section_' . $section->getName()))
+        $cache = $this->getServiceLocator()->get('TeaCacheConfig');
+        if($cache->getCaching() && $cache->hasItem('config_section_' . $section->getName())) {
+            return $cache->getItem('config_section_' . $section->getName());
+        }
+        
         $dbConfig = $this->getMapper()->getConfigFromPaths($section->getName())->toArray();
         
         $config = $this->getServiceLocator()->get('Config');
@@ -45,6 +48,11 @@ class Config extends AbstractService
             }
         }
         
+        if($cache->getCaching()) {
+            \Zend\Debug\Debug::dump('svg cache');
+            $cache->setItem('config_section_' . $section->getName(), $values);
+        }
+        
         return $values;
     }
     
@@ -63,7 +71,9 @@ class Config extends AbstractService
             }
         }
         
-//        $cache = $this->getServiceLocator()->get('TeaCacheConfig');
-//        $cache->addItem('config_section_' . $section->getName(), $result);
+        $cache = $this->getServiceLocator()->get('TeaCacheConfig');
+        if($cache->getCaching() && $cache->hasItem('config_section_' . $section->getName())) {
+            return $cache->removeItem('config_section_' . $section->getName());
+        }
     }
 }

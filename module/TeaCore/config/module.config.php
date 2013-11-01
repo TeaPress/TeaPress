@@ -5,7 +5,6 @@ return array(
             'TeaCore\System\Config' => 'TeaCore\System\ConfigFactory',
         ),
         'invokables' => array(
-            // service
             'TeaCore\Service\Config'  => 'TeaCore\Service\Config',
         ),
     ),
@@ -18,5 +17,21 @@ return array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
+    ),
+    'caches' => array(
+        'TeaCacheConfig' => array(
+            'adapter' => array(
+                'name' => 'filesystem'
+            ),
+            'plugins' => array(
+                'Serializer'
+            ),
+            'options' => array(
+                'cache_dir' => 'data/cache/',
+                'namespace' => 'tea_config',
+                'writable' => true, // set one to false for desactivate cache.
+                'readable' => true  // set one to false for desactivate cache.
+            ),
+        )
     ),
 );
