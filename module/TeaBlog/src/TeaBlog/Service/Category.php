@@ -28,11 +28,41 @@ class Category extends AbstractService
     }
     
     /**
+     * Get all category
+     * @return \Zend\Db\ResultSet\ResultSet
+     */
+    public function getAllCategory()
+    {
+        return $this->getMapper()->getAllCategory();
+    }
+    
+    /**
      * Get full category ordered
      * @return \Zend\Db\ResultSet\ResultSet
      */
     public function getFullCategory()
     {
         $categorys = $this->getMapper()->getFullCategory();
+        
+        $result = array();
+        foreach ($categorys as $category) {
+            if($category->getParentId() == null) {
+                $result[] = $category;
+            } else {
+                $found = false;
+                foreach ($result as $parentCategory) {
+                    if($category->getParentId() == $parentCategory->getCategoryId()) {
+                        $parentCategory->addChildren($category);
+                        $found = true;
+                    }
+                }
+                
+                if(!$found) {
+                    throw new \Exception('Error in build full category : Cannot find parent of a category');
+                }
+            }
+        }
+        
+        return $result;
     }
 }

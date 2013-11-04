@@ -41,6 +41,7 @@ class AbstractAdminActionController extends BaseAbstractActionController {
         // Display admin layout
         $controller = $e->getTarget();
         $controller->layout('layout/admin_layout');
+        
     }
 
     /**

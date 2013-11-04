@@ -21,6 +21,9 @@ return array(
         'invokables' => array(
             'TeaBlog\Controller\Index' => 'TeaBlog\Controller\IndexController',
             'TeaBlog\Controller\Post' => 'TeaBlog\Controller\PostController',
+            
+            'TeaBlogAdmin\Controller\Index' => 'TeaBlogAdmin\Controller\IndexController',
+            'TeaBlogAdmin\Controller\Category' => 'TeaBlogAdmin\Controller\CategoryController',
         ),
     ),
     'view_manager' => array(
@@ -37,6 +40,8 @@ return array(
             'partial/paginator.phtml'  => __DIR__ . '/../view/partial/paginator.phtml',
             'error/404'                => __DIR__ . '/../view/error/404.phtml',
             'error/index'              => __DIR__ . '/../view/error/index.phtml',
+            
+            'tea-blog/admin/category/index' => __DIR__ . '/../view/tea-blog/admin/category/index.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

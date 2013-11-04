@@ -23,7 +23,7 @@ class Module
                 'TeaBlog\Mapper\Category' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Category());
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Category\Relational());
                     $tableGateway = new \Zend\Db\TableGateway\TableGateway('blog_category', $dbAdapter, null, $resultSetPrototype);
                     $table = new Mapper\Category($tableGateway);
                     return $table;
@@ -55,7 +55,9 @@ class Module
         return array_replace_recursive(
             include __DIR__ . '/config/module.config.php',
             include __DIR__ . '/config/module.config.routes.php',
-            include __DIR__ . '/config/module.config.navigation.php'
+            include __DIR__ . '/config/module.config.navigation.php',
+            include __DIR__ . '/config/module.config.acl.php',
+            include __DIR__ . '/config/module.config.system.php'
         );
     }
 
@@ -65,6 +67,7 @@ class Module
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    __NAMESPACE__ . 'Admin' => __DIR__ . '/src/' . __NAMESPACE__ . 'Admin',
                 ),
             ),
         );

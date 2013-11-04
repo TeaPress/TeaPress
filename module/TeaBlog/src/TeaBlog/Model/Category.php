@@ -7,6 +7,7 @@ use TakeATea\Model\AbstractModel;
 class Category extends AbstractModel
 {
     protected $category_id;
+    protected $parent_id;
     protected $title;
     protected $url_key;
     protected $created_at;
@@ -18,6 +19,14 @@ class Category extends AbstractModel
 
     public function setCategoryId($category_id) {
         $this->category_id = $category_id;
+    }
+    
+    public function getParentId() {
+        return $this->parent_id;
+    }
+
+    public function setParentId($parent_id) {
+        $this->parent_id = $parent_id;
     }
 
     public function getTitle() {

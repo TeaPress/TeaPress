@@ -33,6 +33,18 @@ class Category extends AbstractMapper
     }
     
     /**
+     * Get all category
+     * @return \Zend\Db\ResultSet\ResultSet
+     */
+    public function getAllCategory()
+    {
+        $select = $this->tableGateway->getSql()->select();
+        $select->order('category_id ASC, parent_id ASC');
+        
+        return $this->selectWith($select);
+    }
+    
+    /**
      * Get full category ordered
      * @return \Zend\Db\ResultSet\ResultSet
      */
