@@ -9,6 +9,16 @@ class Category extends AbstractService
     protected $mapper = 'TeaBlog\Mapper\Category';
     
     /**
+     * Get category by key id
+     * @param int $category_id
+     * @return TeaBlog\Model\Category
+     */
+    public function getCategoryById($category_id)
+    {
+        return $this->getMapper()->getCategoryById($category_id);
+    }
+    
+    /**
      * Get Category from url key.
      * @param string $name
      * @return TeaBlog\Model\Category
@@ -64,5 +74,15 @@ class Category extends AbstractService
         }
         
         return $result;
+    }
+    
+    /**
+     * Create or update a category
+     * @param \TeaBlog\Model\Category $category
+     * @return type
+     */
+    public function save(\TeaBlog\Model\Category $category)
+    {
+        return $this->getMapper()->save($category);
     }
 }

@@ -17,6 +17,11 @@ return array(
             ),
         ),
     ),
+    'form_elements' => array(
+        'invokables' => array(
+            'TeaBlogAdmin\Form\Category' => 'TeaBlogAdmin\Form\Category',
+        )
+    ),
     'controllers' => array(
         'invokables' => array(
             'TeaBlog\Controller\Index' => 'TeaBlog\Controller\IndexController',

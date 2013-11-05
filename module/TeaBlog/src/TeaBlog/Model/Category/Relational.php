@@ -6,7 +6,7 @@ use TeaBlog\Model\Category;
 
 class Relational extends Category
 {
-    protected $chidrens = array();
+    protected $childrens = array();
     
     public function getChildrens() {
         return $this->childrens;
@@ -18,5 +18,12 @@ class Relational extends Category
     
     public function addChildren($children) {
         return $this->chidrens[] = $children;
+    }
+    
+    public function toArray() {
+        $vars = parent::toArray();
+        unset($vars['childrens']);
+        
+        return $vars;
     }
 }

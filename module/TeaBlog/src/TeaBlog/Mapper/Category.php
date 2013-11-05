@@ -3,9 +3,22 @@
 namespace TeaBlog\Mapper;
 
 use TakeATea\Mapper\AbstractMapper;
+use Zend\Db\Sql\Expression;
 
 class Category extends AbstractMapper
 {
+    /**
+     * Get category by key id
+     * @param int $category_id
+     * @return TeaBlog\Model\Category
+     */
+    public function getCategoryById($category_id)
+    {
+        $select = $this->tableGateway->getSql()->select();
+        $select->where('category_id = ' . $category_id);
+        return $this->selectWith($select)->current();
+    }
+    
     /**
      * Get Category from url key.
      * @param string $name
@@ -54,5 +67,23 @@ class Category extends AbstractMapper
         $select->order('category_id ASC, parent_id ASC');
         
         return $this->selectWith($select);
+    }
+    
+    /**
+     * Create or update a category
+     * @param \TeaBlog\Model\Category $category
+     * @return type
+     */
+    public function save(\TeaBlog\Model\Category $category)
+    {
+        $data = $category->toArray();
+        
+        if($category->getCategoryId() == null) {
+            $data['created_at'] = new Expression('NOW()');
+            return $this->tableGateway->insert($data);
+        } else {
+            $data['updated_at'] = new Expression('NOW()');
+            return $this->tableGateway->update($data, 'category_id = ' . $category->getCategoryId());
+        }
     }
 }

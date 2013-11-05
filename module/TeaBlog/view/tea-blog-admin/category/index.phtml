@@ -1,0 +1,37 @@
+<?php $this->headTitle('Category Management') ?>
+
+<h2>
+    <?php echo $this->translate('Category management'); ?>
+    <div class="pull-right">
+        <a class="btn btn-warning" href="<?php echo $this->url('admin/blog/category/new'); ?>"><?php echo $this->translate('Create new category'); ?></a>
+    </div>
+</h2>
+
+<table class="table table-striped">
+    <thead>
+        <th><?php echo $this->translate('Name'); ?></th>
+        <th><?php echo $this->translate('Description'); ?></th>
+        <th><?php echo $this->translate('Url Key'); ?></th>
+        <th><?php echo $this->translate('Action'); ?></th>
+    </thead>
+    <tbody>
+        <?php if(count($this->categorys) > 1): ?>
+            <?php foreach($this->categorys as $category): ?>
+        <tr>
+            <td><?php echo $category->getTitle(); ?></td>
+            <td><?php echo $category->getDescription(); ?></td>
+            <td><?php echo $category->getUrlKey(); ?></td>
+            <td>
+                <a href="<?php echo $this->url('admin/blog/category/edit', array('id' => $category->getCategoryId())); ?>" class="btn">
+                    <?php echo $this->translate('Edit'); ?>
+                </a>
+            </td>
+        </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+        <tr>
+            <td><?php echo $this->translate('No category'); ?></td>
+        </tr>
+        <?php endif; ?>
+    </tbody>
+</table>

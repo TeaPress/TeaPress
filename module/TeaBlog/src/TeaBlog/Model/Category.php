@@ -9,6 +9,7 @@ class Category extends AbstractModel
     protected $category_id;
     protected $parent_id;
     protected $title;
+    protected $description;
     protected $url_key;
     protected $created_at;
     protected $updated_at;
@@ -35,6 +36,14 @@ class Category extends AbstractModel
 
     public function setTitle($title) {
         $this->title = $title;
+    }
+    
+    public function getDescription() {
+        return $this->description;
+    }
+
+    public function setDescription($description) {
+        $this->description = $description;
     }
 
     public function getUrlKey() {

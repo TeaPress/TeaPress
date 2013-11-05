@@ -1,0 +1,29 @@
+<h2><?php echo $this->translate('New Category'); ?></h2>
+
+<?php echo $this->form()->openTag($this->form->setAttributes(array('action' => $this->url('admin/blog/category/new')))); ?>
+    <div class="form-group <?php echo (count($this->form->getMessages('title')) > 0) ? ' has-error' : ''; ?>">
+        <?php echo $this->formLabel($this->form->get('title')); ?>
+        <?php echo $this->formElement($this->form->get('title')); ?>
+        <?php echo $this->formElementErrors($this->form->get('title')); ?>
+    </div>
+    <div class="form-group <?php echo (count($this->form->getMessages('urlKey')) > 0) ? ' has-error' : ''; ?>">
+        <?php echo $this->formLabel($this->form->get('urlKey')); ?>
+        <?php echo $this->formElement($this->form->get('urlKey')); ?>
+        <?php echo $this->formElementErrors($this->form->get('urlKey')); ?>
+    </div>
+    <div class="form-group <?php echo (count($this->form->getMessages('parentId')) > 0) ? ' has-error' : ''; ?>">
+        <?php echo $this->formLabel($this->form->get('parentId')); ?>
+        <?php echo $this->formElement($this->form->get('parentId')); ?>
+        <?php echo $this->formElementErrors($this->form->get('parentId')); ?>
+    </div>
+    <div class="form-group <?php echo (count($this->form->getMessages('description')) > 0) ? ' has-error' : ''; ?>">
+        <?php echo $this->formLabel($this->form->get('description')); ?>
+        <?php echo $this->formElement($this->form->get('description')); ?>
+        <?php echo $this->formElementErrors($this->form->get('description')); ?>
+    </div>
+    <?php echo $this->formElement($this->form->get('token')); ?>
+    <div class="buttons_action">
+        <a href="<?php echo $this->url('admin/blog/category'); ?>"><?php echo $this->translate('Cancel'); ?></a>
+        <?php echo $this->formElement($this->form->get('submit')); ?>
+    </div>
+<?php echo $this->form()->closeTag(); ?>
