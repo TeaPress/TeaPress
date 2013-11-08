@@ -18,7 +18,7 @@ return array(
                 'order' => 200,
                 'pages' => array(
                     'category' => array(
-                        'label' => 'Categorys',
+                        'label' => 'Categories',
                         'route' => 'admin/blog/category',
                         'resource' => 'admin/blog/category',
                         'order' => 100,
