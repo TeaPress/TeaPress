@@ -64,8 +64,8 @@ class Category extends AbstractService
         if($usePaginator) {
             $this->usePaginator();
         }
-        $result = $this->getMapper()->getAllRootCategory();
-        $cache->setItem($keyCache);
+        $result = $this->getMapper()->getAllRootCategory()->toArray();
+        $cache->setItem($keyCache, $result);
         
         return $result;
     }
@@ -83,7 +83,7 @@ class Category extends AbstractService
             return $cache->getItem($keyCache);
         }
         
-        $result = $this->getMapper()->getAllCategory();
+        $result = $this->getMapper()->getAllCategory()->toArray();
         $cache->setItem($keyCache, $result);
         
         return $result;
@@ -134,6 +134,9 @@ class Category extends AbstractService
      */
     public function save(\TeaBlog\Model\Category $category)
     {
+        $cache = $this->getServiceLocator()->get('TeaCacheBlog');
+        $cache->clearByPrefix('blog_category_');
+        
         return $this->getMapper()->save($category);
     }
 }

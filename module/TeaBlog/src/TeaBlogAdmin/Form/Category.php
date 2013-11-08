@@ -33,7 +33,7 @@ class Category extends AbstractForm
         $parent->setLabel('Parent');
         
         // Get root category for parent category
-        $rootCategorys = $this->getServiceLocator()->getServiceLocator()->get('TeaBlog\Service\Category')->getAllRootCategory();
+        $rootCategorys = $this->getServiceLocator()->getServiceLocator()->get('TeaBlog\Service\Category')->getAllRootCategory(false);
         $options = array();
         foreach($rootCategorys as $rootCategory) {
             $options[$rootCategory->getCategoryId()] = $rootCategory->getTitle();

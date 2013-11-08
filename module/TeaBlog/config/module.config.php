@@ -32,6 +32,22 @@ return array(
             'TeaBlogAdmin\Controller\Post' => 'TeaBlogAdmin\Controller\PostController',
         ),
     ),
+    'caches' => array(
+        'TeaCacheBlog' => array(
+            'adapter' => array(
+                'name' => 'filesystem'
+            ),
+            'plugins' => array(
+                'Serializer'
+            ),
+            'options' => array(
+                'cache_dir' => 'data/cache/',
+                'namespace' => 'tea_blog',
+                'writable' => true, // set one to false for desactivate cache.
+                'readable' => true  // set one to false for desactivate cache.
+            ),
+        )
+    ),
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,

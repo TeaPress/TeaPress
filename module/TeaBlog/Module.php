@@ -22,8 +22,12 @@ class Module
                 },
                 'TeaBlog\Mapper\Category' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();
+                    $resultSetPrototype = new \TakeATea\Db\ResultSet\ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Model\Category\Relational());
+//                    $resultSetPrototype = new \Zend\Db\ResultSet\HydratingResultSet();
+//                    $resultSetPrototype->setHydrator(new \Zend\Stdlib\Hydrator\ArraySerializable());
+//                    $resultSetPrototype->setObjectPrototype(new Model\Category\Relational());
+                            
                     $tableGateway = new \Zend\Db\TableGateway\TableGateway('blog_category', $dbAdapter, null, $resultSetPrototype);
                     $table = new Mapper\Category($tableGateway);
                     return $table;
