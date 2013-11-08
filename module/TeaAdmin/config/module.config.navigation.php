@@ -11,10 +11,10 @@ return array(
                     
                 )
             ),
-            'system' => array(
-                'label' => 'System',
+            'user' => array(
+                'label' => 'Users',
                 'uri' => '#',
-                'order' => 900,
+                'order' => 800,
                 'pages' => array(
                     'user' => array(
                         'label' => 'Users',
@@ -27,18 +27,25 @@ return array(
                         'route' => 'admin/role',
                         'resource' => 'admin/role',
                         'order' => 200
-                    ),
-                     'cache' => array(
-                        'label' => 'Cache management',
-                        'route' => 'admin/cache',
-                        'resource' => 'admin/cache',
-                        'order' => 700
-                    ),
+                    )
+                )
+            ),
+            'system' => array(
+                'label' => 'System',
+                'uri' => '#',
+                'order' => 900,
+                'pages' => array(
                     'config' => array(
                         'label' => 'Configuration',
                         'route' => 'admin/config',
                         'resource' => 'admin/config',
                         'order' => 900
+                    ),
+                    'cache' => array(
+                        'label' => 'Cache management',
+                        'route' => 'admin/cache',
+                        'resource' => 'admin/cache',
+                        'order' => 700
                     )
                 )
             )
