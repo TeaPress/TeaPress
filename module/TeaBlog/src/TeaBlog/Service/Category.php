@@ -15,7 +15,17 @@ class Category extends AbstractService
      */
     public function getCategoryById($category_id)
     {
-        return $this->getMapper()->getCategoryById($category_id);
+        $cache = $this->getServiceLocator()->get('TeaCacheBlog');
+        $keyCache = 'blog_category_get_category_by_id_' . $category_id;
+        
+        if($cache->hasItem($keyCache)) {
+            return $cache->getItem($keyCache);
+        }
+        
+        $result = $this->getMapper()->getCategoryById($category_id);
+        $cache->setItem($keyCache, $result);
+        
+        return $result;
     }
     
     /**
@@ -25,16 +35,39 @@ class Category extends AbstractService
      */
     public function getCategoryFromUrlKey($name)
     {
-        return $this->getMapper()->getCategoryFromUrlKey($name);
+        $cache = $this->getServiceLocator()->get('TeaCacheBlog');
+        $keyCache = 'blog_category_get_category_from_url_key_' . $name;
+        
+        if($cache->hasItem($keyCache)) {
+            return $cache->getItem($keyCache);
+        }
+        
+        $result = $this->getMapper()->getCategoryFromUrlKey($name);
+        $cache->setItem($keyCache, $result);
+        
+        return $result;
     }
     
     /**
      * Get all root category
      * @return \Zend\Db\ResultSet\ResultSet
      */
-    public function getAllRootCategory()
+    public function getAllRootCategory($usePaginator = true)
     {
-        return $this->getMapper()->getAllRootCategory();
+        $cache = $this->getServiceLocator()->get('TeaCacheBlog');
+        $keyCache = 'blog_category_get_all_root_category_paginator_' . $usePaginator;
+        
+        if($cache->getCaching() && $cache->hasItem($keyCache)) {
+            return $cache->getItem($keyCache);
+        }
+        
+        if($usePaginator) {
+            $this->usePaginator();
+        }
+        $result = $this->getMapper()->getAllRootCategory();
+        $cache->setItem($keyCache);
+        
+        return $result;
     }
     
     /**
@@ -43,17 +76,35 @@ class Category extends AbstractService
      */
     public function getAllCategory()
     {
-        return $this->getMapper()->getAllCategory();
+        $cache = $this->getServiceLocator()->get('TeaCacheBlog');
+        $keyCache = 'blog_category_get_all_category';
+        
+        if($cache->getCaching() && $cache->hasItem($keyCache)) {
+            return $cache->getItem($keyCache);
+        }
+        
+        $result = $this->getMapper()->getAllCategory();
+        $cache->setItem($keyCache, $result);
+        
+        return $result;
     }
     
     /**
      * Get full category ordered
+     * @uses TeaCore\Cache blog_category_get_full_category
      * @return \Zend\Db\ResultSet\ResultSet
      */
     public function getFullCategory()
     {
-        $categorys = $this->getMapper()->getFullCategory();
+        $cache = $this->getServiceLocator()->get('TeaCacheBlog');
+        $keyCache = 'blog_category_get_full_category';
         
+        if($cache->getCaching() && $cache->hasItem($keyCache)) {
+            return $cache->getItem($keyCache);
+        }
+        
+        $categorys = $this->getMapper()->getFullCategory();
+
         $result = array();
         foreach ($categorys as $category) {
             if($category->getParentId() == null) {
@@ -66,12 +117,12 @@ class Category extends AbstractService
                         $found = true;
                     }
                 }
-                
                 if(!$found) {
                     throw new \Exception('Error in build full category : Cannot find parent of a category');
                 }
             }
         }
+        $cache->setItem($keyCache, $result);
         
         return $result;
     }

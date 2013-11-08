@@ -1,0 +1,38 @@
+<?php $this->headTitle('Post Management') ?>
+
+<h2>
+    <?php echo $this->translate('Post management'); ?>
+    <div class="pull-right">
+        <a class="btn btn-warning" href="<?php echo $this->url('admin/blog/post/new'); ?>"><?php echo $this->translate('Create new post'); ?></a>
+    </div>
+</h2>
+
+<table class="table table-striped">
+    <thead>
+        <th><?php echo $this->translate('Name'); ?></th>
+        <th><?php echo $this->translate('Author'); ?></th>
+        <th><?php echo $this->translate('Categories'); ?></th>
+        <th><?php echo $this->translate('Action'); ?></th>
+    </thead>
+    <tbody>
+        <?php if(count($this->posts) > 1): ?>
+            <?php foreach($this->posts as $post): ?>
+        <tr>
+            <td><?php echo $post->getTitle(); ?></td>
+            <td>Author</td>
+            <td>Categorys</td>
+            <td>
+                <a href="<?php echo $this->url('admin/blog/post/edit', array('id' => $post->getPostId())); ?>" class="btn">
+                    <?php echo $this->translate('Edit'); ?>
+                </a>
+            </td>
+        </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+        <tr>
+            <td colspan="5"><?php echo $this->translate('No post'); ?></td>
+        </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+<?php echo $this->paginationControl($this->posts, 'sliding', array('partial/paginator.phtml', 'admin/blog/post')); ?>

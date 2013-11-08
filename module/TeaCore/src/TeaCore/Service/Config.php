@@ -49,7 +49,6 @@ class Config extends AbstractService
         }
         
         if($cache->getCaching()) {
-            \Zend\Debug\Debug::dump('svg cache');
             $cache->setItem('config_section_' . $section->getName(), $values);
         }
         

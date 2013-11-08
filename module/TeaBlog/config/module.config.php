@@ -29,6 +29,7 @@ return array(
             
             'TeaBlogAdmin\Controller\Index' => 'TeaBlogAdmin\Controller\IndexController',
             'TeaBlogAdmin\Controller\Category' => 'TeaBlogAdmin\Controller\CategoryController',
+            'TeaBlogAdmin\Controller\Post' => 'TeaBlogAdmin\Controller\PostController',
         ),
     ),
     'view_manager' => array(
