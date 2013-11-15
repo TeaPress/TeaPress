@@ -33,7 +33,7 @@ class Post extends AbstractForm
         $category->setLabel('Category');
         
         // Get root category for parent category
-        $rootCategorys = $this->getServiceLocator()->getServiceLocator()->get('TeaBlog\Service\Category')->getAllRootCategory();
+        $rootCategorys = $this->getServiceLocator()->getServiceLocator()->get('TeaBlog\Service\Category')->getAllRootCategory(false);
         $options = array();
         foreach($rootCategorys as $rootCategory) {
             $options[$rootCategory->getCategoryId()] = $rootCategory->getTitle();
@@ -41,6 +41,11 @@ class Post extends AbstractForm
         $category->setEmptyOption('Select a category');
         $category->setValueOptions($options);
         $this->add($category);
+                
+        $isActive = new \Zend\Form\Element\Select('isActive');
+        $isActive->setLabel('Is active');
+        $isActive->setValueOptions(array('1' => 'Yes', 0 => 'No'));
+        $this->add($isActive);
         
         $submit = new \Zend\Form\Element\Submit('submit');
         $submit->setValue('Save');

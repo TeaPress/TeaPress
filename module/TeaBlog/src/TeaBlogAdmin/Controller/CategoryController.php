@@ -20,10 +20,37 @@ class CategoryController extends AbstractAdminActionController
      */
     public function indexAction()
     {
-        $categorys = $this->getServiceLocator()->get('TeaBlog\Service\Category')->getAllCategory();
+        $categories = $this->getServiceLocator()->get('TeaBlog\Service\Category')->getAllCategory(true);
+        $form = $this->getServiceLocator()->get('FormElementManager')->get('TeaBlogAdmin\Form\Category');
+        
+        if($this->getRequest()->isPost()) {
+            $form->setInputFilter(new \TeaBlogAdmin\InputFilter\Category());
+            $form->setValidationGroup('title', 'parentId', 'token', 'submit');
+            $form->setData($this->getRequest()->getPost());
+            
+            if($form->isValid()) {
+                $category = $form->getObject();
+                
+                // Save null if no parent.
+                if($category->getParentId() == '') {
+                    $category->setParentId(null);
+                }
+                
+                try {
+                    $this->getServiceLocator()->get('TeaBlog\Service\Category')->save($category);
+                    
+                    $this->flashMessenger()->addSuccessMessage('The category has been saved.');
+                    $this->redirect()->toRoute('admin/blog/category');
+                } catch (\Exception $e) {
+                    throw new \Exception($e);
+                    $this->flashMessenger()->addErrorMessage('An error append during save category.');
+                }
+            }
+        }
         
         $viewModel = new ViewModel();
-        $viewModel->setVariable('categorys', $categorys);
+        $viewModel->setVariable('categories', $categories);
+        $viewModel->setVariable('form', $form);
         return $viewModel;
     }
     

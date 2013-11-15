@@ -16,7 +16,7 @@ class ConfigFactory implements FactoryInterface
 
         $tabs = $configGlobal['system']['tabs'];
         foreach ($tabs as $tabName => $options) {
-            $tab = new \TeaCore\System\Config\Tab($tabName, $options);
+            $tab = new \TeaCore\System\Config\Tab($serviceLocator, $tabName, $options);
             $config->addTab($tab);
         }
 

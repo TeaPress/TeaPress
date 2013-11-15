@@ -34,7 +34,7 @@ class Section
      * @param string $name
      * @param array $options
      */
-    public function __construct($name, array $options)
+    public function __construct($serviceLocator, $name, array $options)
     {
         $this->name = $name;
         
@@ -48,7 +48,7 @@ class Section
         
         if(isset($options['groups']) && is_array($options['groups'])) {
             foreach ($options['groups'] as $groupName => $groupOptions) {
-                $this->addGroup(new \TeaCore\System\Config\Group($groupName, $groupOptions));
+                $this->addGroup(new \TeaCore\System\Config\Group($serviceLocator, $groupName, $groupOptions));
             }
         }
         
@@ -83,7 +83,6 @@ class Section
     {
         $dataValues = array_values($data);
         $dataKeys = array_keys($data);
-        
         foreach($this->getGroups() as $group) {
             foreach($group->getFields() as $field) {
                 $key = array_search($field->getName(), $dataKeys);

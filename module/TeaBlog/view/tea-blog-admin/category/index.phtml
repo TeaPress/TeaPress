@@ -15,8 +15,8 @@
         <th><?php echo $this->translate('Action'); ?></th>
     </thead>
     <tbody>
-        <?php if(count($this->categorys) > 1): ?>
-            <?php foreach($this->categorys as $category): ?>
+        <?php if(count($this->categories) > 0): ?>
+            <?php foreach($this->categories as $category): ?>
         <tr>
             <td><?php echo $category->getTitle(); ?></td>
             <td><?php echo $category->getDescription(); ?></td>
@@ -35,3 +35,22 @@
         <?php endif; ?>
     </tbody>
 </table>
+<?php echo $this->paginationControl($this->categories, 'sliding', array('partial/paginator.phtml', 'admin/blog/post')); ?>
+
+<h2><?php echo $this->translate('Small new category form'); ?></h2>
+<?php echo $this->form()->openTag($this->form->setAttributes(array('action' => $this->url('admin/blog/category')))); ?>
+    <div class="form-group <?php echo (count($this->form->getMessages('title')) > 0) ? ' has-error' : ''; ?>">
+        <?php echo $this->formLabel($this->form->get('title')); ?>
+        <?php echo $this->formElement($this->form->get('title')); ?>
+        <?php echo $this->formElementErrors($this->form->get('title')); ?>
+    </div>
+    <div class="form-group <?php echo (count($this->form->getMessages('parentId')) > 0) ? ' has-error' : ''; ?>">
+        <?php echo $this->formLabel($this->form->get('parentId')); ?>
+        <?php echo $this->formElement($this->form->get('parentId')); ?>
+        <?php echo $this->formElementErrors($this->form->get('parentId')); ?>
+    </div>
+    <?php echo $this->formElement($this->form->get('token')); ?>
+    <div class="buttons_action">
+        <?php echo $this->formElement($this->form->get('submit')); ?>
+    </div>
+<?php echo $this->form()->closeTag(); ?>

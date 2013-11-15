@@ -34,6 +34,11 @@ class Category extends AbstractInputFilter
         ));
         
         $this->add(array(
+            'name' => 'isActive',
+            'required' => true,
+        ));
+        
+        $this->add(array(
             'name' => 'token',
             'required' => true,
         ));

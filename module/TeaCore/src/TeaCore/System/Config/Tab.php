@@ -31,7 +31,7 @@ class Tab extends AbstractOptions
      * @param string $name
      * @param array $options
      */
-    public function __construct($name, array $options)
+    public function __construct($serviceLocator, $name, array $options)
     {
         parent::__construct($options);
         
@@ -39,7 +39,7 @@ class Tab extends AbstractOptions
         
         if(isset($options['sections']) && is_array($options['sections'])) {
             foreach ($options['sections'] as $sectionName => $sectionOptions) {
-                $this->addSection(new \TeaCore\System\Config\Section($sectionName, $sectionOptions));
+                $this->addSection(new \TeaCore\System\Config\Section($serviceLocator, $sectionName, $sectionOptions));
             }
         }
         

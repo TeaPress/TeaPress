@@ -47,9 +47,9 @@ return array(
                         'options' => array(
                             'route' => '/blog',
                             'defaults' => array(
-                                'controller' => 'TeaBlogAdmin\Controller\Index',
+                                'controller' => 'TeaBlogAdmin\Controller\Category',
                                 'action' => 'index',
-                            ),
+                            )
                         ),
                         'may_terminate' => true,
                         'child_routes' => array(

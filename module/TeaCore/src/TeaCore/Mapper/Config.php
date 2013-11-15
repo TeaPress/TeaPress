@@ -6,6 +6,14 @@ use TakeATea\Mapper\AbstractMapper;
 
 class Config extends AbstractMapper
 {
+    public function get($path)
+    {
+        $select = $this->tableGateway->getSql()->select();
+        $select->where("path = '" . $path . "'");
+        
+        return $this->selectWith($select)->current();
+    }
+    
     public function getAllConfig()
     {
         $select = $this->tableGateway->getSql()->select();

@@ -54,9 +54,9 @@ abstract class AbstractService implements ServiceLocatorAwareInterface, EventMan
      * @param array $options
      * @return \Orange\Common\Service\AbstractService
      */
-    public function usePaginator($options=array())
+    public function usePaginator($usePaginator = true)
     {
-        $this->getMapper()->usePaginator($options);
+        $this->getMapper()->usePaginator($usePaginator);
         return $this;
     }
     

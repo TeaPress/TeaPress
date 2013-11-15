@@ -5,6 +5,8 @@ return array(
         'TeaAdmin',
         'TeaCore',
         'TeaBlog',
+        'TeaTheme',
+        'MyTheme'
     ),
 
     // These are various options for the listeners attached to the ModuleManager

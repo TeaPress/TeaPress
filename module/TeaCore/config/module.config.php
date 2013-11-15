@@ -7,6 +7,9 @@ return array(
         'invokables' => array(
             'TeaCore\Service\Config'  => 'TeaCore\Service\Config',
         ),
+        'aliases' => array(
+            'TeaConfig' => 'TeaCore\Service\Config'
+        )
     ),
     'controllers' => array(
         'invokables' => array(

@@ -7,5 +7,5 @@ Master:
 
 Next TODO:
 
-- TeaAdmin : Unit test
-- TeaInstall : Install teapress on your website
+- Faire le validateur url key.
+- Faire le générateur de url key.

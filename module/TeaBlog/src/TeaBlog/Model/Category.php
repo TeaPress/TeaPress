@@ -9,8 +9,9 @@ class Category extends AbstractModel
     protected $category_id;
     protected $parent_id;
     protected $title;
-    protected $description;
     protected $url_key;
+    protected $description;
+    protected $is_active = 1;
     protected $created_at;
     protected $updated_at;
     
@@ -52,6 +53,14 @@ class Category extends AbstractModel
 
     public function setUrlKey($url_key) {
         $this->url_key = $url_key;
+    }
+    
+    public function getIsActive() {
+        return $this->is_active;
+    }
+
+    public function setIsActive($is_active) {
+        $this->is_active = $is_active;
     }
 
     public function getCreatedAt() {

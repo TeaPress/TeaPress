@@ -52,19 +52,23 @@ class Category extends AbstractService
      * Get all root category
      * @return \Zend\Db\ResultSet\ResultSet
      */
-    public function getAllRootCategory($usePaginator = true)
+    public function getAllRootCategory($usePaginator = false)
     {
+        $this->usePaginator($usePaginator);
+        
         $cache = $this->getServiceLocator()->get('TeaCacheBlog');
         $keyCache = 'blog_category_get_all_root_category_paginator_' . $usePaginator;
         
         if($cache->getCaching() && $cache->hasItem($keyCache)) {
             return $cache->getItem($keyCache);
         }
-        
+
         if($usePaginator) {
-            $this->usePaginator();
+            $result = $this->getMapper()->getAllRootCategory();
+        } else {
+            $result = $this->getMapper()->getAllRootCategory()->toArray();
         }
-        $result = $this->getMapper()->getAllRootCategory()->toArray();
+        
         $cache->setItem($keyCache, $result);
         
         return $result;
@@ -74,16 +78,23 @@ class Category extends AbstractService
      * Get all category
      * @return \Zend\Db\ResultSet\ResultSet
      */
-    public function getAllCategory()
+    public function getAllCategory($usePaginator = false)
     {
+        $this->usePaginator($usePaginator);
+        
         $cache = $this->getServiceLocator()->get('TeaCacheBlog');
-        $keyCache = 'blog_category_get_all_category';
+        $keyCache = 'blog_category_get_all_category_paginator_' . $usePaginator;
         
         if($cache->getCaching() && $cache->hasItem($keyCache)) {
             return $cache->getItem($keyCache);
         }
         
-        $result = $this->getMapper()->getAllCategory()->toArray();
+        if($usePaginator) {
+            $result = $this->getMapper()->getAllCategory();
+        } else {
+            $result = $this->getMapper()->getAllCategory()->toArray();
+        }
+        
         $cache->setItem($keyCache, $result);
         
         return $result;

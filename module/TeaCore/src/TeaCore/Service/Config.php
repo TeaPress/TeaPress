@@ -8,6 +8,16 @@ class Config extends AbstractService
 {
     protected $mapper = 'TeaCore\Mapper\Config';
     
+    public function get($path)
+    {
+        // TODO Vérifier d'abord le cache, puis en db, puis valeur par default.
+        $return = $this->getMapper()->get($path);
+        if($return != false) {
+            return $return->getValue();
+        }
+        return $return;
+    }
+    
     /**
      * Get config from section
      * @param \TeaCore\System\Config\Section $section

@@ -44,10 +44,14 @@ class Field
      */
     protected $element;
     
+    protected $options;
     
-    public function __construct($name, $options)
+    protected $serviceLocator;
+    
+    public function __construct($serviceLocator, $name, $options)
     {
         $this->name = $name;
+        $this->serviceLocator = $serviceLocator;
         
         if(isset($options['label'])) {
             $this->label = $options['label'];
@@ -65,6 +69,10 @@ class Field
             $this->order = $options['order'];
         }
         
+        if(isset($options['options'])) {
+            $this->options = $options['options'];
+        }
+        
         return $this;
     }
     
@@ -78,6 +86,12 @@ class Field
                     break;
                 case 'textarea':
                     $this->element = new \Zend\Form\Element\Textarea($this->name);
+                    break;
+                case 'select':
+                    $element = new \Zend\Form\Element\Select($this->name);
+                    $options = $this->serviceLocator->get($this->options['service'])->{$this->options['function']}();
+                    $element->setValueOptions($options);
+                    $this->element = $element;
                     break;
             }
 

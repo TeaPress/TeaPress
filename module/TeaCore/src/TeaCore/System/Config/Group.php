@@ -29,7 +29,7 @@ class Group
      * @param string $name
      * @param array $options
      */
-    public function __construct($name, array $options)
+    public function __construct($serviceLocator, $name, array $options)
     {
         $this->name = $name;
         
@@ -43,7 +43,7 @@ class Group
         
         if(isset($options['fields']) && is_array($options['fields'])) {
             foreach ($options['fields'] as $fieldName => $fieldOptions) {
-                $this->addField(new \TeaCore\System\Config\Field($fieldName, $fieldOptions));
+                $this->addField(new \TeaCore\System\Config\Field($serviceLocator, $fieldName, $fieldOptions));
             }
         }
         

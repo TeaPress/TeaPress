@@ -19,7 +19,7 @@ class Category extends AbstractHelper
                 $list = $this->getCategoryService()->getFullCategory();
                 break;
             case 'root':
-                $list = $this->getCategoryService()->getAllRootCategory();
+                $list = $this->getCategoryService()->getAllRootCategory(false);
                 break;
         }
         

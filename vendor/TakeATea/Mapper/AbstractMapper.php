@@ -41,8 +41,8 @@ abstract class AbstractMapper
      * Use Paginator with options
      * @param type $options
      */
-    public function usePaginator($options)
+    public function usePaginator($usePaginator)
     {
-        $this->usePaginator = true;
+        $this->usePaginator = $usePaginator;
     }
 }
