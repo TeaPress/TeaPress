@@ -62,8 +62,6 @@ return array(
             'partial/paginator.phtml'  => __DIR__ . '/../view/partial/paginator.phtml',
             'error/404'                => __DIR__ . '/../view/error/404.phtml',
             'error/index'              => __DIR__ . '/../view/error/index.phtml',
-            
-            'tea-blog/admin/category/index' => __DIR__ . '/../view/tea-blog/admin/category/index.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

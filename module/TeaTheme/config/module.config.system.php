@@ -17,7 +17,7 @@ return array(
                                         'type' => 'Select',
                                         'options' => array(
                                             'service' => 'TeaTheme\Theme\Manager',
-                                            'function' => 'getThemes'
+                                            'function' => 'getThemesForConfig'
                                         )
                                     )
                                 )

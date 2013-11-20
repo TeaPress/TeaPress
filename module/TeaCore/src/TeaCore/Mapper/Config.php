@@ -32,7 +32,13 @@ class Config extends AbstractMapper
         if(isset($data['config_id'])) {
             return $this->tableGateway->update($data, 'config_id = ' . $data['config_id']);
         } else {
-            return $this->tableGateway->insert($data);
+            $exist = $this->tableGateway->select("path = '" . $data['path'] . "'")->current();
+            if($exist) {
+                unset($data['config_id']);
+                return $this->tableGateway->update($data, 'config_id = ' . $exist->getConfigId());
+            } else {
+                return $this->tableGateway->insert($data);
+            }
         }
     }
 }

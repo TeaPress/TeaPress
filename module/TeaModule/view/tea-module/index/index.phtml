@@ -1,0 +1,40 @@
+<?php $this->headTitle('Extensions Management') ?>
+
+<h2>
+    <?php echo $this->translate('Extensions management'); ?>
+    <div class="pull-right">
+        <a class="btn btn-warning" href="<?php echo $this->url('admin/module/install'); ?>"><?php echo $this->translate('Install extension'); ?></a>
+        <a class="btn btn-warning" href="<?php echo $this->url('admin/module/create'); ?>"><?php echo $this->translate('Create extension'); ?></a>
+    </div>
+</h2>
+
+<table class="table table-hover">
+    <thead>
+        <th><?php echo $this->translate('Name'); ?></th>
+        <th><?php echo $this->translate('Description'); ?></th>
+        <th><?php echo $this->translate('Action'); ?></th>
+    </thead>
+    <tbody>
+        <?php if(count($this->modules) > 0): ?>
+            <?php foreach($this->modules as $module): ?>
+        <tr>
+            <td>
+                <?php echo $module->getName(); ?>
+            </td>
+            <td>
+                <?php echo $module->getDescription(); ?>
+            </td>
+            <td>
+                <a href="<?php echo $this->url('admin/module/delete', array('key' => $key)); ?>"><?php echo $this->translate('Flush'); ?></a>
+            </td>
+        </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+        <tr>
+            <td colspan="3">
+                <?php echo $this->translate('No Extension loaded'); ?>
+            </td>
+        </tr>
+        <?php endif; ?>
+    </tbody>
+</table>

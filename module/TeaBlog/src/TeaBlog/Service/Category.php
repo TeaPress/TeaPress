@@ -85,17 +85,19 @@ class Category extends AbstractService
         $cache = $this->getServiceLocator()->get('TeaCacheBlog');
         $keyCache = 'blog_category_get_all_category_paginator_' . $usePaginator;
         
-        if($cache->getCaching() && $cache->hasItem($keyCache)) {
+        if($cache->getCaching() && $cache->hasItem($keyCache) && !$usePaginator) {
             return $cache->getItem($keyCache);
         }
         
         if($usePaginator) {
+            $this->getMapper()->usePaginator($usePaginator);
             $result = $this->getMapper()->getAllCategory();
         } else {
             $result = $this->getMapper()->getAllCategory()->toArray();
+             $cache->setItem($keyCache, $result);
         }
         
-        $cache->setItem($keyCache, $result);
+       
         
         return $result;
     }

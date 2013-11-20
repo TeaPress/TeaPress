@@ -18,6 +18,7 @@
 
         <!-- Scripts -->
         <?php echo $this->headScript()
+                ->prependFile($this->basePath() . '/js/jquery.form.js')
             ->prependFile($this->basePath() . '/js/bootstrap.min.js')
             ->prependFile($this->basePath() . '/js/jquery.min.js')
             ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
@@ -46,22 +47,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    NON MAIS ALLLLLLLLLLLLLLLLLLLOOOOOOOOO LES THEMES MARCHENT
+                    <div class="col-lg-12">
+                        <?php echo $this->navigation()->breadcrumbs()->setRenderInvisible()->render(); ?>
+                    </div>
                     <?php echo $this->content; ?>
                 </div>
                 <div class="col-md-4">
-                    <div class="block-search">
-                        <?php // echo $this->search(); ?>
+                    <div class="well">
+                        <h4>Search</h4>
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                            </span>
+                        </div>
                     </div>
-                    <div class="block-new-post">
-                        <?php echo $this->latest(array()); ?>
-                    </div>
-                    <div class="block-category">
-                        <?php echo $this->category(array()); ?>
-                    </div>
-                    <div class="block-archive">
-                        <?php // echo $this->archive(); ?>
-                    </div>
+                    <?php echo $this->category(array()); ?>
+                    <?php echo $this->latest(array()); ?>
                 </div>
             </div>
             <hr>

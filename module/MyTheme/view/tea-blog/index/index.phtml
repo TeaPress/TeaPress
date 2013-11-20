@@ -1,1 +1,27 @@
-COUCOU
+<?php if (count($this->posts) == 0): ?>
+    <div class="no-data"><?php echo $this->translate('No data'); ?></div>
+<?php else: ?>
+    <?php foreach ($this->posts as $post): ?>
+    <div class="row">
+        <div class="col-md-5">
+            <a href="<?php echo $this->url('blog/post', array('name' => $post->getUrlKey())); ?>">
+                <img src="http://placehold.it/600x300" class="img-responsive">
+            </a>
+        </div>
+        <div class="col-md-7">
+            <h3>
+                <a href="<?php echo $this->url('blog/post', array('name' => $post->getUrlKey())); ?>">
+                    <?php echo $post->getTitle(); ?>
+                </a>
+            </h3>
+            <p><?php echo $this->translate('by'); ?> <a href="#">admin</a></p>
+            <p><?php echo $post->getShortDescription(); ?></p>
+            <a class="btn btn-primary" href="<?php echo $this->url('blog/post', array('name' => $post->getUrlKey())); ?>">
+                <?php echo $this->translate('Read More'); ?> <span class=".glyphicon .glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+    <hr>
+    <?php endforeach; ?>
+    <?php echo $this->paginationControl($this->posts, 'sliding', array('partial/paginator.phtml', 'blog/category')); ?>
+<?php endif; ?>

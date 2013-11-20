@@ -2,21 +2,19 @@
 namespace TeaTheme\Theme;
 
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Stdlib\PriorityQueue;
 
 class Manager 
 {
     protected $themes = array();
+    
     protected $current_theme;
+    
     protected $serviceLocator;
     
     public function __construct($serviceLocator, $themes)
     {
         $this->setServiceLocator($serviceLocator);
-        
-        foreach ($themes as $key => $options) {
-            $this->themes[$key] = $options;
-        }
+        $this->themes = $themes;
         
         $currentTheme = $this->getCurrentTheme();
         

@@ -6,6 +6,7 @@ return array(
         'TeaCore',
         'TeaBlog',
         'TeaTheme',
+        'TeaModule',
         'MyTheme'
     ),
 

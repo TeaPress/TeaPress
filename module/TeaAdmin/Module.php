@@ -17,11 +17,14 @@ class Module
             'factories' => array(
                 'navigation' => function(HelperPluginManager $pm) {
                     $acl = $pm->getServiceLocator()->get('TeaAdmin\Permissions\Service\Acl');
-                    $role = $pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->getIdentity()->role->getName();
                     
                     $navigation = $pm->get('Zend\View\Helper\Navigation');
-                    $navigation->setAcl($acl)
-                               ->setRole($role);
+                    $navigation->setAcl($acl);
+                               
+                    if($pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->hasIdentity()) {
+                        $role = $pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->getIdentity()->role->getName();
+                        $navigation->setRole($role);
+                    }
                     
                     return $navigation;
                 }

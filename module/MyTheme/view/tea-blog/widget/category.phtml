@@ -1,0 +1,16 @@
+<div class="well">
+    <h4><?php echo $this->translate('Category'); ?></h4>
+    <div class="row">
+        <div class="col-lg-6">
+            <ul class="list-unstyled">
+            <?php foreach($this->list as $category): ?>
+                <li>
+                    <a href="<?php echo $this->url('blog/category', array('name' => $category->getUrlKey())); ?>">
+                        <?php echo $category->getTitle(); ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+</div>
