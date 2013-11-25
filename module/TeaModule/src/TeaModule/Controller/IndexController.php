@@ -4,7 +4,6 @@ namespace TeaModule\Controller;
 
 use TeaAdmin\Controller\AbstractAdminActionController;
 use Zend\View\Model\ViewModel;
-use Zend\View\Model\JsonModel;
 
 class IndexController extends AbstractAdminActionController
 {
@@ -28,29 +27,28 @@ class IndexController extends AbstractAdminActionController
             $form->setInputFilter(new \TeaModule\InputFilter\Install());
             $form->setData($data);
             if ($form->isValid()) {
+                $data = $form->getData();
+                $phar = new \Phar($data['file']['tmp_name']);
+                
+                if($phar->hasMetadata()) {
+                    $metadata = $phar->getMetadata();
+                }
+                
+                // Check require metadata
+                $phar->extractTo('./module/' . $metadata['module']);
                 //
                 // ...Save the form...
                 //
-                //Debug::dump($form->getData());
+                \Zend\Debug\Debug::dump($form->getData());
                 //die();
+            } else {
+                //\Zend\Debug\Debug::dump($form->getMessages());
             }
         }
         
         $viewModel = new ViewModel();
         $viewModel->setVariable('form', $form);
         return $viewModel;
-    }
-    
-    public function progressAction()
-    {
-        $id = $this->params()->fromQuery('id', null);
-        $progress = new \Zend\ProgressBar\Upload\ApcProgress();
-
-        $jsonModel = new JsonModel(array(
-            'id' => $id,
-            'status' => $progress->getProgress($id),
-        ));
-        return $jsonModel;
     }
     
     public function createAction()

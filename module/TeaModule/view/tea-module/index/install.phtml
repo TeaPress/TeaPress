@@ -5,19 +5,19 @@
 </h2>
 
 <?php echo $this->form()->openTag($this->form->setAttributes(array('action' => $this->url('admin/module/install'), 'id' => 'form-upload'))); ?>
-    <?php echo $this->formFileApcProgress(); ?>
+    <?php //echo $this->formFileApcProgress(); ?>
     <div class="form-group <?php echo (count($this->form->getMessages('file')) > 0) ? ' has-error' : ''; ?>">
         <?php echo $this->formLabel($this->form->get('file')); ?>
         <?php echo $this->formElement($this->form->get('file')); ?>
         <?php echo $this->formElementErrors($this->form->get('file')); ?>
     </div>
-    <div id="file-errors" class="help-block"></div>
+    <!--<div id="file-errors" class="help-block"></div>
     <div id="progress" class="help-block">
         <div class="progress progress-info progress-striped active">
             <div class="bar"></div>
         </div>
         <p></p>
-    </div>
+    </div>-->
     <?php echo $this->formElement($this->form->get('token')); ?>
     <div class="buttons_action">
         <a href="<?php echo $this->url('admin/module'); ?>"><?php echo $this->translate('Cancel'); ?></a>
@@ -26,10 +26,7 @@
 <?php echo $this->form()->closeTag(); ?>
 
 <script type="text/javascript">
-    /**
-     * Progress Bar functions
-     */
-    var progressInterval;
+    /*var progressInterval;
 
     function hideProgress() {
         $('#progress').hide();
@@ -98,5 +95,5 @@
             });
             startProgress();
         });
-    });
+    });*/
 </script>
