@@ -90,12 +90,14 @@
                 <a href="#" class="close">&times;</a>
             </div>
 
-            <form>
+            <form enctype="multipart/form-data">
                 <fieldset>
                     <div class="large-3 columns">
                         <h3>Write your blog post</h3>
-                        <p class="info">Give your blog post a title and add your content. Don't forget to make your title uniq.</p>
-                        <p class="info" class="info"><a href="#">View in your website.</a></p>
+                        <div class="info">
+                            <p>Give your blog post a title and add your content. Don't forget to make your title uniq.</p>
+                            <p><a href="#">View in your website.</a></p>
+                        </div>
                     </div>
                     <div class="large-9 columns">
                         <div class="row">
@@ -104,7 +106,7 @@
                         </div>
                         <div class="row">
                             <label for="post-2">Contents <span class="note">Use <kbd>ALT</kbd> or <kbd>CMD</kbd> keyboard to reveal accesskeys.</span></label>
-                            <textarea id="post-2" placeholder="Contents"></textarea>
+                            <textarea id="post-2" class="redactor" placeholder="Contents"></textarea>
                             <p class="note">To make better search engine optimizations, write between 300 and 800 words and repeat to 8 times your main tags.</p>
                         </div>
                         <div class="row">
@@ -114,9 +116,10 @@
                         </div>
                         <div class="row">
                             <label>Thumbnail</label>
-                            <div class="panel large-3 columns">
+                            <div class="panel filedrag large-3 columns">
                                 <p class="text-center">Drag &amp; drop your thumbnail</p>
                                 <a href="#" class="small button">Or use the Media library</a>
+                                <ul></ul>
                             </div>
                             <div class="large-9 columns">
                                 <p>Drag &amp; drop quickly your thumbnail in the gray box. Your image will be uploaded and you can edit its contents in the <a href="#">Media library</a>.</p>
@@ -130,7 +133,9 @@
                 <fieldset>
                     <div class="large-3 columns">
                         <h3>Organize your contents</h3>
-                        <p class="info">Categorize your blog post to organize it &amp; set tags to permit cross-linking.</p>
+                        <div class="info">
+                            <p>Categorize your blog post to organize it &amp; set tags to permit cross-linking.</p>
+                        </div>
                     </div>
                     <div class="large-9 columns">
                         <div class="row">
@@ -152,7 +157,9 @@
                 <fieldset>
                     <div class="large-3 columns">
                         <h3>Find them efficiently</h3>
-                        <p class="info">Set up the page title and meta description. These help you to define how this blog post shows up on search engines.</p>
+                        <div class="info">
+                            <p>Set up the page title and meta description. These help you to define how this blog post shows up on search engines.</p>
+                        </div>
                     </div>
                     <div class="large-9 columns">
                         <div class="row">
@@ -169,7 +176,9 @@
                 <fieldset>
                     <div class="large-3 columns">
                         <h3>Publish in the rigth way</h3>
-                        <p class="info">Control if this blog post can be viewed on your website and when it can be viewed.</p>
+                        <div class="info">
+                            <p>Control if this blog post can be viewed on your website and when it can be viewed.</p>
+                        </div>
                     </div>
                     <div class="large-9 columns">
                         <div class="row">
@@ -193,7 +202,9 @@
                 <fieldset>
                     <div class="large-3 columns">
                         <h3>Socialize it</h3>
-                        <p class="info">Aprouve comments and define how to publish your contents in all your social networks.</p>
+                        <div class="info">
+                            <p>Aprouve comments and define how to publish your contents in all your social networks.</p>
+                        </div>
                     </div>
                     <div class="large-9 columns">
                         <div class="row">

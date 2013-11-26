@@ -82,7 +82,7 @@ fieldset {
     padding-top:1.875rem;
 }
 /*contents*/
-fieldset p.info {
+fieldset .info p {
     margin-top:1.25rem;
     margin-bottom:0;
 }
