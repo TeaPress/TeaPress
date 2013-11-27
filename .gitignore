@@ -1,3 +1,4 @@
 /vendor/ZF2/library/
 /nbproject/
+./data/
 .DS_Store
