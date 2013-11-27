@@ -1,6 +1,10 @@
-<div class="row">
+<div class="row <?php echo ($this->renderErrors && count($this->element->getMessages())) ? 'error' : ''; ?>">
     <?php echo $this->formLabel($this->element) . PHP_EOL; ?>
     <?php echo $this->formElement($this->element) . PHP_EOL; ?>
-    <?php echo $this->formElementErrors($this->element) . PHP_EOL; ?>
+    <?php echo $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="error">')
+            ->setMessageCloseString('</span>')
+            ->setMessageSeparatorString('')
+            ->render($this->element) . PHP_EOL; ?>
     <?php echo $this->formDescription($this->element) . PHP_EOL; ?>
 </div>

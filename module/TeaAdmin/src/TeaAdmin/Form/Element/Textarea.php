@@ -6,6 +6,7 @@ use Zend\Form\Element\Textarea as BaseTextarea;
 class Textarea extends BaseTextarea
 {
     protected $description;
+    protected $labelTips;
     
     public function getDescription()
     {
@@ -15,6 +16,17 @@ class Textarea extends BaseTextarea
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
+    }
+    
+    public function getLabelTips()
+    {
+        return $this->labelTips;
+    }
+    
+    public function setLabelTips($labelTips)
+    {
+        $this->labelTips = $labelTips;
         return $this;
     }
 }

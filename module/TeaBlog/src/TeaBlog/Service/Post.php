@@ -56,4 +56,19 @@ class Post extends AbstractService
         }
         return $this->getMapper()->getPostsFromCategorySlug($slug);
     }
+    
+    /**
+     * Create or update post
+     * @param \TeaBlog\Model\Post $post
+     */
+    public function save($post)
+    {
+        $auth = $this->getServiceLocator()->get('TeaAdmin\Authentication\Service');
+        if (!$auth->hasIdentity()) {
+            throw new \Exception('No identity found.');
+        }
+        
+        $post->setAuthorId($auth->getIdentity()->user_id);
+        return $this->getMapper()->save($post);
+    }
 }

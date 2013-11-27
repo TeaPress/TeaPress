@@ -6,6 +6,7 @@ use Zend\Form\Element\Radio as BaseRadio;
 class Radio extends BaseRadio
 {
     protected $description;
+    protected $labelTips;
     
     public function getDescription()
     {
@@ -15,6 +16,17 @@ class Radio extends BaseRadio
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
+    }
+    
+    public function getLabelTips()
+    {
+        return $this->labelTips;
+    }
+    
+    public function setLabelTips($labelTips)
+    {
+        $this->labelTips = $labelTips;
         return $this;
     }
 }

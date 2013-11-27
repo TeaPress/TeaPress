@@ -15,6 +15,7 @@ class Post extends AbstractModel
     protected $post_slug;
     protected $post_tags;
     protected $post_visibility;
+    protected $post_comment;
     protected $post_meta_title;
     protected $post_meta_description;
     protected $post_meta_keywords;
@@ -60,6 +61,10 @@ class Post extends AbstractModel
 
     public function getPostVisibility() {
         return $this->post_visibility;
+    }
+    
+    public function getPostComment() {
+        return $this->post_comment;
     }
 
     public function getPostMetaTitle() {
@@ -116,6 +121,10 @@ class Post extends AbstractModel
 
     public function setPostVisibility($post_visibility) {
         $this->post_visibility = $post_visibility;
+    }
+    
+    public function setPostComment($post_comment) {
+        $this->post_comment = $post_comment;
     }
 
     public function setPostMetaTitle($post_meta_title) {

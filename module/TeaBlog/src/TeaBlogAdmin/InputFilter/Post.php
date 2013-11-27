@@ -9,11 +9,6 @@ class Post extends AbstractInputFilter
     public function __construct()
     {
         $this->add(array(
-            'name' => 'postId',
-            'required' => true,
-        ));
-
-        $this->add(array(
             'name' => 'postTitle',
             'required' => true,
         ));
@@ -32,8 +27,12 @@ class Post extends AbstractInputFilter
                 )
             ),
             'filters' => array(
-                'Zend\Filter\StringToLower',
-                'Zend\Filter\Word\SeparatorToDash'
+                array(
+                    'name' => 'Zend\Filter\StringToLower',
+                ),
+                array(
+                    'name' => 'Zend\Filter\Word\SeparatorToDash',
+                )
             )
         ));
         

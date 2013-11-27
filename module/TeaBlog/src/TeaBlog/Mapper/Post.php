@@ -59,4 +59,17 @@ class Post extends AbstractMapper
         
         return $this->selectWith($select);
     }
+    
+    public function save($post)
+    {
+        $data = $post->toArray();
+        if($post->getPostId() !== null) {
+            $data['post_updated'] = new \Zend\Db\Sql\Expression('Now');
+            return $this->tableGateway->update($data, 'post_id = ' . $post->getPostId());
+        }
+        
+        $data['post_created'] = new \Zend\Db\Sql\Expression('Now()');
+        $data['post_updated'] = new \Zend\Db\Sql\Expression('Now()');
+        return $this->tableGateway->insert($data);
+    }
 }

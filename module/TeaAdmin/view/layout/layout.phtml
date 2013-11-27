@@ -52,10 +52,10 @@
             <div class="main-content large-10 columns">
                 <?php echo $this->navigation()->breadcrumbs('TeaAdminNavigation')->setRenderInvisible()->setPartial('tea-admin/breadcrumbs') . PHP_EOL; ?>
 
-                <?php echo $this->flashMessenger()->render('success', array('alert', 'flash-success')) . PHP_EOL; ?>
-                <?php echo $this->flashMessenger()->render('info', array('alert', 'flash-info')) . PHP_EOL; ?>
-                <?php echo $this->flashMessenger()->render('error', array('alert', 'flash-error')) . PHP_EOL; ?>
-                <?php echo $this->flashMessenger()->render('default', array('alert', 'flash-default')) . PHP_EOL; ?>
+                <?php echo $this->flashMessenger()->render('success', array('alert-box', 'success')) . PHP_EOL; ?>
+                <?php echo $this->flashMessenger()->render('info', array('alert-box', 'info')) . PHP_EOL; ?>
+                <?php echo $this->flashMessenger()->render('error', array('alert-box', 'alert')) . PHP_EOL; ?>
+                <?php echo $this->flashMessenger()->render('default', array('alert-box', 'secondary')) . PHP_EOL; ?>
 
                 <?php echo $this->content . PHP_EOL; ?>
             </div>
