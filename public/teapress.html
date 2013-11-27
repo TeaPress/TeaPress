@@ -65,7 +65,7 @@
                 <li><a href="#">Homepage</a></li>
                 <li><a href="#">Posts</a></li>
                 <li class="current"><a href="#">Add post</a></li>
-                <li class="right"><a href="#" class="tiny success">Save post</a></li>
+                <li class="right"><a href="#" class="tiny button">Save post</a></li>
             </ul>
 
             <h2>Add post</h2>
@@ -101,12 +101,19 @@
                     </div>
                     <div class="large-9 columns">
                         <div class="row">
+                            <label for="post-0">Slug <small>***</small> <span class="note">Only Chris can understand this!</span></label>
+                            <input type="text" id="post-0" placeholder="" />
+                            <small class="error">It seems there is a beautiful error here</small>
+                        </div>
+                        <div class="row error">
                             <label for="post-1">Title</label>
                             <input type="text" id="post-1" placeholder="Put your title here, make it uniq!" />
+                            <small class="error">It seems there is a beautiful error here</small>
                         </div>
                         <div class="row">
                             <label for="post-2">Contents <span class="note">Use <kbd>ALT</kbd> or <kbd>CMD</kbd> keyboard to reveal accesskeys.</span></label>
                             <textarea id="post-2" class="redactor" placeholder="Contents"></textarea>
+                            <small class="error">It seems there is a beautiful error here</small>
                             <p class="note">To make better search engine optimizations, write between 300 and 800 words and repeat to 8 times your main tags.</p>
                         </div>
                         <div class="row">
