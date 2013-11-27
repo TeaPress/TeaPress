@@ -19,6 +19,13 @@ h2, .breadcrumbs, .buttonized, fieldset,
 
 
 /************** SKELETON **************/
+/*top bar*/
+.top-bar .nav-name {
+    margin-left:0;
+}
+.top-bar .nav-name a {
+    text-align:center;
+}
 /*menu content*/
 .menu-content {
     padding-left:0;
