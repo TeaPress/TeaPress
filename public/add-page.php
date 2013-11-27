@@ -15,9 +15,9 @@ include('_inc/_head.php');
 <form enctype="multipart/form-data">
     <fieldset>
         <div class="large-3 columns">
-            <h3>Write your blog page</h3>
+            <h3>Write your page</h3>
             <div class="info">
-                <p>Give your blog page a title and add your content. Don't forget to make your title uniq.</p>
+                <p>Give your page a title and add your content. Don't forget to make your title uniq.</p>
                 <p><a href="#">View in your website.</a></p>
             </div>
         </div>
@@ -49,7 +49,7 @@ include('_inc/_head.php');
         <div class="large-3 columns">
             <h3>Find it efficiently</h3>
             <div class="info">
-                <p>Set up the page title and meta description. These help you to define how this blog post shows up on search engines.</p>
+                <p>Set up the page title and meta description. These help you to define how this page shows up on search engines.</p>
             </div>
         </div>
         <div class="large-9 columns">
@@ -68,7 +68,7 @@ include('_inc/_head.php');
         <div class="large-3 columns">
             <h3>Publish in the rigth way</h3>
             <div class="info">
-                <p>Control if this blog post can be viewed on your website and when it can be viewed.</p>
+                <p>Control if this page can be viewed on your website and when it can be viewed.</p>
             </div>
         </div>
         <div class="large-9 columns">
@@ -94,7 +94,7 @@ include('_inc/_head.php');
         <div class="large-3 columns">
             <h3>Socialize it</h3>
             <div class="info">
-                <p>Aprouve comments and define how to publish your contents in all your social networks.</p>
+                <p>Define how to publish your contents in all your social networks.</p>
             </div>
         </div>
         <div class="large-9 columns">
