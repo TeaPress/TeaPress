@@ -9,13 +9,13 @@ class Post extends AbstractService
     protected $mapper = 'TeaBlog\Mapper\Post';
     
     /**
-     * Get post from column url_key
-     * @param string $name
-     * @return \TeaBlog\Model\Post
+     * Find post from slug parameter
+     * @param string $slug
+     * @return \TeaBlog\Model\Post | false
      */
-    public function getPostByUrlKey($name)
+    public function getPostBySlug($slug)
     {
-        return $this->getMapper()->getPostByUrlKey($name);
+        return $this->getMapper()->getPostBySlug($slug);
     }
     
     /**
@@ -38,22 +38,22 @@ class Post extends AbstractService
     public function getAllPosts($usePaginator = true)
     {
         if($usePaginator) {
-            $this->usePaginator();
+            $this->usePaginator($usePaginator);
         }
         return $this->getMapper()->getAllPosts();
     }
     
     /**
-     * Get posts from category url key
-     * @param string $name
+     * Get posts from category's slug
+     * @param string $slug
      * @param boolean $usePaginator
      * @return \Zend\Db\ResultSet\ResultSet | Zend\Paginator\Paginator
      */
-    public function getPostsFromCategoryUrlKey($name, $usePaginator = true)
+    public function getPostsFromCategorySlug($slug, $usePaginator = true)
     {
         if($usePaginator) {
-            $this->usePaginator();
+            $this->usePaginator($usePaginator);
         }
-        return $this->getMapper()->getPostsFromCategoryUrlKey($name);
+        return $this->getMapper()->getPostsFromCategorySlug($slug);
     }
 }

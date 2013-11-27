@@ -17,19 +17,33 @@ class Post extends AbstractForm
         $postId = new \Zend\Form\Element\Hidden('postId');
         $this->add($postId);
         
-        $title = new \Zend\Form\Element\Text('title');
+        $title = new \TeaAdmin\Form\Element\Text('postTitle');
+        $title->setAttribute('placeholder', 'Put your title here, make it uniq!');
         $title->setLabel('Title');
         $this->add($title);
         
-        $urlKey = new \Zend\Form\Element\Text('urlKey');
-        $urlKey->setLabel('Url Key');
-        $this->add($urlKey);
+        $slug = new \TeaAdmin\Form\Element\Text('postSlug');
+        $slug->setAttribute('placeholder', 'Slug');
+        $slug->setLabel('Slug');
+        $this->add($slug);
         
-        $description = new \Zend\Form\Element\Textarea('description');
-        $description->setLabel('Description');
-        $this->add($description);
+        $content = new \TeaAdmin\Form\Element\Textarea('postContent');
+        $content->setAttribute('placeholder', 'Contents');
+        $content->setDescription('To make better search engine optimizations, write between 300 and 800 words and repeat to 8 times your main tags.');
+        $content->setLabel('Contents');
+        $this->add($content);
         
-        $category = new \Zend\Form\Element\Select('categoryId');
+        $excerpt = new \TeaAdmin\Form\Element\Textarea('postExcerpt');
+        $excerpt->setAttribute('placeholder', 'Excerpt');
+        $excerpt->setDescription('Excerpts are optional hand-crafted summaries of your content that can be used in your theme.');
+        $excerpt->setLabel('Excerpt');
+        $this->add($excerpt);
+        
+        $thumb = new \Zend\Form\Element\File('thumb');
+        $thumb->setLabel('Media');
+        $this->add($thumb);
+        
+        $category = new \TeaAdmin\Form\Element\Select('categoryId');
         $category->setLabel('Category');
         
         // Get root category for parent category
@@ -41,11 +55,35 @@ class Post extends AbstractForm
         $category->setEmptyOption('Select a category');
         $category->setValueOptions($options);
         $this->add($category);
-                
-        $isActive = new \Zend\Form\Element\Select('isActive');
-        $isActive->setLabel('Is active');
-        $isActive->setValueOptions(array('1' => 'Yes', 0 => 'No'));
-        $this->add($isActive);
+        
+        $tags = new \TeaAdmin\Form\Element\Text('postTags');
+        $tags->setLabel('Tags');
+        $this->add($tags);
+        
+        $metaTitle = new \TeaAdmin\Form\Element\Text('postMetaTitle');
+        $metaTitle->setLabel('Page title');
+        $this->add($metaTitle);
+        
+        $metaDescription = new \TeaAdmin\Form\Element\Textarea('postMetaDescription');
+        $metaDescription->setLabel('Meta description');
+        $this->add($metaDescription);
+        
+        $metaKeywords = new \TeaAdmin\Form\Element\Text('postMetaKeywords');
+        $metaKeywords->setLabel('Meta news keywords');
+        $this->add($metaKeywords);
+        
+        $visibility = new \TeaAdmin\Form\Element\Radio('postVisibility');
+        $visibility->setLabel('Visibility');
+        $visibility->setValueOptions(array('1' => 'Visible', '0' => 'Hidden'));
+        $this->add($visibility);
+        
+        $comments = new \TeaAdmin\Form\Element\Radio('postComment');
+        $comments->setLabel('Comments');
+        $comments->setValueOptions(array(
+            '0' => 'Comments are disabled', 
+            '1' => 'Comments are allowed, pending moderation',
+            '2' => 'Comments are allowed, and are automatically published'));
+        $this->add($comments);
         
         $submit = new \Zend\Form\Element\Submit('submit');
         $submit->setValue('Save');

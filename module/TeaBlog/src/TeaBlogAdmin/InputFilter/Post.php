@@ -14,22 +14,76 @@ class Post extends AbstractInputFilter
         ));
 
         $this->add(array(
-            'name' => 'title',
+            'name' => 'postTitle',
             'required' => true,
         ));
         
         $this->add(array(
-            'name' => 'urlKey',
+            'name' => 'postSlug',
+            'required' => false,
+            'validators' => array(
+                array(
+                    'name' => 'Zend\Validator\Db\NoRecordExists',
+                    'options' => array(
+                        'table' => 'post',
+                        'field' => 'post_slug',
+                        'adapter' => \Zend\Db\TableGateway\Feature\GlobalAdapterFeature::getStaticAdapter()
+                    )
+                )
+            ),
+            'filters' => array(
+                'Zend\Filter\StringToLower',
+                'Zend\Filter\Word\SeparatorToDash'
+            )
+        ));
+        
+        $this->add(array(
+            'name' => 'postContent',
+            'required' => true,
+        ));
+        
+        $this->add(array(
+            'name' => 'postExcerpt',
             'required' => false,
         ));
         
         $this->add(array(
-            'name' => 'description',
-            'required' => true,
+            'name' => 'postThumb',
+            'required' => false,
         ));
         
         $this->add(array(
             'name' => 'categoryId',
+            'required' => true,
+        ));
+        
+        $this->add(array(
+            'name' => 'postTags',
+            'required' => false,
+        ));
+        
+        $this->add(array(
+            'name' => 'postMetaTitle',
+            'required' => false,
+        ));
+        
+        $this->add(array(
+            'name' => 'postMetaDescription',
+            'required' => false,
+        ));
+        
+        $this->add(array(
+            'name' => 'postMetaKeywords',
+            'required' => false,
+        ));
+        
+        $this->add(array(
+            'name' => 'postVisibility',
+            'required' => true,
+        ));
+        
+        $this->add(array(
+            'name' => 'postComment',
             'required' => true,
         ));
         

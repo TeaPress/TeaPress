@@ -1,6 +1,6 @@
 <?php
 
-namespace TeaAdmin\Form\InputFilter;
+namespace TeaAdmin\InputFilter;
 
 use TakeATea\InputFilter\AbstractInputFilter;
 

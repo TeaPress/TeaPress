@@ -28,7 +28,7 @@ class IndexController extends AbstractAdminActionController
         if($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getPost()->toArray();
             
-            $form->setInputFilter(new \TeaAdmin\Form\InputFilter\Login());
+            $form->setInputFilter(new \TeaAdmin\InputFilter\Login());
             $form->setData($data);
             
             if($form->isValid()) {

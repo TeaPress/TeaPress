@@ -30,6 +30,12 @@ return array(
             'TeaAdmin\Form\Role' => 'TeaAdmin\Form\Role',
         )
     ),
+    'view_helpers' => array(
+        'invokables' => array(
+            'formdescription' => 'TeaAdmin\Form\View\Helper\FormDescription',
+            'formlabel' => 'TeaAdmin\Form\View\Helper\FormLabel'
+        )
+    ),
     'controllers' => array(
         'invokables' => array(
             'TeaAdmin\Controller\Index' => 'TeaAdmin\Controller\IndexController',
@@ -41,8 +47,15 @@ return array(
     ),
     'view_manager' => array(
         'template_map' => array(
+            // Layout
             'layout/admin_layout'            => __DIR__ . '/../view/layout/layout.phtml',
-            'tea-admin/menu'                 => __DIR__ . '/../view/partial/menu.phtml'
+            
+            // Partial
+            'tea-admin/menu'                 => __DIR__ . '/../view/partial/menu.phtml',
+            'tea-admin/breadcrumbs'          => __DIR__ . '/../view/partial/breadcrumbs.phtml',
+            
+            // Form
+            'tea-admin/form/row'             => __DIR__ . '/../view/partial/form/row.phtml'
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

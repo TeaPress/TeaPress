@@ -12,52 +12,60 @@
 
         <!-- Le styles -->
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                        ->prependStylesheet($this->basePath() . '/css/style.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
-
-        <!-- Scripts -->
-        <?php echo $this->headScript()
-            ->prependFile($this->basePath() . '/js/jquery.form.js')
-            ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-            ->prependFile($this->basePath() . '/js/jquery.min.js')
-            ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
-        ; ?>
-
+                        ->prependStylesheet($this->basePath() . '/css/teapress.css')
+                        ->prependStylesheet($this->basePath() . '/css/foundation.css'); ?>
     </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('admin') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Skeleton Application') ?></a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <?php echo $this->navigation()->menu('TeaAdminNavigation')->setPartial('tea-admin/menu'); ?>
-                </div>
+    <body class="antialiased">
+        <div class="fixed">
+            <nav class="top-bar" data-topbar>
+                <ul class="large-2 columns">
+                    <li class="name">
+                        <h1><a href="#">Teapress Academy</a></h1>
+                    </li>
+                </ul>
+
+                <section class="top-bar-section">
+                    <ul class="right">
+                        <li class="has-dropdown">
+                            <a href="#">Achraf Ach Chouk</a>
+                            <ul class="dropdown">
+                                <li><a href="#">My profile</a></li>
+                                <li><a href="#">My settings</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="left">
+                        <li><a href="#">Go to website</a></li>
+                    </ul>
+                </section>
+            </nav>
+        </div>
+
+        <div class="row">
+            <div class="menu-content hide-for-small large-2 columns">
+                <?php echo $this->navigation()->menu('TeaAdminNavigation')->setPartial('tea-admin/menu') . PHP_EOL; ?>
             </div>
-        </nav>
-        <div class="container">
-            <div class="breadcrumbs">
-                <?php echo $this->navigation()->breadcrumbs('TeaAdminNavigation')->setRenderInvisible()->render(); ?>
-            </div>
-            <div class="flashmessenger">
+
+            <div class="main-content large-10 columns">
+                <?php echo $this->navigation()->breadcrumbs('TeaAdminNavigation')->setRenderInvisible()->setPartial('tea-admin/breadcrumbs') . PHP_EOL; ?>
+
                 <?php echo $this->flashMessenger()->render('success', array('alert', 'flash-success')) . PHP_EOL; ?>
                 <?php echo $this->flashMessenger()->render('info', array('alert', 'flash-info')) . PHP_EOL; ?>
                 <?php echo $this->flashMessenger()->render('error', array('alert', 'flash-error')) . PHP_EOL; ?>
                 <?php echo $this->flashMessenger()->render('default', array('alert', 'flash-default')) . PHP_EOL; ?>
+
+                <?php echo $this->content . PHP_EOL; ?>
             </div>
-            <?php echo $this->content; ?>
-            <hr>
-            <footer>
-                <p>&copy; 2013 - Powered By TeaPress - Product developped by Take A Tea</p>
-            </footer>
         </div>
-        <?php echo $this->inlineScript() ?>
+        <?php echo $this->inlineScript()
+                ->prependFile($this->basePath() . '/js/foundation.min.js')
+                ->prependFile($this->basePath() . '/js/jquery.js')
+                ->prependFile($this->basePath() . '/js/modernizr.js'); ?>
+        <script type="text/javascript">
+            $(document).foundation();
+        </script>
     </body>
 </html>

@@ -28,7 +28,7 @@ class PostController extends AbstractAdminActionController
         
         if($this->getRequest()->isPost()) {
             $form->setInputFilter(new \TeaBlogAdmin\InputFilter\Post());
-            $form->setValidationGroup('title', 'urlKey', 'categoryId', 'description', 'token', 'submit');
+//            $form->setValidationGroup('title', 'urlKey', 'categoryId', 'description', 'token', 'submit');
             $form->setData($this->getRequest()->getPost());
             
             if($form->isValid()) {

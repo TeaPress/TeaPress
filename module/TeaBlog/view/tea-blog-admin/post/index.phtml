@@ -15,10 +15,10 @@
         <th><?php echo $this->translate('Action'); ?></th>
     </thead>
     <tbody>
-        <?php if(count($this->posts) > 1): ?>
+        <?php if(count($this->posts) > 0): ?>
             <?php foreach($this->posts as $post): ?>
         <tr>
-            <td><?php echo $post->getTitle(); ?></td>
+            <td><?php echo $post->getPostTitle(); ?></td>
             <td>Author</td>
             <td>Categorys</td>
             <td>

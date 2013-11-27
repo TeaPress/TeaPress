@@ -13,20 +13,20 @@ class PostController extends AbstractActionController
      */
     public function categoryAction()
     {
-        $name = $this->getEvent()->getRouteMatch()->getParam('name');
-        if(!$name){
+        $slug = $this->getEvent()->getRouteMatch()->getParam('slug');
+        if(!$slug){
             $this->getResponse()->setStatusCode(404);
             return;
         }
         
-        $category = $this->getServiceLocator()->get('TeaBlog\Service\Category')->getCategoryFromUrlKey($name);
+        $category = $this->getServiceLocator()->get('TeaBlog\Service\Category')->getCategoryFromSlug($slug);
         if(!$category) {
             $this->getResponse()->setStatusCode(404);
             return;
         }
         
         $config = $this->getServiceLocator()->get('Config');
-        $postsPaginator = $this->getServiceLocator()->get('TeaBlog\Service\Post')->getPostsFromCategoryUrlKey($name, true);
+        $postsPaginator = $this->getServiceLocator()->get('TeaBlog\Service\Post')->getPostsFromCategorySlug($slug, true);
         $postsPaginator->setCurrentPageNumber((int)$this->params()->fromQuery('page', 1));
         $postsPaginator->setItemCountPerPage($config['blog']['list']['itemCountPerPage']);
         
@@ -48,7 +48,7 @@ class PostController extends AbstractActionController
             return;
         }
         
-        $post = $this->getServiceLocator()->get('TeaBlog\Service\Post')->getPostByUrlKey($name);
+        $post = $this->getServiceLocator()->get('TeaBlog\Service\Post')->getPostBySlug($name);
         if(!$post) {
             $this->getResponse()->setStatusCode(404);
             return;

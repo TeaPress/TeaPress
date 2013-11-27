@@ -24,7 +24,7 @@ class Category extends AbstractMapper
      * @param string $name
      * @return TeaBlog\Model\Category
      */
-    public function getCategoryFromUrlKey($name)
+    public function getCategoryFromSlug($name)
     {
         $select = $this->tableGateway->getSql()->select();
         $select->where("url_key = '$name'");
