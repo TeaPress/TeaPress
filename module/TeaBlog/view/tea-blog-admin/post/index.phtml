@@ -1,11 +1,10 @@
 <?php $this->headTitle('Post Management') ?>
-
 <h2>
     <?php echo $this->translate('Post management'); ?>
-    <div class="pull-right">
-        <a class="btn btn-warning" href="<?php echo $this->url('admin/blog/post/new'); ?>"><?php echo $this->translate('Create new post'); ?></a>
-    </div>
+    <a class="tiny button right" href="<?php echo $this->url('admin/blog/post/new'); ?>"><?php echo $this->translate('Create new post'); ?></a>
 </h2>
+
+
 
 <table class="table table-striped">
     <thead>

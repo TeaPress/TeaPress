@@ -11,6 +11,14 @@ class Post extends AbstractInputFilter
         $this->add(array(
             'name' => 'postTitle',
             'required' => true,
+            'validators' => array(
+                array(
+                    'name' => 'Zend\Validator\StringLength',
+                    'options' => array(
+                        'max' => 140
+                    )
+                )
+            )
         ));
         
         $this->add(array(
@@ -20,18 +28,22 @@ class Post extends AbstractInputFilter
                 array(
                     'name' => 'Zend\Validator\Db\NoRecordExists',
                     'options' => array(
-                        'table' => 'post',
+                        'table' => 'blog_post',
                         'field' => 'post_slug',
                         'adapter' => \Zend\Db\TableGateway\Feature\GlobalAdapterFeature::getStaticAdapter()
+                    )
+                ),
+                array(
+                    'name' => 'Zend\Validator\StringLength',
+                    'options' => array(
+                        'max' => 250
                     )
                 )
             ),
             'filters' => array(
                 array(
-                    'name' => 'Zend\Filter\StringToLower',
-                ),
-                array(
-                    'name' => 'Zend\Filter\Word\SeparatorToDash',
+                    'name' => 'TeaAdmin\Filter\Slug',
+                    'options' => array()
                 )
             )
         ));
@@ -64,11 +76,27 @@ class Post extends AbstractInputFilter
         $this->add(array(
             'name' => 'postMetaTitle',
             'required' => false,
+            'validators' => array(
+                array(
+                    'name' => 'Zend\Validator\StringLength',
+                    'options' => array(
+                        'max' => 70
+                    )
+                )
+            )
         ));
         
         $this->add(array(
             'name' => 'postMetaDescription',
             'required' => false,
+            'validators' => array(
+                array(
+                    'name' => 'Zend\Validator\StringLength',
+                    'options' => array(
+                        'max' => 160
+                    )
+                )
+            )
         ));
         
         $this->add(array(

@@ -27,8 +27,14 @@ class PostController extends AbstractAdminActionController
         $form = $this->getServiceLocator()->get('FormElementManager')->get('TeaBlogAdmin\Form\Post');
         
         if($this->getRequest()->isPost()) {
+            $data = $this->getRequest()->getPost();
+            
+            // Get title for slug and apply filter.
+            if($data['postSlug'] == '') {
+                $data['postSlug'] = $data['postTitle'];
+            }
+            
             $form->setInputFilter(new \TeaBlogAdmin\InputFilter\Post());
-//            $form->setValidationGroup('title', 'urlKey', 'categoryId', 'description', 'token', 'submit');
             $form->setData($this->getRequest()->getPost());
             
             if($form->isValid()) {
@@ -37,7 +43,7 @@ class PostController extends AbstractAdminActionController
                 try {
                     $this->getServiceLocator()->get('TeaBlog\Service\Post')->save($post);
                     
-                    $this->flashMessenger()->addSuccessMessage('The post has been saved.');
+                    $this->flashMessenger()->addSuccessMessage('Your post ' . $post->getTitle() . ' has been saved.');
                     $this->redirect()->toRoute('admin/blog/post');
                 } catch (\Exception $e) {
                     throw new \Exception($e);

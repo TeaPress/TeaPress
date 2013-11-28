@@ -18,24 +18,25 @@ class Post extends AbstractForm
         $this->add($postId);
         
         $title = new \TeaAdmin\Form\Element\Text('postTitle');
-        $title->setAttribute('placeholder', 'Put your title here, make it uniq!');
         $title->setLabel('Title');
+        $title->setAttribute('placeholder', 'Put your title here, make it uniq!');
+        $title->setAttribute('maxlength', '140');
         $this->add($title);
         
         $slug = new \TeaAdmin\Form\Element\Text('postSlug');
-        $slug->setAttribute('placeholder', 'Slug');
         $slug->setLabel('Slug');
+        $title->setAttribute('maxlength', '250');
         $this->add($slug);
         
         $content = new \TeaAdmin\Form\Element\Textarea('postContent');
-        $content->setAttribute('placeholder', 'Contents');
-        $content->setDescription('To make better search engine optimizations, write between 300 and 800 words and repeat to 8 times your main tags.');
         $content->setLabel('Contents');
         $content->setLabelTips('Use <kbd>ALT</kbd> or <kbd>CMD</kbd> keyboard to reveal accesskeys.');
+        $content->setDescription('To make better search engine optimizations, write between 300 and 800 words and repeat to 8 times your main tags.');
+        $content->setAttribute('class', 'redactor');
+        $content->setAttribute('resize', 'none');
         $this->add($content);
         
         $excerpt = new \TeaAdmin\Form\Element\Textarea('postExcerpt');
-        $excerpt->setAttribute('placeholder', 'Excerpt');
         $excerpt->setDescription('Excerpts are optional hand-crafted summaries of your content that can be used in your theme.');
         $excerpt->setLabel('Excerpt');
         $this->add($excerpt);
@@ -65,11 +66,13 @@ class Post extends AbstractForm
         $metaTitle = new \TeaAdmin\Form\Element\Text('postMetaTitle');
         $metaTitle->setLabel('Page title');
         $metaTitle->setLabelTips('Write to 70 characters');
+        $metaTitle->setAttribute('maxlength', '70');
         $this->add($metaTitle);
         
         $metaDescription = new \TeaAdmin\Form\Element\Textarea('postMetaDescription');
         $metaDescription->setLabel('Meta description');
         $metaDescription->setLabelTips('Write to 160 characters');
+        $metaDescription->setAttribute('maxlength', '160');
         $this->add($metaDescription);
         
         $metaKeywords = new \TeaAdmin\Form\Element\Text('postMetaKeywords');
@@ -78,33 +81,19 @@ class Post extends AbstractForm
         
         $visibility = new \TeaAdmin\Form\Element\Radio('postVisibility');
         $visibility->setLabel('Visibility');
-        $visibility->setValueOptions(array('1' => 'Visible', '0' => 'Hidden'));
+        $visibility->setValueOptions(array(
+            '1' => 'Visible', 
+            '0' => 'Hidden'
+        ));
         $this->add($visibility);
         
         $comments = new \TeaAdmin\Form\Element\Radio('postComment');
         $comments->setLabel('Comments');
         $comments->setValueOptions(array(
-            array(
-                'value' => '0',
-                'label' => 'Comments are disabled',
-                'label_attributes' => array(
-                    'class' => 'choice'
-                )
-            ),
-            array(
-                'value' => '1',
-                'label' => 'Comments are allowed, pending moderation',
-                'label_attributes' => array(
-                    'class' => 'choice'
-                )
-            ),
-            array(
-                'value' => '2',
-                'label' => 'Comments are allowed, and are automatically published',
-                'label_attributes' => array(
-                    'class' => 'choice'
-                )
-            )));
+            '0' => 'Comments are disabled',
+            '1' => 'Comments are allowed, pending moderation',
+            '2' => 'Comments are allowed, and are automatically published'
+        ));
         $this->add($comments);
         
         $submit = new \Zend\Form\Element\Submit('submit');

@@ -36,6 +36,11 @@ return array(
             'formlabel' => 'TeaAdmin\Form\View\Helper\FormLabel'
         )
     ),
+    'filter' => array(
+        'invokables' => array(
+            'slug' => 'TeaAdmin\Filter\Slug'
+        )
+    ),
     'controllers' => array(
         'invokables' => array(
             'TeaAdmin\Controller\Index' => 'TeaAdmin\Controller\IndexController',
