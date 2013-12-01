@@ -46,25 +46,32 @@ $menu = isset($menu) ? $menu : 'dashboard';
         </nav>
     </div>
 
-    <div class="row">
+    <div class="row collapse">
         <div class="menu-content hide-for-small large-2 columns">
             <ul class="side-nav">
                 <li<?php echo 'dashboard' == $menu ? ' class="active"' : '' ?>><a href="dashboard.php">Dashboard</a></li>
                 <li class="subheader">Your contents</li>
-                <li<?php echo 'add-post' == $menu ? ' class="active"' : '' ?>><a href="add-post.php">Add post</a></li>
-                <li<?php echo 'add-page' == $menu ? ' class="active"' : '' ?>><a href="add-page.php">Add page</a></li>
-                <li<?php echo 'add-media' == $menu ? ' class="active"' : '' ?>><a href="add-media.php">Medias</a></li>
-                <li class="subheader">Your users</li>
+                <li<?php echo in_array($menu, array('list-posts', 'add-post', 'edit-post')) ? ' class="active"' : '' ?>><a href="list-posts.php">Posts</a></li>
+                <li<?php echo in_array($menu, array('list-pages', 'add-page', 'edit-page')) ? ' class="active"' : '' ?>><a href="list-pages.php">Pages</a></li>
+                <li<?php echo 'list-medias' == $menu ? ' class="active"' : '' ?>><a href="list-medias.php">Medias</a></li>
+                <li<?php echo 'add-media' == $menu ? ' class="active"' : '' ?>><a href="add-media.php">Add media</a></li>
+                <li<?php echo 'list-categories' == $menu ? ' class="active"' : '' ?>><a href="list-categories.php">Categories</a></li>
+                <li<?php echo 'add-category' == $menu ? ' class="active"' : '' ?>><a href="add-category.php">Add category</a></li>
+                <li class="subheader">Your members</li>
                 <li><a href="#">Roles</a></li>
-                <li><a href="#">Users</a></li>
+                <li><a href="#">Members</a></li>
                 <li><a href="#">Comments</a></li>
                 <li class="subheader">Your website</li>
                 <li><a href="#">Navigation</a></li>
                 <li><a href="#">Plugins</a></li>
-                <li><a href="#">Themes</a></li>
+                <li><a href="#">Widgets</a></li>
                 <li class="subheader">Configurations</li>
                 <li><a href="#">General</a></li>
-                <li><a href="#">...</a></li>
+                <li><a href="#">Themes</a></li>
+                <li><a href="#">Notifications</a></li>
+                <li><a href="#">Social networks</a></li>
+                <li><a href="#">Import / Export</a></li>
+                <li><a href="#">Cache</a></li>
             </ul>
         </div>
 
