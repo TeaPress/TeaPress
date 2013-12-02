@@ -10,6 +10,16 @@ class Post extends AbstractService
     
     /**
      * Find post from slug parameter
+     * @param int $slug
+     * @return \TeaBlog\Model\Post | false
+     */
+    public function getPostById($id)
+    {
+        return $this->getMapper()->getPostById($id);
+    }
+    
+    /**
+     * Find post from slug parameter
      * @param string $slug
      * @return \TeaBlog\Model\Post | false
      */

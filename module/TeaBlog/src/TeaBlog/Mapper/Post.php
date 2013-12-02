@@ -7,6 +7,19 @@ use TakeATea\Mapper\AbstractMapper;
 class Post extends AbstractMapper
 {
     /**
+     * Find post by id
+     * @param int $id
+     * @return \TeaBlog\Model\Post | false
+     */
+    public function getPostById($id)
+    {
+        $select = $this->tableGateway->getSql()->select();
+        $select->where('post_id = ' . $id);
+        
+        return $this->selectWith($select)->current();
+    }
+    
+    /**
      * Find post from slug parameter
      * @param string $slug
      * @return \TeaBlog\Model\Post | false
@@ -14,7 +27,7 @@ class Post extends AbstractMapper
     public function getPostBySlug($slug)
     {
         $select = $this->tableGateway->getSql()->select();
-        $select->where("url_key = '" . $slug . "'");
+        $select->where("post_slug = '" . $slug . "'");
         
         return $this->selectWith($select)->current();
     }
@@ -64,7 +77,7 @@ class Post extends AbstractMapper
     {
         $data = $post->toArray();
         if($post->getPostId() !== null) {
-            $data['post_updated'] = new \Zend\Db\Sql\Expression('Now');
+            $data['post_updated'] = new \Zend\Db\Sql\Expression('Now()');
             return $this->tableGateway->update($data, 'post_id = ' . $post->getPostId());
         }
         

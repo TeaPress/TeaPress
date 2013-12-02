@@ -43,10 +43,9 @@ class PostController extends AbstractAdminActionController
                 try {
                     $this->getServiceLocator()->get('TeaBlog\Service\Post')->save($post);
                     
-                    $this->flashMessenger()->addSuccessMessage('Your post ' . $post->getTitle() . ' has been saved.');
+                    $this->flashMessenger()->addSuccessMessage('Your post ' . $post->getPostTitle() . ' has been saved.');
                     $this->redirect()->toRoute('admin/blog/post');
                 } catch (\Exception $e) {
-                    throw new \Exception($e);
                     $this->flashMessenger()->addErrorMessage('An error append during save post.');
                 }
             }
@@ -59,37 +58,37 @@ class PostController extends AbstractAdminActionController
     
     public function editAction()
     {
-        $category_id = $this->getEvent()->getRouteMatch()->getParam('id');
+        $postId = $this->getEvent()->getRouteMatch()->getParam('id');
         
-        $category = $this->getServiceLocator()->get('TeaBlog\Service\Category')->getCategoryById($category_id);
-        if(!$category) {
-            throw new \Zend\Mvc\Exception\InvalidArgumentException('Category with id ' . $category_id . ' do not exist');
+        $post = $this->getServiceLocator()->get('TeaBlog\Service\Post')->getPostById($postId);
+        if(!$post) {
+            throw new \Zend\Mvc\Exception\InvalidArgumentException('Post with id ' . $postId . ' do not exist');
         }
         
-        $form = $this->getServiceLocator()->get('FormElementManager')->get('TeaBlogAdmin\Form\Category');
-        $form->bind($category);
+        $form = $this->getServiceLocator()->get('FormElementManager')->get('TeaBlogAdmin\Form\Post');
+        $form->bind($post);
         
         if($this->getRequest()->isPost()) {
-            $form->setInputFilter(new \TeaBlogAdmin\InputFilter\Category());
-            $form->setValidationGroup('categoryId', 'title', 'urlKey', 'parentId', 'description', 'token', 'submit');
-            $form->setData($this->getRequest()->getPost());
+            $data = $this->getRequest()->getPost();
+            
+            // Get title for slug and apply filter.
+            if($data['postSlug'] == '') {
+                $data['postSlug'] = $data['postTitle'];
+            }
+            
+            $form->setInputFilter(new \TeaBlogAdmin\InputFilter\Post());
+            $form->setData($data);
             
             if($form->isValid()) {
-                $category = $form->getObject();
-                
-                // Save null if no parent.
-                if($category->getParentId() == '') {
-                    $category->setParentId(null);
-                }
+                $post = $form->getObject();
                 
                 try {
-                    $this->getServiceLocator()->get('TeaBlog\Service\Category')->save($category);
+                    $this->getServiceLocator()->get('TeaBlog\Service\Post')->save($post);
                     
-                    $this->flashMessenger()->addSuccessMessage('The category has been saved.');
-                    $this->redirect()->toRoute('admin/blog/category');
+                    $this->flashMessenger()->addSuccessMessage('Your post ' . $post->getPostTitle() . ' has been saved.');
+                    $this->redirect()->toRoute('admin/blog/post');
                 } catch (\Exception $e) {
-                    throw new \Exception($e);
-                    $this->flashMessenger()->addErrorMessage('An error append during save user.');
+                    $this->flashMessenger()->addErrorMessage('An error append during save post.');
                 }
             }
         }
