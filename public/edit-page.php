@@ -1,12 +1,12 @@
 <?php
-$title = 'Add page';
-$menu = 'add-page';
+$title = 'My title page';
+$menu = 'edit-page';
 include('_inc/_head.php');
 ?>
 <ul class="breadcrumbs">
     <li><a href="dashboard.php">Homepage</a></li>
     <li><a href="list-pages.php">Pages</a></li>
-    <li class="current"><a href="add-page.php">Add page</a></li>
+    <li class="current"><a href="edit-page.php">Edit page "My title page"</a></li>
 </ul>
 
 <h2><?php echo $title ?></h2>
@@ -117,6 +117,9 @@ include('_inc/_head.php');
         <ul class="button-group right">
             <li><a href="list-pages.php" class="tiny button none">Cancel</a></li>
             <li><button type="submit" name="save" class="tiny button">Save page</button></li>
+        </ul>
+        <ul class="button-group left">
+            <li><a href="list-pages.php?del=" class="tiny button alert">Delete page</a></li>
         </ul>
     </div>
 </form>

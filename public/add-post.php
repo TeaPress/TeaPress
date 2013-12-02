@@ -4,15 +4,14 @@ $menu = 'add-post';
 include('_inc/_head.php');
 ?>
 <ul class="breadcrumbs">
-    <li><a href="#">Homepage</a></li>
-    <li><a href="#">Posts</a></li>
-    <li class="current"><a href="#">Add post</a></li>
-    <li class="right"><a href="#" class="tiny button">Save post</a></li>
+    <li><a href="dashboard.php">Homepage</a></li>
+    <li><a href="list-posts.php">Posts</a></li>
+    <li class="current"><a href="add-post.php">Add post</a></li>
 </ul>
 
 <h2><?php echo $title ?></h2>
 
-<form enctype="multipart/form-data">
+<form action="list-posts.php" enctype="multipart/form-data">
     <fieldset>
         <div class="large-3 columns">
             <h3>Write your blog post</h3>
@@ -45,7 +44,7 @@ include('_inc/_head.php');
             </div>
             <div class="row">
                 <label>Thumbnail</label>
-                <div class="panel filedrag large-3 columns">
+                <div class="panel callout large-3 columns">
                     <p class="text-center">Drag &amp; drop your thumbnail</p>
                     <a href="#" class="small button">Or use the Media library</a>
                     <ul></ul>
@@ -144,12 +143,20 @@ include('_inc/_head.php');
             </div>
             <div class="row">
                 <label class="text-facebook">Publish on your facebook page</label>
-                <label class="choice" for="pub-fb-1"><input name="pub-fb-radio" type="radio" id="pub-fb-1" required=""> Yes</label>
-                <label class="choice" for="pub-fb-2"><input name="pub-fb-radio" type="radio" id="pub-fb-2" required=""> No</label>
-            </div>
-            <div class="row">
-                <label class="text-instagram">Publish on your instagram profile</label>
-                <a href="#" class="action">Connect your website to your instagram profile.</a>
+                <div class="row">
+                    <label class="choice" for="pub-fb-1"><input name="pub-fb-radio" type="radio" id="pub-fb-1" required=""> Yes</label>
+                    <label class="choice" for="pub-fb-2"><input name="pub-fb-radio" type="radio" id="pub-fb-2" required=""> No</label>
+                </div>
+                <div class="row">
+                    <input type="text" placeholder="Facebook title" />
+                    <textarea id="post-3" placeholder="Facebook description"></textarea>
+                </div>
+                <div class="row">
+                    <label class="text-twitter">Publish on your twitter profile</label>
+                </div>
+                <div class="row">
+                    <a href="#" class="action">Connect your website to your twitter profile.</a>
+                </div>
             </div>
             <div class="row">
                 <label class="text-googleplus">Publish on your google+ page</label>
@@ -160,12 +167,8 @@ include('_inc/_head.php');
 
     <div class="buttonized button-bar">
         <ul class="button-group right">
-            <li><a href="#" class="tiny button none">Cancel</a></li>
-            <li><a href="#" class="tiny button secondary">Save as draft</a></li>
-            <li><a href="#" class="tiny button">Save post</a></li>
-        </ul>
-        <ul class="button-group left">
-            <li><a href="#" class="tiny button alert">Delete post</a></li>
+            <li><a href="list-posts.php" class="tiny button none">Cancel</a></li>
+            <li><button type="submit" name="save" class="tiny button">Save blog post</button></li>
         </ul>
     </div>
 </form>
