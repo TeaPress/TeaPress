@@ -3,7 +3,6 @@
 namespace TeaBlog\Mapper;
 
 use TakeATea\Mapper\AbstractMapper;
-use Zend\Db\Sql\Expression;
 
 class Category extends AbstractMapper
 {
@@ -40,7 +39,7 @@ class Category extends AbstractMapper
     {
         $select = $this->tableGateway->getSql()->select();
         $select->where('parent_id IS NULL');
-        $select->order('title ASC');
+        $select->order('category_title ASC');
         
         return $this->selectWith($select);
     }

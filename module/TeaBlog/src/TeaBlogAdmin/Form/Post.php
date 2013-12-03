@@ -49,7 +49,7 @@ class Post extends AbstractForm
         $rootCategorys = $this->getServiceLocator()->getServiceLocator()->get('TeaBlog\Service\Category')->getAllRootCategory(false);
         $options = array();
         foreach($rootCategorys as $rootCategory) {
-            $options[$rootCategory->getCategoryId()] = $rootCategory->getTitle();
+            $options[$rootCategory->getCategoryId()] = $rootCategory->getCategoryTitle();
         }
         $category->setEmptyOption('Select a category');
         $category->setValueOptions($options);

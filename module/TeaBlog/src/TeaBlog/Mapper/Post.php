@@ -54,7 +54,7 @@ class Post extends AbstractMapper
     public function getPostsFromCategorySlug($slug)
     {
         $select = $this->tableGateway->getSql()->select();
-        $select->join('blog_category', 'blog_category.category_id = blog_post.category_id', array());
+        $select->join('blog_category', 'blog_category.category_id = blog_post.category_id', array('category_title'));
         $select->where("blog_category.category_slug = '" . $slug . "'");
         $select->order('blog_post.category_created DESC');
         
@@ -68,8 +68,8 @@ class Post extends AbstractMapper
     public function getAllPosts()
     {
         $select = $this->tableGateway->getSql()->select();
-        $select->join('admin_user', 'admin_user.user_id = blog_post.author_id', array('*'));
-        $select->join('blog_category', 'blog_category.category_id = blog_post.category_id', array('*'));
+        $select->join('admin_user', 'admin_user.user_id = blog_post.author_id', array('username'));
+        $select->join('blog_category', 'blog_category.category_id = blog_post.category_id', array('category_title'));
         $select->order('post_created DESC');
         
         return $this->selectWith($select);

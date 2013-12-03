@@ -23,21 +23,22 @@ class UserController extends AbstractAdminActionController
         $form = $this->getServiceLocator()->get('FormElementManager')->get('TeaAdmin\Form\User');
         
         if($this->getRequest()->isPost()) {
-            $form->setInputFilter(new \TeaAdmin\Form\InputFilter\User());
-            $form->setValidationGroup('username', 'firstname', 'lastname', 'email', 'roleId', 'isActive', 'password', 'confirm', 'token', 'submit');
-            $form->setData($this->getRequest()->getPost());
+            $data = $this->getRequest()->getPost();
+            
+            $form->setInputFilter(new \TeaAdmin\InputFilter\User());
+            $form->setData($data);
             
             if($form->isValid()) {
                 $user = $form->getObject();
-                try {
+                
+//                try {
                     $this->getServiceLocator()->get('TeaAdmin\Service\User')->save($user);
                     
-                    $this->flashMessenger()->addSuccessMessage('The user has been saved.');
+                    $this->flashMessenger()->addSuccessMessage('The user ' . $user->getUsername() . ' has been saved.');
                     $this->redirect()->toRoute('admin/user');
-                } catch (\Exception $e) {
-                    throw new \Exception($e);
-                    $this->flashMessenger()->addErrorMessage('An error append during save user.');
-                }
+//                } catch (\Exception $e) {
+//                    $this->flashMessenger()->addErrorMessage('An error append during saving user.');
+//                }
             }
         }
         
@@ -48,57 +49,34 @@ class UserController extends AbstractAdminActionController
     
     public function editAction()
     {
-        $user_id = $this->getEvent()->getRouteMatch()->getParam('id');
+        $userId = $this->getEvent()->getRouteMatch()->getParam('id');
         
-        $user = $this->getServiceLocator()->get('TeaAdmin\Service\User')->getUserById($user_id);
+        $user = $this->getServiceLocator()->get('TeaAdmin\Service\User')->getUserById($userId);
         if(!$user) {
-            throw new \Zend\Mvc\Exception\InvalidArgumentException('User with id ' . $user_id . ' do not exist');
+            throw new \Zend\Mvc\Exception\InvalidArgumentException('User with id ' . $userId . ' do not exist');
         }
         
         $form = $this->getServiceLocator()->get('FormElementManager')->get('TeaAdmin\Form\User');
         $form->bind($user);
         
         if($this->getRequest()->isPost()) {
-            $inputFilter = new \TeaAdmin\Form\InputFilter\User();
-            $inputFilter->remove('username');
-            $inputFilter->add(array(
-                'name' => 'username',
-                'required' => true,
-                'validators' => array(
-                    array(
-                        'name' => 'Zend\Validator\Db\NoRecordExists',
-                        'options' => array(
-                            'table' => 'admin_user',
-                            'field' => 'username',
-                            'adapter' => \Zend\Db\TableGateway\Feature\GlobalAdapterFeature::getStaticAdapter(),
-                            'exclude' =>array(
-                                'field' => 'user_id',
-                                'value' => $user->getUserId(),
-                            )
-                        )
-                    )
-                )
-            ));
-            $form->setInputFilter($inputFilter);
+            $data = $this->getRequest()->getPost();
             
-            if($this->getRequest()->getPost('password') || $this->getRequest()->getPost('confirm')) {
-                $form->setValidationGroup('userId', 'username', 'firstname', 'lastname', 'email', 'roleId', 'isActive', 'password', 'confirm', 'token', 'submit');
-            } else {
-                $form->setValidationGroup('userId', 'username', 'firstname', 'lastname', 'email', 'roleId', 'isActive', 'token', 'submit');
+            if(!$this->getRequest()->getPost('password') && !$this->getRequest()->getPost('confirm')) {
+                $form->setValidationGroup('username', 'userFirstname', 'userLastname', 'userEmail', 'userContent', 'userGoogle', 'userFacebook', 'userTwitter', 'userStatus', 'roleId', 'token', 'submit');
             }
             
-            $form->setData($this->getRequest()->getPost());
+            $form->setData($data);
             
             if($form->isValid()) {
                 $user = $form->getObject();
                 try {
                     $this->getServiceLocator()->get('TeaAdmin\Service\User')->save($user);
                     
-                    $this->flashMessenger()->addSuccessMessage('The user has been saved.');
+                    $this->flashMessenger()->addSuccessMessage('The user ' . $user->getUsername() . ' has been saved.');
                     $this->redirect()->toRoute('admin/user');
                 } catch (\Exception $e) {
-                    throw new \Exception($e);
-                    $this->flashMessenger()->addErrorMessage('An error append during save user.');
+                    $this->flashMessenger()->addErrorMessage('An error append during saving user.');
                 }
             }
         }
@@ -106,11 +84,6 @@ class UserController extends AbstractAdminActionController
         $viewModel = new ViewModel();
         $viewModel->setVariable('form', $form);
         return $viewModel;
-//            if($this->getRequest()->getPost('password') || $this->getRequest()->getPost('password')) {
-//                $form->setValidationGroup('username', 'firsname', 'lastname', 'email', 'password', 'confirm', 'submit');
-//            } else {
-//                
-//            } 
     }
     
     

@@ -35,7 +35,7 @@ class PostController extends AbstractAdminActionController
             }
             
             $form->setInputFilter(new \TeaBlogAdmin\InputFilter\Post());
-            $form->setData($this->getRequest()->getPost());
+            $form->setData($data);
             
             if($form->isValid()) {
                 $post = $form->getObject();

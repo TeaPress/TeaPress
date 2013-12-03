@@ -38,19 +38,16 @@ class User extends AbstractMapper
      * @param \TeaAdmin\Model\User $user
      * @return type
      */
-    public function save(\TeaAdmin\Model\User $user)
+    public function save($user)
     {
         $data = $user->toArray();
-        
-        if($user->getUserId() != null) {
-            $data['updated_at'] = new Expression('NOW()');
-            
+        if($user->getUserId() !== null) {
+            $data['user_updated'] = new \Zend\Db\Sql\Expression('Now()');
             return $this->tableGateway->update($data, 'user_id = ' . $user->getUserId());
-        } else {
-            $data['created_at'] = new Expression('NOW()');
-            $data['updated_at'] = new Expression('NOW()');
-            
-            return $this->tableGateway->insert($data);
         }
+        
+        $data['user_created'] = new \Zend\Db\Sql\Expression('Now()');
+        $data['user_updated'] = new \Zend\Db\Sql\Expression('Now()');
+        return $this->tableGateway->insert($data);
     }
 }

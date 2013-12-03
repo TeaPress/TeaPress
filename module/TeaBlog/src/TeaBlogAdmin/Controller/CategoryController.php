@@ -35,19 +35,19 @@ class CategoryController extends AbstractAdminActionController
             }
             
             $form->setInputFilter(new \TeaBlogAdmin\InputFilter\Category());
-            $form->setData($this->getRequest()->getPost());
+            $form->setData($data);
             
             if($form->isValid()) {
                 $category = $form->getObject();
                 
-//                try {
+                try {
                     $this->getServiceLocator()->get('TeaBlog\Service\Category')->save($category);
                     
                     $this->flashMessenger()->addSuccessMessage('Your category ' . $category->getCategoryTitle() . ' has been saved.');
                     $this->redirect()->toRoute('admin/blog/category');
-//                } catch (\Exception $e) {
-//                    $this->flashMessenger()->addErrorMessage('An error append during save your category.');
-//                }
+                } catch (\Exception $e) {
+                    $this->flashMessenger()->addErrorMessage('An error append during save your category.');
+                }
             }
         }
         
@@ -77,7 +77,7 @@ class CategoryController extends AbstractAdminActionController
             }
             
             $form->setInputFilter(new \TeaBlogAdmin\InputFilter\Category());
-            $form->setData($this->getRequest()->getPost());
+            $form->setData($data);
             
             if($form->isValid()) {
                 $category = $form->getObject();

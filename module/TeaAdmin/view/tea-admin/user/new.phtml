@@ -1,49 +1,55 @@
+<?php $this->headTitle('New user'); ?>
 <h2><?php echo $this->translate('New User'); ?></h2>
 
 <?php echo $this->form()->openTag($this->form->setAttributes(array('action' => $this->url('admin/user/new')))); ?>
-    <div class="form-group <?php echo (count($this->form->getMessages('username')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('username')); ?>
-        <?php echo $this->formElement($this->form->get('username')); ?>
-        <?php echo $this->formElementErrors($this->form->get('username')); ?>
+<fieldset>
+    <div class="large-3 columns">
+        <h3><?php echo $this->translate('Write your blog post'); ?></h3>
+        <div class="info">
+            <p><?php echo $this->translate('Give your blog post a title and add your content. Don\'t forget to make your title uniq.'); ?></p>
+        </div>
     </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('firstname')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('firstname')); ?>
-        <?php echo $this->formElement($this->form->get('firstname')); ?>
-        <?php echo $this->formElementErrors($this->form->get('firstname')); ?>
+    <div class="large-9 columns">
+        <?php echo $this->formRow($this->form->get('username'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('userFirstname'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('userLastname'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('userEmail'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('roleId'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('userStatus'), null, null, 'tea-admin/form/row'); ?>
     </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('lastname')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('lastname')); ?>
-        <?php echo $this->formElement($this->form->get('lastname')); ?>
-        <?php echo $this->formElementErrors($this->form->get('lastname')); ?>
+</fieldset>
+<fieldset>
+    <div class="large-3 columns">
+        <h3><?php echo $this->translate('Write your blog post'); ?></h3>
+        <div class="info">
+            <p><?php echo $this->translate('Give your blog post a title and add your content. Don\'t forget to make your title uniq.'); ?></p>
+        </div>
     </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('email')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('email')); ?>
-        <?php echo $this->formElement($this->form->get('email')); ?>
-        <?php echo $this->formElementErrors($this->form->get('email')); ?>
+    <div class="large-9 columns">
+        <?php echo $this->formRow($this->form->get('userPassword'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('userConfirm'), null, null, 'tea-admin/form/row'); ?>
     </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('roleId')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('roleId')); ?>
-        <?php echo $this->formElement($this->form->get('roleId')); ?>
-        <?php echo $this->formElementErrors($this->form->get('roleId')); ?>
+</fieldset>
+<fieldset>
+    <div class="large-3 columns">
+        <h3><?php echo $this->translate('Write your blog post'); ?></h3>
+        <div class="info">
+            <p><?php echo $this->translate('Give your blog post a title and add your content. Don\'t forget to make your title uniq.'); ?></p>
+        </div>
     </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('isActive')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('isActive')); ?>
-        <?php echo $this->formElement($this->form->get('isActive')); ?>
-        <?php echo $this->formElementErrors($this->form->get('isActive')); ?>
+    <div class="large-9 columns">
+        <?php echo $this->formRow($this->form->get('userGoogle'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('userFacebook'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('userTwitter'), null, null, 'tea-admin/form/row'); ?>
     </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('password')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('password')); ?>
-        <?php echo $this->formElement($this->form->get('password')); ?>
-        <?php echo $this->formElementErrors($this->form->get('password')); ?>
-    </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('confirm')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('confirm')); ?>
-        <?php echo $this->formElement($this->form->get('confirm')); ?>
-        <?php echo $this->formElementErrors($this->form->get('confirm')); ?>
-    </div>
-    <?php echo $this->formElement($this->form->get('token')); ?>
-    <div class="buttons_action">
-        <a href="<?php echo $this->url('admin/user'); ?>"><?php echo $this->translate('Cancel'); ?></a>
-        <?php echo $this->formElement($this->form->get('submit')); ?>
-    </div>
+</fieldset>
+<?php echo $this->formElement($this->form->get('token')); ?>
+
+<div class="buttonized button-bar">
+    <ul class="button-group right">
+        <li><a href="<?php echo $this->url('admin/user'); ?>" class="tiny button none">Cancel</a></li>
+        <li><?php echo $this->formElement($this->form->get('submit')->setAttribute('class', 'tiny button')); ?></li>
+    </ul>
+</div>
+
 <?php echo $this->form()->closeTag(); ?>

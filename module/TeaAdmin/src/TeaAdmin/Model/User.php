@@ -17,7 +17,7 @@ class User extends AbstractModel
     protected $user_google;
     protected $user_facebook;
     protected $user_twitter;
-    protected $user_active;
+    protected $user_status;
     protected $user_password;
     protected $user_created;
     protected $user_updated;
@@ -110,12 +110,12 @@ class User extends AbstractModel
         $this->user_twitter = $user_twitter;
     }
     
-    public function getUserActive() {
-        return $this->user_active;
+    public function getUserStatus() {
+        return $this->user_status;
     }
 
-    public function setUserActive($user_active) {
-        $this->user_active = $user_active;
+    public function setUserStatus($user_status) {
+        $this->user_status = $user_status;
     }
 
     public function getUserPassword() {

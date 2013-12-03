@@ -1,6 +1,6 @@
 <?php
 
-namespace TeaAdmin\Form\InputFilter;
+namespace TeaAdmin\InputFilter;
 
 use TakeATea\InputFilter\AbstractInputFilter;
 
@@ -8,19 +8,6 @@ class User extends AbstractInputFilter
 {
     public function __construct()
     {
-        $this->add(array(
-            'name' => 'userId',
-            'required' => true,
-        ));
-        
-        $exclude = '';
-        if($this->getRawValue('userId') != null) {
-            $exclude = array('exclude' =>array(
-                'field' => 'user_id',
-                'value' => $this->getRawValue('userId'),
-            ));
-        }
-        
         $this->add(array(
             'name' => 'username',
             'required' => true,
@@ -31,35 +18,54 @@ class User extends AbstractInputFilter
                         'table' => 'admin_user',
                         'field' => 'username',
                         'adapter' => \Zend\Db\TableGateway\Feature\GlobalAdapterFeature::getStaticAdapter(),
-                        $exclude
                     )
                 )
             )
         ));
         
         $this->add(array(
-            'name' => 'firstname',
+            'name' => 'userFirstname',
             'required' => true,
         ));
         
         $this->add(array(
-            'name' => 'lastname',
+            'name' => 'userLastname',
             'required' => true,
         ));
         
         $this->add(array(
-            'name' => 'email',
+            'name' => 'userEmail',
             'required' => true,
             'validators' => array(
                 array(
                     'name' => 'Zend\Validator\EmailAddress',
                     'options' => array(
                         'allow' => \Zend\Validator\Hostname::ALLOW_DNS,
-                        'useMxCheck'    => true,
+                        'useMxCheck'    => false,
                         'useDeepMxCheck'  => true
                     )
                 )
             )
+        ));
+        
+        $this->add(array(
+            'name' => 'userContent',
+            'required' => false,
+        ));
+        
+        $this->add(array(
+            'name' => 'userGoogle',
+            'required' => false,
+        ));
+        
+        $this->add(array(
+            'name' => 'userFacebook',
+            'required' => false,
+        ));
+        
+        $this->add(array(
+            'name' => 'userTwitter',
+            'required' => false,
         ));
         
         $this->add(array(
@@ -68,12 +74,12 @@ class User extends AbstractInputFilter
         ));
         
         $this->add(array(
-            'name' => 'isActive',
+            'name' => 'userStatus',
             'required' => true,
         ));
 
         $this->add(array(
-            'name' => 'password',
+            'name' => 'userPassword',
             'required' => true,
             'validators' => array(
                 array(
@@ -86,13 +92,13 @@ class User extends AbstractInputFilter
         ));
         
         $this->add(array(
-            'name' => 'confirm',
+            'name' => 'userConfirm',
             'required' => true,
             'validators' => array(
                 array(
                     'name'    => 'Zend\Validator\Identical',
                     'options' => array(
-                        'token' => 'password',
+                        'token' => 'userPassword',
                     ),
                 )
             )

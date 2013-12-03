@@ -21,7 +21,7 @@
                     <td>
                         <a href="<?php echo $this->url('admin/blog/post/edit', array('id' => $post->getPostId())); ?>">
                             <?php echo $post->getPostTitle(); ?>
-                        </a>, <?php echo $this->translate('posted in'); ?> <a href="#" class="category"><?php echo $post->getCategory()->getTitle(); ?></a>
+                        </a>, <?php echo $this->translate('posted in'); ?> <a href="#" class="category"><?php echo $post->getCategory()->getCategoryTitle(); ?></a>
                         <p><?php echo $post->getPostExcerpt(); ?></p>
                     </td>
                     <td><?php echo $post->getAuthor()->getUsername(); ?></td>
