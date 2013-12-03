@@ -6,8 +6,12 @@ include('_inc/_head.php');
 <ul class="breadcrumbs">
     <li><a href="dashboard.php">Homepage</a></li>
     <li class="current"><a href="list-pages.php">Pages</a></li>
-    <li class="right"><a href="add-page.php">Add page</a></li>
 </ul>
+
+<h2>
+    <?php echo $title ?>
+    <a href="add-page.php" class="tiny button right">Add page</a>
+</h2>
 
 <form class="filter-page row collapse">
     <div class="large-2 columns">
