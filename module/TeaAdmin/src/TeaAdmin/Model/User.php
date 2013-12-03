@@ -9,13 +9,18 @@ class User extends AbstractModel
     protected $user_id;
     protected $role_id;
     protected $username;
-    protected $firstname;
-    protected $lastname;
-    protected $email;
-    protected $is_active;
-    protected $password;
-    protected $created_at;
-    protected $updated_at;
+    protected $user_firstname;
+    protected $user_lastname;
+    protected $user_avatar;
+    protected $user_email;
+    protected $user_content;
+    protected $user_google;
+    protected $user_facebook;
+    protected $user_twitter;
+    protected $user_active;
+    protected $user_password;
+    protected $user_created;
+    protected $user_updated;
     
     public function getUserId() {
         return $this->user_id;
@@ -41,59 +46,99 @@ class User extends AbstractModel
         $this->username = $username;
     }
     
-    public function getFirstname() {
-        return $this->firstname;
+    public function getUserFirstname() {
+        return $this->user_firstname;
     }
 
-    public function setFirstname($firstname) {
-        $this->firstname = $firstname;
+    public function setUserFirstname($user_firstname) {
+        $this->user_firstname = $user_firstname;
     }
     
-    public function getLastname() {
-        return $this->lastname;
+    public function getUserLastname() {
+        return $this->user_lastname;
     }
 
-    public function setLastname($lastname) {
-        $this->lastname = $lastname;
+    public function setUserLastname($user_lastname) {
+        $this->user_lastname = $user_lastname;
     }
     
-    public function getEmail() {
-        return $this->email;
+    public function getUserAvatar() {
+        return $this->user_avatar;
     }
 
-    public function setEmail($email) {
-        $this->email = $email;
+    public function setUserAvatar($user_avatar) {
+        $this->user_avatar = $user_avatar;
     }
     
-    public function getIsActive() {
-        return $this->is_active;
+    public function getUserEmail() {
+        return $this->user_email;
     }
 
-    public function setIsActive($is_active) {
-        $this->is_active = $is_active;
+    public function setUserEmail($user_email) {
+        $this->user_email = $user_email;
+    }
+    
+    public function getUserContent() {
+        return $this->user_content;
     }
 
-    public function getPassword() {
-        return $this->password;
+    public function setUserContent($user_content) {
+        $this->user_content = $user_content;
+    }
+    
+    public function getUserGoogle() {
+        return $this->user_google;
     }
 
-    public function setPassword($password) {
-        $this->password = $password;
+    public function setUserGoogle($user_google) {
+        $this->user_google = $user_google;
+    }
+    
+    public function getUserFacebook() {
+        return $this->user_facebook;
     }
 
-    public function getCreatedAt() {
-        return $this->created_at;
+    public function setUserFacebook($user_facebook) {
+        $this->user_content = $user_facebook;
+    }
+    
+    public function getUserTwitter() {
+        return $this->user_twitter;
     }
 
-    public function setCreatedAt($created_at) {
-        $this->created_at = $created_at;
+    public function setUserTwitter($user_twitter) {
+        $this->user_twitter = $user_twitter;
+    }
+    
+    public function getUserActive() {
+        return $this->user_active;
     }
 
-    public function getUpdatedAt() {
-        return $this->updated_at;
+    public function setUserActive($user_active) {
+        $this->user_active = $user_active;
     }
 
-    public function setUpdatedAt($updated_at) {
-        $this->updated_at = $updated_at;
+    public function getUserPassword() {
+        return $this->user_password;
+    }
+
+    public function setUserPassword($user_password) {
+        $this->user_password = $user_password;
+    }
+
+    public function getUserCreated() {
+        return $this->user_created;
+    }
+
+    public function setUserCreated($user_created) {
+        $this->user_created = $user_created;
+    }
+
+    public function getUserUpdated() {
+        return $this->user_updated;
+    }
+
+    public function setUserUpdated($user_updated) {
+        $this->user_updated = $user_updated;
     }
 }

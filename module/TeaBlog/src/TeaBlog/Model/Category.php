@@ -8,12 +8,15 @@ class Category extends AbstractModel
 {
     protected $category_id;
     protected $parent_id;
-    protected $title;
-    protected $url_key;
-    protected $description;
-    protected $is_active = 1;
-    protected $created_at;
-    protected $updated_at;
+    protected $category_title;
+    protected $category_content;
+    protected $category_slug;
+    protected $category_meta_title;
+    protected $category_meta_description;
+    protected $category_meta_keywords;
+    protected $category_visibility;
+    protected $category_created;
+    protected $category_updated;
     
     public function getCategoryId() {
         return $this->category_id;
@@ -31,51 +34,84 @@ class Category extends AbstractModel
         $this->parent_id = $parent_id;
     }
 
-    public function getTitle() {
-        return $this->title;
-    }
-
-    public function setTitle($title) {
-        $this->title = $title;
+    public function getCategoryTitle() {
+        return $this->category_title;
     }
     
-    public function getDescription() {
-        return $this->description;
+    public function getCategoryContent() {
+        return $this->category_content;
     }
 
-    public function setDescription($description) {
-        $this->description = $description;
+    public function getCategorySlug() {
+        return $this->category_slug;
     }
 
-    public function getUrlKey() {
-        return $this->url_key;
+    public function getCategoryMetaTitle() {
+        return $this->category_meta_title;
     }
 
-    public function setUrlKey($url_key) {
-        $this->url_key = $url_key;
+    public function getCategoryMetaDescription() {
+        return $this->category_meta_description;
+    }
+
+    public function getCategoryMetaKeywords() {
+        return $this->category_meta_keywords;
+    }
+
+    public function getCategoryVisibility() {
+        return $this->category_visibility;
+    }
+
+    public function getCategoryCreated() {
+        return $this->category_created;
     }
     
-    public function getIsActive() {
-        return $this->is_active;
+    public function getCategoryUpdated() {
+        return $this->category_updated;
     }
 
-    public function setIsActive($is_active) {
-        $this->is_active = $is_active;
+    public function setCategoryTitle($category_title) {
+        $this->category_title = $category_title;
+        return $this;
+    }
+    
+    public function setCategoryContent($category_content) {
+        $this->category_content = $category_content;
+        return $this;
     }
 
-    public function getCreatedAt() {
-        return $this->created_at;
+    public function setCategorySlug($category_slug) {
+        $this->category_slug = $category_slug;
+        return $this;
     }
 
-    public function setCreatedAt($created_at) {
-        $this->created_at = $created_at;
+    public function setCategoryMetaTitle($category_meta_title) {
+        $this->category_meta_title = $category_meta_title;
+        return $this;
     }
 
-    public function getUpdatedAt() {
-        return $this->updated_at;
+    public function setCategoryMetaDescription($category_meta_description) {
+        $this->category_meta_description = $category_meta_description;
+        return $this;
     }
 
-    public function setUpdatedAt($updated_at) {
-        $this->updated_at = $updated_at;
+    public function setCategoryMetaKeywords($category_meta_keywords) {
+        $this->category_meta_keywords = $category_meta_keywords;
+        return $this;
+    }
+
+    public function setCategoryVisibility($category_visibility) {
+        $this->category_visibility = $category_visibility;
+        return $this;
+    }
+
+    public function setCategoryCreated($category_created) {
+        $this->category_created = $category_created;
+        return $this;
+    }
+    
+    public function setCategoryUpdated($category_updated) {
+        $this->category_updated = $category_updated;
+        return $this;
     }
 }

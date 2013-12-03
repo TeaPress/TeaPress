@@ -22,13 +22,13 @@ class User extends AbstractMapper
     
     /**
      * Get all users
-     * @param boolean $usePaginator
      * @return Paginator
      */
     public function getAllUsers()
     {
         $select = $this->tableGateway->getSql()->select();
-        $select->order('created_at DESC');
+        $select->join('admin_role', 'admin_role.role_id = admin_user.role_id', array('role_name'));
+        $select->order('admin_user.username ASC');
         
         return $this->selectWith($select);
     }

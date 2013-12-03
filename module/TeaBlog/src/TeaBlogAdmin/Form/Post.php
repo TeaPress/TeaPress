@@ -14,9 +14,6 @@ class Post extends AbstractForm
         $this->setHydrator(new ClassMethodsHydrator(false))
              ->setObject(new \TeaBlog\Model\Post());
         
-        $postId = new \Zend\Form\Element\Hidden('postId');
-        $this->add($postId);
-        
         $title = new \TeaAdmin\Form\Element\Text('postTitle');
         $title->setLabel('Title');
         $title->setAttribute('placeholder', 'Put your title here, make it uniq!');

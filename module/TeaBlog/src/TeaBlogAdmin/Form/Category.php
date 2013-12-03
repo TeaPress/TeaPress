@@ -14,33 +14,49 @@ class Category extends AbstractForm
         $this->setHydrator(new ClassMethodsHydrator(false))
              ->setObject(new \TeaBlog\Model\Category());
         
-        $categoryId = new \Zend\Form\Element\Hidden('categoryId');
-        $this->add($categoryId);
-        
-        $title = new \Zend\Form\Element\Text('title');
+        $title = new \TeaAdmin\Form\Element\Text('categoryTitle');
         $title->setLabel('Title');
+        $title->setAttribute('placeholder', 'Put your title here, make it uniq!');
+        $title->setAttribute('maxlength', '140');
         $this->add($title);
         
-        $urlKey = new \Zend\Form\Element\Text('urlKey');
-        $urlKey->setLabel('Url Key');
-        $this->add($urlKey);
+        $slug = new \TeaAdmin\Form\Element\Text('categorySlug');
+        $slug->setLabel('Slug');
+        $title->setAttribute('maxlength', '250');
+        $this->add($slug);
         
-        $description = new \Zend\Form\Element\Textarea('description');
-        $description->setLabel('Description');
-        $this->add($description);
+        $content = new \TeaAdmin\Form\Element\Textarea('categoryContent');
+        $content->setLabel('Contents');
+        $content->setAttribute('resize', 'none');
+        $this->add($content);
         
-        $parent = new \Zend\Form\Element\Select('parentId');
-        $parent->setLabel('Parent');
+        $thumb = new \Zend\Form\Element\File('thumb');
+        $thumb->setLabel('Media');
+        $this->add($thumb);
         
-        // Get root category for parent category
-        $rootCategorys = $this->getServiceLocator()->getServiceLocator()->get('TeaBlog\Service\Category')->getAllRootCategory(false);
-        $options = array();
-        foreach($rootCategorys as $rootCategory) {
-            $options[$rootCategory->getCategoryId()] = $rootCategory->getTitle();
-        }
-        $parent->setEmptyOption('Select parent category');
-        $parent->setValueOptions($options);
-        $this->add($parent);
+        $metaTitle = new \TeaAdmin\Form\Element\Text('categoryMetaTitle');
+        $metaTitle->setLabel('Page title');
+        $metaTitle->setLabelTips('Write to 70 characters');
+        $metaTitle->setAttribute('maxlength', '70');
+        $this->add($metaTitle);
+        
+        $metaDescription = new \TeaAdmin\Form\Element\Textarea('categoryMetaDescription');
+        $metaDescription->setLabel('Meta description');
+        $metaDescription->setLabelTips('Write to 160 characters');
+        $metaDescription->setAttribute('maxlength', '160');
+        $this->add($metaDescription);
+        
+        $metaKeywords = new \TeaAdmin\Form\Element\Text('categoryMetaKeywords');
+        $metaKeywords->setLabel('Meta news keywords');
+        $this->add($metaKeywords);
+        
+        $visibility = new \TeaAdmin\Form\Element\Radio('categoryVisibility');
+        $visibility->setLabel('Visibility');
+        $visibility->setValueOptions(array(
+            '1' => 'Visible', 
+            '0' => 'Hidden'
+        ));
+        $this->add($visibility);
         
         $submit = new \Zend\Form\Element\Submit('submit');
         $submit->setValue('Save');

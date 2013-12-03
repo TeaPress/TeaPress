@@ -22,7 +22,7 @@ class Module
                     $navigation->setAcl($acl);
                                
                     if($pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->hasIdentity()) {
-                        $role = $pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->getIdentity()->role->getName();
+                        $role = $pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->getIdentity()->role->getRoleName();
                         $navigation->setRole($role);
                     }
                     
@@ -43,7 +43,7 @@ class Module
                 'TeaAdmin\Mapper\User' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\User());
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\User\Relational());
                     $tableGateway = new \Zend\Db\TableGateway\TableGateway('admin_user', $dbAdapter, null, $resultSetPrototype);
                     $table = new Mapper\User($tableGateway);
                     return $table;

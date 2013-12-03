@@ -23,18 +23,18 @@ class AclFactory implements FactoryInterface
         // Add roles and rules
         $rules = $serviceLocator->get('TeaAdmin\Service\Rule')->getAllRuleWithRole();
         foreach($rules as $rule) {
-            if(!$acl->hasRole($rule->getRole()->getName())) {
-                $acl->addRole($rule->getRole()->getName());
+            if(!$acl->hasRole($rule->getRole()->getRoleName())) {
+                $acl->addRole($rule->getRole()->getRoleName());
             }
 
             if($rule->getResource() == Acl::RESOURCE_ALL && $rule->getPermission()) {
                 foreach ($acl->getResources() as $aclResource) {
-                    $acl->setRule(Acl::OP_ADD, Acl::TYPE_ALLOW, $rule->getRole()->getName(), $aclResource);
+                    $acl->setRule(Acl::OP_ADD, Acl::TYPE_ALLOW, $rule->getRole()->getRoleName(), $aclResource);
                 }
             } else {
                 if($acl->hasResource($rule->getResource())) {
                     $permission = ($rule->getPermission()) ? Acl::TYPE_ALLOW : Acl::TYPE_DENY;
-                    $acl->setRule(Acl::OP_ADD, $permission, $rule->getRole()->getName(), $rule->getResource());
+                    $acl->setRule(Acl::OP_ADD, $permission, $rule->getRole()->getRoleName(), $rule->getResource());
                 }
             }
         }

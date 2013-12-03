@@ -7,9 +7,9 @@ use TakeATea\Model\AbstractModel;
 class Role extends AbstractModel
 {
     protected $role_id;
-    protected $name;
-    protected $created_at;
-    protected $updated_at;
+    protected $role_name;
+    protected $role_created;
+    protected $role_updated;
     
     public function getRoleId() {
         return $this->role_id;
@@ -19,27 +19,27 @@ class Role extends AbstractModel
         $this->role_id = $role_id;
     }
 
-    public function getName() {
-        return $this->name;
+    public function getRoleName() {
+        return $this->role_name;
     }
 
-    public function setName($name) {
-        $this->name = $name;
+    public function setRoleName($role_name) {
+        $this->role_name = $role_name;
     }
 
-    public function getCreatedAt() {
-        return $this->created_at;
+    public function getRoleCreated() {
+        return $this->role_created;
     }
 
-    public function setCreatedAt($created_at) {
-        $this->created_at = $created_at;
+    public function setRoleCreated($role_created) {
+        $this->role_created = $role_created;
     }
 
-    public function getUpdatedAt() {
-        return $this->updated_at;
+    public function getRoleUpdated() {
+        return $this->role_updated;
     }
 
-    public function setUpdatedAt($updated_at) {
-        $this->updated_at = $updated_at;
+    public function setRoleUpdated($role_updated) {
+        $this->role_updated = $role_updated;
     }
 }

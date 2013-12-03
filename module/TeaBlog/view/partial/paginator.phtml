@@ -1,17 +1,17 @@
 <?php if ($this->pageCount): ?>
-    <div class="pagination pagination-centered">
+    <div class="pagination-centered">
         <ul>
             <!-- Previous page link -->
             <?php if (isset($this->previous)): ?>
-                <li>
+                <li class="arrow">
                     <a href="<?php echo $this->url($this->route, array(), true); ?>?page=<?php echo $this->previous; ?>">
-                        <<
+                        &laquo;
                     </a>
                 </li>
             <?php else: ?>
-                <li class="disabled">
+                <li class="arrow unavailable">
                     <a href="#">
-                        <<
+                        &laquo;
                     </a>
                 </li>
             <?php endif; ?>
@@ -24,7 +24,7 @@
                         </a>
                     </li>
                 <?php else: ?>
-                    <li class="active">
+                    <li class="current">
                         <a href="#"><?php echo $page; ?></a>
                     </li>
                 <?php endif; ?>
@@ -32,15 +32,15 @@
 
             <!-- Next page link -->
             <?php if (isset($this->next)): ?>
-                <li>
+                <li class="arrow">
                     <a href="<?php echo $this->url($this->route, array(), true); ?>?page=<?php echo $this->next; ?>">
-                        >>
+                        &raquo;
                     </a>
                 </li>
             <?php else: ?>
-                <li class="disabled">
+                <li class="arrow unavailable">
                     <a href="#">
-                        >>
+                        &raquo;
                     </a>
                 </li>
             <?php endif; ?>

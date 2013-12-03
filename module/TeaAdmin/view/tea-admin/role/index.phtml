@@ -1,26 +1,38 @@
-<h2><?php echo $this->translate('List of role'); ?></h2>
-<a href="<?php echo $this->url('admin/role/new'); ?>"><?php echo $this->translate('Add new role'); ?></a>
-<table class="table table-striped">
+<?php $this->headTitle('Admin role management') ?>
+<h2>
+    <?php echo $this->translate('Admin role management'); ?>
+    <a class="tiny button right" href="<?php echo $this->url('admin/role/new'); ?>"><?php echo $this->translate('Create new role'); ?></a>
+</h2>
+
+<table class="listing" width="100%">
     <thead>
-        <th><?php echo $this->translate('Id'); ?></th>
-        <th><?php echo $this->translate('Role name'); ?></th>
-        <th><?php echo $this->translate('Created at'); ?></th>
-        <th><?php echo $this->translate('Action'); ?></th>
+        <tr>
+            <th width="10"><input type="checkbox" /></th>
+            <th width="50"><?php echo $this->translate('Id'); ?></th>
+            <th><?php echo $this->translate('Role name'); ?></th>
+            <th width="200"><?php echo $this->translate('Updated Date'); ?></th>
+        </tr>
     </thead>
     <tbody>
-        <?php if(count($this->roles) == 0): ?>
-        <tr><td colspan="5"><?php echo $this->translate('No data'); ?></td></tr>
-        <?php else: ?>
-            <?php foreach($this->roles as $role): ?>
-            <tr>
-                <td><?php echo $role->getRoleId(); ?></td>
-                <td><?php echo $role->getName(); ?></td>
-                <td><?php echo $role->getCreatedAt(); ?></td>
-                <td><a href="<?php echo $this->url('admin/role/edit', array('id' => $role->getRoleId())); ?>"><?php echo $this->translate('Edit'); ?></a></td>
-            </tr>
+         <?php if(count($this->roles) > 0): ?>
+            <?php foreach ($this->roles as $role): ?>
+                <tr>
+                    <th><input type="checkbox" /></th>
+                    <td><?php echo $role->getRoleId(); ?></td>
+                    <td>
+                        <a href="<?php echo $this->url('admin/role/edit', array('id' => $role->getRoleId())); ?>">
+                            <?php echo $role->getRoleName(); ?>
+                        </a>
+                    </td>
+                    <td><?php echo $this->dateFormat(new \DateTime($role->getRoleUpdated()), \IntlDateFormatter::MEDIUM, \IntlDateFormatter::MEDIUM); ?></td>
+                </tr>
             <?php endforeach; ?>
+        <?php else: ?>
+        <tr>
+            <td colspan="4"><?php echo $this->translate('No admin role'); ?></td>
+        </tr>
         <?php endif; ?>
     </tbody>
 </table>
 
-<?php echo $this->paginationControl($this->roles, 'sliding', array('partial/paginator.phtml', 'admin/role')); ?>
+<?php echo $this->paginationControl($this->roles, 'sliding', array('partial/paginator.phtml', 'admin/user')); ?>

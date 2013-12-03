@@ -145,7 +145,7 @@ class Category extends AbstractService
      * @param \TeaBlog\Model\Category $category
      * @return type
      */
-    public function save(\TeaBlog\Model\Category $category)
+    public function save($category)
     {
         $cache = $this->getServiceLocator()->get('TeaCacheBlog');
         $cache->clearByPrefix('blog_category_');

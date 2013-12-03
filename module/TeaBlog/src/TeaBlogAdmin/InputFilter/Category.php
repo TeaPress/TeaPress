@@ -9,32 +9,96 @@ class Category extends AbstractInputFilter
     public function __construct()
     {
         $this->add(array(
-            'name' => 'categoryId',
+            'name' => 'categoryTitle',
             'required' => true,
-        ));
-
-        $this->add(array(
-            'name' => 'title',
-            'required' => true,
+            'validators' => array(
+                array(
+                    'name' => 'Zend\Validator\Db\NoRecordExists',
+                    'options' => array(
+                        'table' => 'blog_category',
+                        'field' => 'category_title',
+                        'adapter' => \Zend\Db\TableGateway\Feature\GlobalAdapterFeature::getStaticAdapter()
+                    )
+                ),
+                array(
+                    'name' => 'Zend\Validator\StringLength',
+                    'options' => array(
+                        'max' => 140
+                    )
+                )
+            )
         ));
         
         $this->add(array(
-            'name' => 'urlKey',
+            'name' => 'categorySlug',
+            'required' => false,
+            'validators' => array(
+                array(
+                    'name' => 'Zend\Validator\Db\NoRecordExists',
+                    'options' => array(
+                        'table' => 'blog_category',
+                        'field' => 'category_slug',
+                        'adapter' => \Zend\Db\TableGateway\Feature\GlobalAdapterFeature::getStaticAdapter()
+                    )
+                ),
+                array(
+                    'name' => 'Zend\Validator\StringLength',
+                    'options' => array(
+                        'max' => 250
+                    )
+                )
+            ),
+            'filters' => array(
+                array(
+                    'name' => 'TeaAdmin\Filter\Slug',
+                    'options' => array()
+                )
+            )
+        ));
+        
+        $this->add(array(
+            'name' => 'categoryContent',
             'required' => false,
         ));
         
         $this->add(array(
-            'name' => 'description',
+            'name' => 'postThumb',
             'required' => false,
         ));
         
         $this->add(array(
-            'name' => 'parentId',
+            'name' => 'categoryMetaTitle',
+            'required' => false,
+            'validators' => array(
+                array(
+                    'name' => 'Zend\Validator\StringLength',
+                    'options' => array(
+                        'max' => 70
+                    )
+                )
+            )
+        ));
+        
+        $this->add(array(
+            'name' => 'categoryMetaDescription',
+            'required' => false,
+            'validators' => array(
+                array(
+                    'name' => 'Zend\Validator\StringLength',
+                    'options' => array(
+                        'max' => 160
+                    )
+                )
+            )
+        ));
+        
+        $this->add(array(
+            'name' => 'categoryMetaKeywords',
             'required' => false,
         ));
         
         $this->add(array(
-            'name' => 'isActive',
+            'name' => 'categoryVisibility',
             'required' => true,
         ));
         

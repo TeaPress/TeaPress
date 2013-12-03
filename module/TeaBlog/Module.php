@@ -15,7 +15,7 @@ class Module
                 'TeaBlog\Mapper\Post' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Post());
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Post\Relational());
                     $tableGateway = new \Zend\Db\TableGateway\TableGateway('blog_post', $dbAdapter, null, $resultSetPrototype);
                     $table = new Mapper\Post($tableGateway);
                     return $table;

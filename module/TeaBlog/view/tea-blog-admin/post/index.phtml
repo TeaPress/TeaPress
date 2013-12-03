@@ -4,34 +4,36 @@
     <a class="tiny button right" href="<?php echo $this->url('admin/blog/post/new'); ?>"><?php echo $this->translate('Create new post'); ?></a>
 </h2>
 
-
-
-<table class="table table-striped">
+<table class="listing" width="100%">
     <thead>
-        <th><?php echo $this->translate('Name'); ?></th>
-        <th><?php echo $this->translate('Author'); ?></th>
-        <th><?php echo $this->translate('Categories'); ?></th>
-        <th><?php echo $this->translate('Action'); ?></th>
+        <tr>
+            <th width="10"><input type="checkbox" /></th>
+            <th><?php echo $this->translate('Title'); ?></th>
+            <th width="150"><?php echo $this->translate('Author'); ?></th>
+            <th width="200"><?php echo $this->translate('Publish Date'); ?></th>
+        </tr>
     </thead>
     <tbody>
-        <?php if(count($this->posts) > 0): ?>
-            <?php foreach($this->posts as $post): ?>
-        <tr>
-            <td><?php echo $post->getPostTitle(); ?></td>
-            <td>Author</td>
-            <td>Categorys</td>
-            <td>
-                <a href="<?php echo $this->url('admin/blog/post/edit', array('id' => $post->getPostId())); ?>" class="btn">
-                    <?php echo $this->translate('Edit'); ?>
-                </a>
-            </td>
-        </tr>
+         <?php if(count($this->posts) > 0): ?>
+            <?php foreach ($this->posts as $post): ?>
+                <tr>
+                    <th><input type="checkbox" /></th>
+                    <td>
+                        <a href="<?php echo $this->url('admin/blog/post/edit', array('id' => $post->getPostId())); ?>">
+                            <?php echo $post->getPostTitle(); ?>
+                        </a>, <?php echo $this->translate('posted in'); ?> <a href="#" class="category"><?php echo $post->getCategory()->getTitle(); ?></a>
+                        <p><?php echo $post->getPostExcerpt(); ?></p>
+                    </td>
+                    <td><?php echo $post->getAuthor()->getUsername(); ?></td>
+                    <td><?php echo $this->dateFormat(new \DateTime($post->getPostPublished()), \IntlDateFormatter::MEDIUM, \IntlDateFormatter::MEDIUM); ?></td>
+                </tr>
             <?php endforeach; ?>
         <?php else: ?>
         <tr>
-            <td colspan="5"><?php echo $this->translate('No post'); ?></td>
+            <td colspan="4"><?php echo $this->translate('No post'); ?></td>
         </tr>
         <?php endif; ?>
     </tbody>
 </table>
+
 <?php echo $this->paginationControl($this->posts, 'sliding', array('partial/paginator.phtml', 'admin/blog/post')); ?>

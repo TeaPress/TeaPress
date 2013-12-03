@@ -74,16 +74,17 @@ class Category extends AbstractMapper
      * @param \TeaBlog\Model\Category $category
      * @return type
      */
-    public function save(\TeaBlog\Model\Category $category)
+    public function save($category)
     {
         $data = $category->toArray();
         
-        if($category->getCategoryId() == null) {
-            $data['created_at'] = new Expression('NOW()');
-            return $this->tableGateway->insert($data);
-        } else {
-            $data['updated_at'] = new Expression('NOW()');
+        if($category->getCategoryId() !== null) {
+            $data['category_updated'] = new \Zend\Db\Sql\Expression('Now()');
             return $this->tableGateway->update($data, 'category_id = ' . $category->getCategoryId());
         }
+        
+        $data['category_created'] = new \Zend\Db\Sql\Expression('Now()');
+        $data['category_updated'] = new \Zend\Db\Sql\Expression('Now()');
+        return $this->tableGateway->insert($data);
     }
 }

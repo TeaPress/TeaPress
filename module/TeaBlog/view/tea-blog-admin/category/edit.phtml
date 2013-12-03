@@ -1,35 +1,52 @@
-<h2><?php echo $this->translate('Edit Category') . ' : ' . $this->form->get('title')->getValue(); ?></h2>
+<?php $this->headTitle('Edit Category : ' . $this->form->get('categoryTitle')->getValue()); ?>
+<h2><?php echo $this->translate('Edit Category : ' . $this->form->get('categoryTitle')->getValue()); ?></h2>
 
 <?php echo $this->form()->openTag($this->form->setAttributes(array('action' => $this->url('admin/blog/category/edit', array(), true)))); ?>
-    <?php echo $this->formElement($this->form->get('categoryId')); ?>
-    <div class="form-group <?php echo (count($this->form->getMessages('title')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('title')); ?>
-        <?php echo $this->formElement($this->form->get('title')); ?>
-        <?php echo $this->formElementErrors($this->form->get('title')); ?>
+
+<fieldset>
+    <div class="large-3 columns">
+        <h3><?php echo $this->translate('Write your blog post'); ?></h3>
+        <div class="info">
+            <p><?php echo $this->translate('Give your blog post a title and add your content. Don\'t forget to make your title uniq.'); ?></p>
+        </div>
     </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('urlKey')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('urlKey')); ?>
-        <?php echo $this->formElement($this->form->get('urlKey')); ?>
-        <?php echo $this->formElementErrors($this->form->get('urlKey')); ?>
+    <div class="large-9 columns">
+        <?php echo $this->formRow($this->form->get('categoryTitle'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('categorySlug'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('categoryContent'), null, null, 'tea-admin/form/row'); ?>
     </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('parentId')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('parentId')); ?>
-        <?php echo $this->formElement($this->form->get('parentId')); ?>
-        <?php echo $this->formElementErrors($this->form->get('parentId')); ?>
+</fieldset>
+<fieldset>
+    <div class="large-3 columns">
+        <h3><?php echo $this->translate('Find them efficiently'); ?></h3>
+        <div class="info">
+            <p><?php echo $this->translate('Set up the page title and meta description. These help you to define how this blog post shows up on search engines.'); ?></p>
+        </div>
     </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('description')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('description')); ?>
-        <?php echo $this->formElement($this->form->get('description')); ?>
-        <?php echo $this->formElementErrors($this->form->get('description')); ?>
+    <div class="large-9 columns">
+        <?php echo $this->formRow($this->form->get('categoryMetaTitle'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('categoryMetaDescription'), null, null, 'tea-admin/form/row'); ?>
+        <?php echo $this->formRow($this->form->get('categoryMetaKeywords'), null, null, 'tea-admin/form/row'); ?>
     </div>
-    <div class="form-group <?php echo (count($this->form->getMessages('isActive')) > 0) ? ' has-error' : ''; ?>">
-        <?php echo $this->formLabel($this->form->get('isActive')); ?>
-        <?php echo $this->formElement($this->form->get('isActive')); ?>
-        <?php echo $this->formElementErrors($this->form->get('isActive')); ?>
+</fieldset>
+<fieldset>
+    <div class="large-3 columns">
+        <h3><?php echo $this->translate('Publish in the rigth way'); ?></h3>
+        <div class="info">
+            <p><?php echo $this->translate('Control if this blog post can be viewed on your website and when it can be viewed.'); ?></p>
+        </div>
     </div>
-    <?php echo $this->formElement($this->form->get('token')); ?>
-    <div class="buttons_action">
-        <a href="<?php echo $this->url('admin/blog/category'); ?>"><?php echo $this->translate('Cancel'); ?></a>
-        <?php echo $this->formElement($this->form->get('submit')); ?>
+    <div class="large-9 columns">
+        <?php echo $this->formRow($this->form->get('categoryVisibility'), null, null, 'tea-admin/form/row'); ?>
     </div>
+</fieldset>
+<?php echo $this->formElement($this->form->get('token')); ?>
+
+<div class="buttonized button-bar">
+    <ul class="button-group right">
+        <li><a href="<?php echo $this->url('admin/blog/category'); ?>" class="tiny button none">Cancel</a></li>
+        <li><?php echo $this->formElement($this->form->get('submit')->setAttribute('class', 'tiny button')); ?></li>
+    </ul>
+</div>
+
 <?php echo $this->form()->closeTag(); ?>

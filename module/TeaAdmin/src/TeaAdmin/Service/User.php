@@ -26,7 +26,7 @@ class User extends AbstractService
     public function getAllUsers($usePaginator = true)
     {
         if($usePaginator) {
-            $this->usePaginator();
+            $this->usePaginator($usePaginator);
         }
         return $this->getMapper()->getAllUsers();
     }
