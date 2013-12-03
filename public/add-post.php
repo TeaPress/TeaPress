@@ -47,7 +47,6 @@ include('_inc/_head.php');
                 <div class="panel callout large-3 columns">
                     <p class="text-center">Drag &amp; drop your thumbnail</p>
                     <a href="#" class="small button">Or use the Media library</a>
-                    <ul></ul>
                 </div>
                 <div class="large-9 columns">
                     <p>Drag &amp; drop quickly your thumbnail in the gray box. Your image will be uploaded and you can edit its contents in the <a href="#">Media library</a>.</p>

@@ -54,11 +54,9 @@ $menu = isset($menu) ? $menu : 'dashboard';
                 <li<?php echo in_array($menu, array('list-posts', 'add-post', 'edit-post')) ? ' class="active"' : '' ?>><a href="list-posts.php">Posts</a></li>
                 <li<?php echo in_array($menu, array('list-pages', 'add-page', 'edit-page')) ? ' class="active"' : '' ?>><a href="list-pages.php">Pages</a></li>
                 <li<?php echo 'list-medias' == $menu ? ' class="active"' : '' ?>><a href="list-medias.php">Medias</a></li>
-                <li<?php echo 'add-media' == $menu ? ' class="active"' : '' ?>><a href="add-media.php">Add media</a></li>
                 <li<?php echo 'list-categories' == $menu ? ' class="active"' : '' ?>><a href="list-categories.php">Categories</a></li>
-                <li<?php echo 'add-category' == $menu ? ' class="active"' : '' ?>><a href="add-category.php">Add category</a></li>
                 <li class="subheader">Your members</li>
-                <li><a href="#">Roles</a></li>
+                <li<?php echo in_array($menu, array('list-roles', 'add-role', 'edit-role')) ? ' class="active"' : '' ?>><a href="list-roles.php">Roles</a></li>
                 <li><a href="#">Members</a></li>
                 <li><a href="#">Comments</a></li>
                 <li class="subheader">Your website</li>
