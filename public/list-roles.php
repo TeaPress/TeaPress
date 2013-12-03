@@ -1,31 +1,31 @@
 <?php
-$title = 'Posts';
-$menu = 'list-posts';
+$title = 'Roles';
+$menu = 'list-roles';
 include('_inc/_head.php');
 ?>
 <ul class="breadcrumbs">
     <li><a href="dashboard.php">Homepage</a></li>
-    <li class="current"><a href="list-posts.php">Posts</a></li>
-    <li class="right"><a href="add-post.php">Add post</a></li>
+    <li class="current"><a href="list-roles.php">Roles</a></li>
+    <li class="right"><a href="add-role.php">Add role</a></li>
 </ul>
 
 <form class="filter-page row collapse">
     <div class="large-2 columns">
-        <span class="prefix">Search in all your blog posts</span>
+        <span class="prefix">Search in all your roles</span>
     </div>
     <div class="large-10 columns">
-        <input type="search" name="term" placeholder="Type the name of a blog post" tabindex="1" />
+        <input type="search" name="term" placeholder="Type the name of a role" tabindex="1" />
     </div>
 </form>
 
 <?php if (isset($_GET['save'])): ?>
     <div data-alert class="alert-box success">
-        Your blog post "New post title" has been saved. <a href="#">Click here</a> to see it in your website.
+        Your role "My new role" has been saved.
         <a href="#" class="close">&times;</a>
     </div>
 <?php elseif (isset($_GET['del'])): ?>
     <div data-alert class="alert-box alert">
-        Your blog post "Post title" has been deleted.
+        Your role "My role" has been deleted.
         <a href="#" class="close">&times;</a>
     </div>
 <?php endif ?>
@@ -34,21 +34,17 @@ include('_inc/_head.php');
     <thead>
         <tr>
             <th width="10"><input type="checkbox" /></th>
-            <th>Title</th>
-            <th width="150">Author</th>
-            <th width="150">Publish date</th>
+            <th>Role</th>
         </tr>
     </thead>
     <tbody>
-        <?php for ($i = 0; $i < 10; $i++): ?>
+        <?php for ($i = 0; $i < 4; $i++): ?>
             <tr>
                 <th><input type="checkbox" /></th>
                 <td>
-                    <a href="edit-post.php">Post title</a>, posted in <a href="#" class="category">Category</a>
+                    <a href="edit-role.php">Role title</a>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat nisl augue, sed varius justo fringilla a...</p>
                 </td>
-                <td>Christophe M.</td>
-                <td>Nov 30 2013</td>
             </tr>
         <?php endfor ?>
     </tbody>
