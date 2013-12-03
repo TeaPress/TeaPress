@@ -7,7 +7,7 @@ return array(
                 'options' => array(
                     'table' => 'admin_user',
                     'identity' => 'username',
-                    'credential' => 'password'
+                    'credential' => 'user_password'
                 )
             ),
             'storage' => array(

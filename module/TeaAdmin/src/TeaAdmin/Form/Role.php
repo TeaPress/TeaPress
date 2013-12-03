@@ -14,13 +14,14 @@ class Role extends AbstractForm
         $this->setHydrator(new ClassMethodsHydrator(false))
              ->setObject(new \TeaAdmin\Model\Role());
         
-        $roleId = new \Zend\Form\Element\Hidden('roleId');
-        $this->add($roleId);
-        
-        $name = new \Zend\Form\Element\Text('name');
+        $name = new \Zend\Form\Element\Text('roleName');
         $name->setLabel('Name');
         $name->setAttribute('autofocus', 'autofocus');
         $this->add($name);
+        
+        $content = new \Zend\Form\Element\Textarea('roleContent');
+        $content->setLabel('Content');
+        $this->add($content);
         
         $submit = new \Zend\Form\Element\Submit('submit');
         $submit->setValue('Save');

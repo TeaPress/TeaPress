@@ -37,19 +37,16 @@ class Role extends AbstractMapper
      * @param \TeaAdmin\Model\Role $role
      * @return type
      */
-    public function save(\TeaAdmin\Model\Role $role)
+    public function save($role)
     {
         $data = $role->toArray();
-        
-        if($role->getRoleId() != null) {
-            $data['updated_at'] = new Expression('NOW()');
-            
+        if($role->getRoleId() !== null) {
+            $data['role_updated'] = new \Zend\Db\Sql\Expression('Now()');
             return $this->tableGateway->update($data, 'role_id = ' . $role->getRoleId());
-        } else {
-            $data['created_at'] = new Expression('NOW()');
-            $data['updated_at'] = new Expression('NOW()');
-            
-            return $this->tableGateway->insert($data);
         }
+        
+        $data['role_created'] = new \Zend\Db\Sql\Expression('Now()');
+        $data['role_updated'] = new \Zend\Db\Sql\Expression('Now()');
+        return $this->tableGateway->insert($data);
     }
 }

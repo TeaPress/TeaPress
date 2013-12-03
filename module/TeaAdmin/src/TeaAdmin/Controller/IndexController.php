@@ -42,7 +42,7 @@ class IndexController extends AbstractAdminActionController
                 if(!$adapter->getResultRowObject()) {
                     $form->setMessages(array('Username or Password not valid.'));
                 } else {
-                    $object = $adapter->getResultRowObject(null, array('password'));
+                    $object = $adapter->getResultRowObject(null, array('userPassword'));
                     
                     // TODO : Can we do better ?
                     $role = $this->getServiceLocator()->get('TeaAdmin\Service\Role')->getRoleById($object->role_id);

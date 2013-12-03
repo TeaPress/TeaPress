@@ -31,14 +31,14 @@ class UserController extends AbstractAdminActionController
             if($form->isValid()) {
                 $user = $form->getObject();
                 
-//                try {
+                try {
                     $this->getServiceLocator()->get('TeaAdmin\Service\User')->save($user);
                     
                     $this->flashMessenger()->addSuccessMessage('The user ' . $user->getUsername() . ' has been saved.');
                     $this->redirect()->toRoute('admin/user');
-//                } catch (\Exception $e) {
-//                    $this->flashMessenger()->addErrorMessage('An error append during saving user.');
-//                }
+                } catch (\Exception $e) {
+                    $this->flashMessenger()->addErrorMessage('An error append during saving user.');
+                }
             }
         }
         
