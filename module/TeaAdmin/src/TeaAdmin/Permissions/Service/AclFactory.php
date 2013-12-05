@@ -51,16 +51,14 @@ class AclFactory implements FactoryInterface
     protected function addResourceFromArray(Acl $acl, array &$childrens, $parent = null)
     {
         foreach($childrens as $childRole => $child) {
-            if(isset($child['title'])) {
-                $childRole = array(
-                    'name' => $child['title'],
-                    'resource' => $child['resource'],
-                );
-            }
-            $acl->addResource($childRole, $parent);
+            //TODO Better;
+            $aclR = $child;
+            unset($aclR['children']);
+            
+            $acl->addResource($child, $parent);
             
             if(isset($child['children'])) {
-                $this->addResourceFromArray($acl, $child['children']/*, is_array($childRole) ? $childRole['resource'] : $childRole*/);
+                $this->addResourceFromArray($acl, $child['children'], $aclR['resource']);
             }
         }
     }

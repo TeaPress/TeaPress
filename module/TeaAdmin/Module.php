@@ -27,6 +27,18 @@ class Module
                     }
                     
                     return $navigation;
+                },
+                'formResource' => function(HelperPluginManager $pm) {
+                    $formResource = $pm->get('TeaAdmin\View\Helper\FormResource');
+                    
+                    if($pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->hasIdentity()) {
+                        $role = $pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->getIdentity()->role;
+                        $formResource->setRole($role);
+                    }
+                    
+                    $formResource->setAcl($pm->getServiceLocator()->get('TeaAdmin\Permissions\Service\Acl'));
+                    
+                    return $formResource;
                 }
             )
         );

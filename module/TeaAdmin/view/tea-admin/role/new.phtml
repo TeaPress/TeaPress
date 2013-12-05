@@ -4,14 +4,25 @@
 <?php echo $this->form()->openTag($this->form->setAttributes(array('action' => $this->url('admin/role/new')))); ?>
 <fieldset>
     <div class="large-3 columns">
-        <h3><?php echo $this->translate('Write your blog post'); ?></h3>
+        <h3><?php echo $this->translate('Define your role'); ?></h3>
         <div class="info">
-            <p><?php echo $this->translate('Give your blog post a title and add your content. Don\'t forget to make your title uniq.'); ?></p>
+            <p><?php echo $this->translate('Give your role a title and a content. This will help you to organize your team efficiently.'); ?></p>
         </div>
     </div>
     <div class="large-9 columns">
         <?php echo $this->formRow($this->form->get('roleName'), null, null, 'tea-admin/form/row'); ?>
         <?php echo $this->formRow($this->form->get('roleContent'), null, null, 'tea-admin/form/row'); ?>
+    </div>
+</fieldset>
+<fieldset>
+    <div class="large-3 columns">
+        <h3><?php echo $this->translate('Define your permissions'); ?></h3>
+        <div class="info">
+            <p><?php echo $this->translate('Set up the role permissions and allow or disallow your team to access and use your mods.'); ?></p>
+        </div>
+    </div>
+    <div class="large-9 columns">
+        <?php echo $this->formResource()->setPartial('tea-admin/role/resource')->render(); ?>
     </div>
 </fieldset>
 <?php echo $this->formElement($this->form->get('token')); ?>

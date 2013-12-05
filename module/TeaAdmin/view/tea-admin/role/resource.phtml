@@ -1,0 +1,62 @@
+<table class="listing permissions" width="100%">
+    <thead class="contain-to-grid sticky">
+        <tr>
+            <th><?php echo $this->translate('Module'); ?></th>
+            <th width="150"><?php echo $this->translate('Allow'); ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $resourcesKey = $acl->getResources(); ?>
+        <?php $firstResource = $acl->getFullResource($resourcesKey[0]); ?>
+        <?php foreach($firstResource['children'] as $resourceKey): ?>
+            <?php $resource = $acl->getFullResource($resourceKey); ?>
+            <tr>
+                <td colspan="2"><b>
+                    <?php echo $this->translate((isset($resource['group']) ? $resource['group'] : $resource['name'])); ?>
+                </b></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="acl-resource-<?php echo $acl->getResource($resourceKey); ?>">
+                        <?php echo $this->translate($resource['name']); ?>
+                    </label>
+                </td>
+                <td>
+                    <input type="checkbox" name="resource[<?php echo $acl->getResource($resourceKey); ?>]" />
+                </td>
+            </tr>
+            <?php if(count($resource['children'])): ?>
+                <?php foreach($resource['children'] as $childrenKey): ?>
+                    <?php $childrenResource = $acl->getFullResource($childrenKey); ?>
+            <tr>
+                <td>
+                    <label for="acl-resource-<?php echo $acl->getResource($childrenKey); ?>">
+                        <?php echo $this->translate($childrenResource['name']); ?>
+                    </label>
+                </td>
+                <td>
+                    <input type="checkbox" name="resource[<?php echo $acl->getResource($childrenKey); ?>]" />
+                </td>
+            </tr>
+            <?php // Todo BETTER !!! ?>
+            <?php if(count($childrenResource['children'])): ?>
+                <?php foreach($childrenResource['children'] as $childrenKeyB): ?>
+                    <?php $childrenResourceB = $acl->getFullResource($childrenKeyB); ?>
+            <tr>
+                <td>
+                    <label for="acl-resource-<?php echo $acl->getResource($childrenKeyB); ?>">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->translate($childrenResourceB['name']); ?>
+                    </label>
+                </td>
+                <td>
+                    <input type="checkbox" name="resource[<?php echo $acl->getResource($childrenKeyB); ?>]" />
+                </td>
+            </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            
+                <?php endforeach; ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </tbody>
+</table>
