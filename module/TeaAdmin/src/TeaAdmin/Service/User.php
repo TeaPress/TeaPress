@@ -31,6 +31,11 @@ class User extends AbstractService
         return $this->getMapper()->getAllUsers();
     }
     
+    public function getUsersFromRole($roleId)
+    {
+        return $this->getMapper()->getUsersFromRole($roleId);
+    }
+    
     /**
      * Create or update user
      * @param \TeaAdmin\Model\User $user
@@ -39,5 +44,10 @@ class User extends AbstractService
     public function save(\TeaAdmin\Model\User $user)
     {
         return $this->getMapper()->save($user);
+    }
+    
+    public function delete($userId)
+    {
+        return $this->getMapper()->delete($userId);
     }
 }

@@ -1,7 +1,9 @@
 <?php $this->headTitle('Admin role management') ?>
 <h2>
     <?php echo $this->translate('Admin role management'); ?>
+    <?php if($this->permission()->isAuthorized('admin/role/new')): ?>
     <a class="tiny button right" href="<?php echo $this->url('admin/role/new'); ?>"><?php echo $this->translate('Create new role'); ?></a>
+    <?php endif; ?>
 </h2>
 
 <table class="listing" width="100%">
@@ -20,9 +22,13 @@
                     <th><input type="checkbox" /></th>
                     <td><?php echo $role->getRoleId(); ?></td>
                     <td>
+                        <?php if($this->permission()->isAuthorized('admin/role/edit')): ?>
                         <a href="<?php echo $this->url('admin/role/edit', array('id' => $role->getRoleId())); ?>">
                             <?php echo $role->getRoleName(); ?>
                         </a>
+                        <?php else: ?>
+                            <?php echo $role->getRoleName(); ?>
+                        <?php endif; ?>
                     </td>
                     <td><?php echo $this->dateFormat(new \DateTime($role->getRoleUpdated()), \IntlDateFormatter::MEDIUM, \IntlDateFormatter::MEDIUM); ?></td>
                 </tr>

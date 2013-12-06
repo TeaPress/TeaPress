@@ -17,4 +17,31 @@ class Rule extends AbstractMapper
         
         return $this->selectWith($select);
     }
+    
+    public function getRulesFromRole($roleId)
+    {
+    	$select = $this->tableGateway->getSql()->select();
+    	$select->where('permission = 1 AND role_id = ' . $roleId);
+    	
+    	return $this->selectWith($select);
+    }
+    
+    public function deleteRulesFromRole($roleId)
+    {
+    	return $this->tableGateway->delete('role_id = ' . $roleId);
+    }
+    
+    /**
+     * Insert or Update rule
+     * @param \TeaAdmin\Model\Rule $rule
+     */
+    public function save($rule)
+    {
+    	$data = $rule->toArray();
+    	if($rule->getRuleId() !== null) {
+    		return $this->tableGateway->update($data, 'rule_id = ' . $rule->getRuleId());
+    	}
+    	
+    	return $this->tableGateway->insert($data);
+    }
 }

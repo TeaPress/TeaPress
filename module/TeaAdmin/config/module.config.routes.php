@@ -64,6 +64,16 @@ return array(
                                     ),
                                 ),
                             ),
+                        	'delete' => array(
+                        		'type' => 'Regex',
+                        		'options' => array(
+                        			'regex' => '/delete/(?P<id>\d+)',
+                        			'spec' => '/delete/%id%',
+                        				'defaults' => array(
+                        				'action' => 'delete',
+                        			),
+                        		),
+                        	),
                         )
                     ),
                     'role' => array(
@@ -96,6 +106,16 @@ return array(
                                     ),
                                 ),
                             ),
+                        	'delete' => array(
+                        		'type' => 'Regex',
+                        		'options' => array(
+                        			'regex' => '/delete/(?P<id>\d+)',
+                        			'spec' => '/delete/%id%',
+                        			'defaults' => array(
+                        				'action' => 'delete',
+                        			),
+                        		),
+                        	),
                         ),
                     ),
                     'cache' => array(

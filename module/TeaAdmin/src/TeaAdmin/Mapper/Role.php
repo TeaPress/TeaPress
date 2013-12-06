@@ -12,10 +12,10 @@ class Role extends AbstractMapper
      * @param int $role_id
      * @return TeaAdmin\Model\Role
      */
-    public function getRoleById($role_id)
+    public function getRoleById($id)
     {
         $select = $this->tableGateway->getSql()->select();
-        $select->where('role_id = ' . $role_id);
+        $select->where('role_id = ' . $id);
         
         return $this->selectWith($select)->current();
     }
@@ -42,11 +42,21 @@ class Role extends AbstractMapper
         $data = $role->toArray();
         if($role->getRoleId() !== null) {
             $data['role_updated'] = new \Zend\Db\Sql\Expression('Now()');
-            return $this->tableGateway->update($data, 'role_id = ' . $role->getRoleId());
+            $this->tableGateway->update($data, 'role_id = ' . $role->getRoleId());
+            return $role;
         }
         
         $data['role_created'] = new \Zend\Db\Sql\Expression('Now()');
         $data['role_updated'] = new \Zend\Db\Sql\Expression('Now()');
-        return $this->tableGateway->insert($data);
+        
+        $this->tableGateway->insert($data);
+        $role->setroleId($this->tableGateway->getLastInsertValue());
+        
+        return $role;
+    }
+    
+    public function delete($roleId)
+    {
+        return $this->tableGateway->delete('role_id = ' . $roleId);
     }
 }

@@ -6,8 +6,16 @@ use TakeATea\InputFilter\AbstractInputFilter;
 
 class User extends AbstractInputFilter
 {
-    public function __construct()
+    public function __construct($userId)
     {
+        $exclude = array();
+        if($userId != null) {
+            $exclude = array(
+                'field' => 'user_id',
+                'value' => $userId
+            );
+        }
+        
         $this->add(array(
             'name' => 'username',
             'required' => true,
@@ -18,6 +26,7 @@ class User extends AbstractInputFilter
                         'table' => 'admin_user',
                         'field' => 'username',
                         'adapter' => \Zend\Db\TableGateway\Feature\GlobalAdapterFeature::getStaticAdapter(),
+                        'exclude' => $exclude
                     )
                 )
             )

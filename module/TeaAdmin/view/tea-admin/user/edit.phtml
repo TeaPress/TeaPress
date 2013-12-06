@@ -1,7 +1,7 @@
 <?php $this->headTitle('Edit user ' . $this->form->get('username')->getValue()); ?>
 <h2><?php echo $this->translate('Edit user ' . $this->form->get('username')->getValue()); ?></h2>
 
-<?php echo $this->form()->openTag($this->form->setAttributes(array('action' => $this->url('admin/user/new')))); ?>
+<?php echo $this->form()->openTag($this->form->setAttributes(array('action' => $this->url('admin/user/edit', array(), true)))); ?>
 <fieldset>
     <div class="large-3 columns">
         <h3><?php echo $this->translate('Write your blog post'); ?></h3>
@@ -50,6 +50,11 @@
         <li><a href="<?php echo $this->url('admin/user'); ?>" class="tiny button none">Cancel</a></li>
         <li><?php echo $this->formElement($this->form->get('submit')->setAttribute('class', 'tiny button')); ?></li>
     </ul>
+    <ul class="button-group left">
+        <?php if($this->permission()->isAuthorized('admin/user/delete')): ?>
+            <li><a href="<?php echo $this->url('admin/user/delete', array(), true); ?>" class="tiny button alert"><?php echo $this->translate('Delete'); ?></a></li>
+		<?php endif; ?>
+	</ul>
 </div>
 
 <?php echo $this->form()->closeTag(); ?>

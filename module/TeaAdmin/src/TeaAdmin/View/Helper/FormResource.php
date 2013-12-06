@@ -17,6 +17,8 @@ class FormResource extends AbstractHelper
     
     protected $acl;
     
+    protected $data = array();
+    
     public function __invoke()
     {
         return $this;
@@ -68,7 +70,45 @@ class FormResource extends AbstractHelper
     
     public function renderStraight()
     {
-        throw new \Exception('Not developped');
+    	$rootResource = 'admin';
+    	
+    	$html = '<ul class="user-roles"><input type="hidden" name="resources['. $rootResource . ']" value="1" />';
+        $full = $this->getAcl()->getFullResource($rootResource);
+        if(count($full['children'])) {
+        	$html .= $this->renderChildren(array_keys($full['children']));
+        }
+    	$html .='</ul>';
+    	return $html;
+    }
+    
+    public function htmlify($resource)
+    {
+    	$full = $this->getAcl()->getFullResource($resource);
+    	$isAllowed = $this->getAcl()->isAllowed($this->getRole()->getRoleName(), $resource);
+    	
+    	$html = '<li>';
+    	
+    	$html .= '<input type="checkbox" id="resource-' . $resource . '" name="resources[' . $resource . ']" ' . ((!$isAllowed) ? 'disabled="disabled"' : '') . ' ' . ((in_array($resource, $this->data)) ? 'checked="checked"' : '') . '/>';
+    	$html .= '<label for="resource-' . $resource . '">' . $full['title'] . '</label>';
+    	
+    	if(count($full['children'])) {
+    		$html .= $this->renderChildren(array_keys($full['children']));
+    	}
+    	
+    	$html .= '</li>';
+    	return $html;
+    }
+    
+    public function renderChildren($childrens)
+    {
+    	$html = '<ul>';
+    	
+    	foreach ($childrens as $resource) {
+    		$html .= $this->htmlify($resource);
+    	}
+    	
+    	$html .= '</ul>';
+    	return $html;
     }
     
     /**
@@ -108,6 +148,7 @@ class FormResource extends AbstractHelper
     public function setRole($role)
     {
         $this->role = $role;
+        return $this;
     }
     
     public function getAcl()
@@ -118,5 +159,17 @@ class FormResource extends AbstractHelper
     public function setAcl($acl)
     {
         $this->acl = $acl;
+        return $this;
+    }
+    
+    public function  getData()
+    {
+    	return $this->data;
+    }
+    
+    public function setData($data)
+    {
+    	$this->data = $data;
+    	return $this;
     }
 }

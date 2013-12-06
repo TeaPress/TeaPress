@@ -39,6 +39,18 @@ class Module
                     $formResource->setAcl($pm->getServiceLocator()->get('TeaAdmin\Permissions\Service\Acl'));
                     
                     return $formResource;
+                },
+                'permission' => function(HelperPluginManager $pm) {
+                    $permission = $pm->get('TeaAdmin\View\Helper\Permission');
+                    
+                    if($pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->hasIdentity()) {
+                        $role = $pm->getServiceLocator()->get('TeaAdmin\Authentication\Service')->getIdentity()->role;
+                        $permission->setRole($role);
+                    }
+                    
+                    $permission->setAcl($pm->getServiceLocator()->get('TeaAdmin\Permissions\Service\Acl'));
+                    
+                    return $permission;
                 }
             )
         );
@@ -52,6 +64,12 @@ class Module
     {
         return array(
             'factories' => array(
+				'Zend\Db\Adapter\Adapter' => function ($serviceManager) {
+					$adapterFactory = new \Zend\Db\Adapter\AdapterServiceFactory();
+					$adapter = $adapterFactory->createService($serviceManager);
+					\Zend\Db\TableGateway\Feature\GlobalAdapterFeature::setStaticAdapter($adapter);
+					return $adapter;
+				},
                 'TeaAdmin\Mapper\User' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();

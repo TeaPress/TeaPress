@@ -6,8 +6,7 @@ return array(
             'resource' => 'admin',
             'children' => array(
                 'user' => array(
-                    'title' => 'List user',
-                    'group' => 'User',
+                    'title' => 'User',
                     'resource' => 'admin/user',
                     'children' => array(
                         'new' => array(
@@ -17,12 +16,15 @@ return array(
                         'edit' => array(
                             'title' => 'Edit user',
                             'resource' => 'admin/user/edit'
-                        )
+                        ),
+                    	'delete' => array(
+                    		'title' => 'Delete user',
+                    		'resource' => 'admin/user/delete'
+                    	)
                     )
                 ),
                 'role' => array(
-                    'title' => 'List role',
-                    'group' => 'Role',
+                    'title' => 'Role',
                     'resource' => 'admin/role',
                     'children' => array(
                         'new' => array(
@@ -32,17 +34,24 @@ return array(
                         'edit' => array(
                             'title' => 'Edit role',
                             'resource' => 'admin/role/edit'
-                        )
+                        ),
+                    	'delete' => array(
+                    		'title' => 'Delete user',
+                    		'resource' => 'admin/role/delete'
+                    	)
                     )
                 ),
                 'cache' => array(
-                    'title' => 'List cache',
-                    'group' => 'Cache',
+                    'title' => 'Cache',
                     'resource' => 'admin/cache',
                     'children' => array(
                         'flush' => array(
                             'title' => 'Flush cache',
                             'resource' => 'admin/cache/flush'
+                        ),
+                        'flushAll' => array(
+                            'title' => 'Flush all cache',
+                            'resource' => 'admin/cache/flushAll'
                         )
                     )
                 ),

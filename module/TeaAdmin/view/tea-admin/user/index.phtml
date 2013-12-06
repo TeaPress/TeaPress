@@ -1,7 +1,9 @@
 <?php $this->headTitle('Admin user management') ?>
 <h2>
     <?php echo $this->translate('Admin user management'); ?>
+    <?php if($this->permission()->isAuthorized('admin/user/new')): ?>
     <a class="tiny button right" href="<?php echo $this->url('admin/user/new'); ?>"><?php echo $this->translate('Create new user'); ?></a>
+    <?php endif; ?>
 </h2>
 
 <table class="listing" width="100%">
@@ -21,9 +23,13 @@
                     <th><input type="checkbox" /></th>
                     <td><?php echo $user->getUserId(); ?></td>
                     <td>
+                        <?php if($this->permission()->isAuthorized('admin/user/edit')): ?>
                         <a href="<?php echo $this->url('admin/user/edit', array('id' => $user->getUserId())); ?>">
                             <?php echo $user->getUsername(); ?>
                         </a>
+                        <?php else: ?>
+                            <?php echo $user->getUsername(); ?>
+                        <?php endif; ?>
                     </td>
                     <td>
                         <?php echo $user->getRole()->getRoleName(); ?>

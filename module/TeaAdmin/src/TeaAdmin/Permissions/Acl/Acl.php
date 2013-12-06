@@ -18,19 +18,19 @@ class Acl extends BaseAcl
     public function addResource($resource, $parent = null)
     {
         if(is_array($resource)) {
-            $name = $resource['title'];
+            $title = $resource['title'];
             if(isset($resource['group'])) {
                 $group = $resource['group'];
             }
             $resource = $resource['resource'];
             
         } else {
-            $name = $resource;
+            $title = $resource;
         }
         parent::addResource($resource, $parent);
         
-        $this->resourcesNamed[$resource] = $name;
-        $this->resources[$resource]['name'] = $name;
+        $this->resourcesNamed[$resource] = $title;
+        $this->resources[$resource]['title'] = $title;
         
         if(isset($group)) {
             $this->resources[$resource]['group'] = $group;

@@ -33,7 +33,7 @@ return array(
     'view_helpers' => array(
         'invokables' => array(
             'formdescription' => 'TeaAdmin\Form\View\Helper\FormDescription',
-            'formlabel' => 'TeaAdmin\Form\View\Helper\FormLabel'
+            'formlabel' => 'TeaAdmin\Form\View\Helper\FormLabel',
         )
     ),
     'filter' => array(

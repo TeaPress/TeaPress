@@ -16,4 +16,26 @@ class Rule extends AbstractService
     {
         return $this->getMapper()->getAllRuleWithRole();
     }
+    
+    public function getResourceRulesFromRole($roleId)
+    {
+    	$rules = $this->getMapper()->getRulesFromRole($roleId);
+    	
+    	$resources = array();
+    	foreach ($rules as $rule) {
+			$resources[] = $rule->getResource();
+    	}
+    	
+    	return $resources;
+    }
+    
+    public function deleteRulesFromRole($roleId)
+    {
+    	return $this->getMapper()->deleteRulesFromRole($roleId);
+    }
+    
+    public function save($rule)
+    {
+    	return $this->getMapper()->save($rule);
+    }
 }

@@ -62,6 +62,7 @@ class UserController extends AbstractAdminActionController
         if($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getPost();
             
+            $form->setInputFilter(new \TeaAdmin\InputFilter\User($userId));
             if(!$this->getRequest()->getPost('password') && !$this->getRequest()->getPost('confirm')) {
                 $form->setValidationGroup('username', 'userFirstname', 'userLastname', 'userEmail', 'userContent', 'userGoogle', 'userFacebook', 'userTwitter', 'userStatus', 'roleId', 'token', 'submit');
             }
@@ -86,5 +87,21 @@ class UserController extends AbstractAdminActionController
         return $viewModel;
     }
     
-    
+    public function deleteAction()
+    {
+        $userId = $this->getEvent()->getRouteMatch()->getParam('id');
+        if(!$userId) {
+            throw new \Exception\InvalidArgumentException('User id must be defined.');
+        }
+
+        try {
+            $this->getServiceLocator()->get('TeaAdmin\Service\User')->delete($userId);
+            
+            $this->flashMessenger()->addSuccessMessage('User has been deleted.');
+            return $this->redirect()->toRoute('admin/user');
+        } catch (\Exception $e) {
+            $this->flashMessenger()->addErrorMessage('An error append during delete user.');
+            return $this->redirect()->toRoute('admin/user');            
+        }
+    }
 }

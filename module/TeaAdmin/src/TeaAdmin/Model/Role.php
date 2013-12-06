@@ -3,8 +3,9 @@
 namespace TeaAdmin\Model;
 
 use TakeATea\Model\AbstractModel;
+use Zend\Permissions\Acl\Role\RoleInterface;
 
-class Role extends AbstractModel
+class Role extends AbstractModel implements RoleInterface
 {
     protected $role_id;
     protected $role_name;

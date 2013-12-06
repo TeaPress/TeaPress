@@ -33,6 +33,14 @@ class User extends AbstractMapper
         return $this->selectWith($select);
     }
     
+    public function getUsersFromRole($roleId)
+    {
+        $select = $this->tableGateway->getSql()->select();
+        $select->where('role_id = ' . $roleId);
+        
+        return $this->selectWith($select);
+    }
+    
     /**
      * Create or update user
      * @param \TeaAdmin\Model\User $user
@@ -49,5 +57,10 @@ class User extends AbstractMapper
         $data['user_created'] = new \Zend\Db\Sql\Expression('Now()');
         $data['user_updated'] = new \Zend\Db\Sql\Expression('Now()');
         return $this->tableGateway->insert($data);
+    }
+    
+    public function delete($userId)
+    {
+        return $this->tableGateway->delete('user_id = ' . $userId);
     }
 }
